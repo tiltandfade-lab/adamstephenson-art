@@ -152,4 +152,4 @@ When starting a new session, Claude should:
 
 | Date | What happened |
 |---|---|
-| 2026-04-04 | GitHub repo created (`tiltandfade-lab/adamstephenson-art`). Netlify site created and connected. Deploy pipeline verified working. This CLAUDE.md created. Design Document v2 already complete (built in earlier session from Quick Portfolio source files). |
+| 2026-04-04 | GitHub repo created (`tiltandfade-lab/adamstephenson-art`). Netlify site created and connected. Deploy pipeline verified working. SSH auth set up on Adam's MacBook Pro. `deploy` alias installed via `.zshrc_snippet.sh` — run `deploy "message"` from anywhere to push. CLAUDE.md created. Design Document v2 already complete (built in earlier session from Quick Portfolio source files). |

@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adam Stephenson — Public Artist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #1C1C1E;
+      --accent: #D4763B;
+      --text: #E8E8E6;
+      --text-dim: #888884;
+      --border: #2E2E30;
+    }
+
+    html {
+      font-size: 17px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Josefin Sans', -apple-system, sans-serif;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 48px;
+      background: rgba(0,0,0,0.30);
+      backdrop-filter: blur(0px);
+    }
+
+    nav .wordmark {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    nav ul a {
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover {
+      color: var(--text-dim);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+      display: block;
+    }
+
+    /* subtle dark vignette at bottom so name stays readable */
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40%;
+      background: linear-gradient(to top, rgba(28,28,30,0.75) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .hero-name {
+      position: absolute;
+      bottom: 52px;
+      left: 48px;
+      z-index: 2;
+    }
+
+    .hero-name h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      line-height: 1.0;
+      color: #fff;
+    }
+
+    .hero-name span {
+      display: block;
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-top: 10px;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 52px;
+      right: 48px;
+      z-index: 2;
+      font-size: 15px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      writing-mode: vertical-rl;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-scroll::before {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: rgba(255,255,255,0.25);
+    }
+
+    /* ── TAGLINE ── */
+    .tagline {
+      padding: 80px 48px 72px;
+      max-width: 700px;
+    }
+
+    .tagline p {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--text-dim);
+    }
+
+    .tagline p strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    /* ── SECTION PREVIEWS ── */
+    .section-previews {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+    }
+
+    .preview-item {
+      position: relative;
+      background: var(--bg);
+      text-decoration: none;
+      color: inherit;
+      overflow: hidden;
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .preview-item .img-wrap {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .preview-item .img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      filter: brightness(0.62);
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.4s;
+    }
+
+    .preview-item:hover .img-wrap img {
+      transform: scale(1.04);
+      filter: brightness(0.78);
+    }
+
+    .preview-item .label {
+      position: relative;
+      z-index: 2;
+      margin-top: auto;
+      padding: 60px 32px 36px;
+      background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.5) 40%, transparent 100%);
+    }
+
+    .preview-item .label h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.1;
+    }
+
+    .preview-item .label p {
+      font-size: 15px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+    }
+
+    .preview-item .label .arrow {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 15px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      transition: letter-spacing 0.3s;
+    }
+
+    .preview-item:hover .label .arrow {
+      letter-spacing: 0.22em;
+    }
+
+    /* ── SELECTED WORKS STRIP ── */
+    .works-strip {
+      padding: 96px 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    .works-strip-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+
+    .works-strip-header h2 {
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .works-strip-header a {
+      font-size: 15px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .works-grid {
+      columns: 4;
+      column-gap: 3px;
+    }
+
+    /* each image at its natural ratio — no forced crop */
+    .works-grid figure {
+      break-inside: avoid;
+      margin: 0 0 3px 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .works-grid figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: brightness(0.88);
+      transition: filter 0.4s, transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .works-grid figure:hover img {
+      filter: brightness(0.75);
+      transform: scale(1.03);
+    }
+
+    .works-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 40px 16px 16px;
+      background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.35s;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .works-grid figure:hover .works-overlay {
+      opacity: 1;
+    }
+
+    .overlay-title {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.3;
+      letter-spacing: 0.04em;
+    }
+
+    .overlay-meta {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+    }
+
+    /* ── CASE STUDIES ── */
+    .case-studies {
+      border-top: 1px solid var(--border);
+    }
+
+    .case-studies-header {
+      padding: 72px 48px 56px;
+    }
+
+    .case-studies-header h2 {
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    /* default: text left (1/3) | image right (2/3) */
+    .case-row {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      border-top: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      min-height: 480px;
+    }
+
+    /* flipped: image left (2/3) | text right (1/3) */
+    .case-row.flipped {
+      grid-template-columns: 2fr 1fr;
+    }
+
+    /* dual: image (1fr) | text (1.4fr) | image (1fr) */
+    .case-row.dual {
+      grid-template-columns: 1fr 1.4fr 1fr;
+    }
+
+    .case-row:hover .case-row-img img {
+      filter: brightness(1.0);
+    }
+
+    .case-row:hover .case-link {
+      letter-spacing: 0.22em;
+    }
+
+    .case-row-info {
+      padding: 56px 52px 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      justify-content: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .case-row.flipped .case-row-info {
+      border-right: none;
+      border-left: 1px solid var(--border);
+    }
+
+    .case-row.dual .case-row-info {
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+    }
+
+    .case-num {
+      font-size: 15px;
+      letter-spacing: 0.20em;
+      color: var(--accent);
+    }
+
+    .case-row h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.1;
+    }
+
+    .case-meta {
+      font-size: 15px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-top: -4px;
+    }
+
+    .case-desc {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text-dim);
+      line-height: 1.75;
+      margin-top: 8px;
+    }
+
+    .case-link {
+      font-size: 15px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-top: 12px;
+      transition: letter-spacing 0.3s;
+      display: inline-block;
+    }
+
+    .case-row-img {
+      overflow: hidden;
+    }
+
+    .case-row-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.88);
+      transition: filter 0.5s;
+    }
+
+    /* ── CTA ── */
+    .cta {
+      padding: 120px 48px 128px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 40px;
+    }
+
+    .cta-eyebrow {
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .cta h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--text);
+      max-width: 720px;
+    }
+
+    .cta p {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--text-dim);
+      max-width: 480px;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 14px 36px;
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--text);
+      color: var(--text);
+      transition: background 0.25s, color 0.25s, border-color 0.25s;
+    }
+
+    .cta-btn:hover {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    .cta-btn.accent {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .cta-btn.accent:hover {
+      background: transparent;
+      color: var(--accent);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    footer .footer-name {
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    footer nav ul {
+      display: flex;
+      gap: 32px;
+    }
+
+    footer nav {
+      position: static;
+      background: none;
+      padding: 0;
+    }
+
+    footer .footer-social a {
+      font-size: 15px;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer .footer-social a:hover {
+      color: var(--accent);
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="wordmark">Adam Stephenson</a>
+    <ul>
+      <li><a href="/murals.html">Murals</a></li>
+      <li><a href="/digital.html">Digital & Design</a></li>
+      <li><a href="/fineart.html">Fine Art</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img
+      src="../Quick Portfolio/Murals/STEPHENSON-Mural-Decatur-AL-Homecoming-Action.jpg"
+      alt="Homecoming mural, Decatur, AL — artist at work"
+    >
+    <div class="hero-name">
+      <h1>Adam<br>Stephenson</h1>
+      <span>Public Artist · Atlanta, GA</span>
+    </div>
+    <div class="hero-scroll">Scroll</div>
+  </section>
+
+  <!-- TAGLINE -->
+  <div class="tagline">
+    <p>
+      <strong>Large-scale public murals, illustration, and design</strong>
+      rooted in the American South — built for walls that outlast the conversation.
+    </p>
+  </div>
+
+  <!-- SECTION PREVIEWS -->
+  <div class="section-previews">
+
+    <a class="preview-item" href="/murals.html">
+      <div class="img-wrap">
+        <img
+          src="../Quick Portfolio/Murals/ACMF-2024-Atlanta-Full.jpg"
+          alt="Murals"
+        >
+      </div>
+      <div class="label">
+        <h2>Murals</h2>
+        <p>Public commissions, festival walls, and permanent installations across the Southeast and beyond.</p>
+        <span class="arrow">View work →</span>
+      </div>
+    </a>
+
+    <a class="preview-item" href="/digital.html">
+      <div class="img-wrap">
+        <img
+          src="../Quick Portfolio/Digital Commissions/IPNA-2023-Inman-Park-Festival-Poster.jpg"
+          alt="Digital & Design"
+        >
+      </div>
+      <div class="label">
+        <h2>Digital & Design</h2>
+        <p>Festival posters, printed mural commissions, and illustration for print and digital.</p>
+        <span class="arrow">View work →</span>
+      </div>
+    </a>
+
+    <a class="preview-item" href="/fineart.html">
+      <div class="img-wrap">
+        <img
+          src="../Quick Portfolio/Fine Art & Portraits/STEPHENSON-FineArt-Jaz-1.jpg"
+          alt="Fine Art"
+        >
+      </div>
+      <div class="label">
+        <h2>Fine Art</h2>
+        <p>Studio paintings and works on paper — figurative, abstract, and the territory between.</p>
+        <span class="arrow">View work →</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- CASE STUDIES -->
+  <section class="case-studies">
+    <div class="case-studies-header">
+      <h2>Case Studies</h2>
+    </div>
+
+    <!-- Homecoming: text left | image right -->
+    <a class="case-row" href="/case-homecoming.html">
+      <div class="case-row-info">
+        <span class="case-num">01</span>
+        <h3>Homecoming</h3>
+        <span class="case-meta">2019 · Decatur, AL · 40′ × 70′</span>
+        <p class="case-desc">Painted in my hometown for the Alabama College of Art — and for my sister Lara Lee, who grew up on those same streets and passed away in 2006. Not a memorial, but a celebration of the beautiful, ephemeral parts of life. She holds a flower whose stem is dead but whose bloom is still full.</p>
+        <span class="case-link">Read the story →</span>
+      </div>
+      <div class="case-row-img">
+        <img src="../Quick Portfolio/Murals/Homecoming-2019-Decatur-AL-Full.jpg" alt="Homecoming, Decatur AL">
+      </div>
+    </a>
+
+    <!-- Fiddler's Spirit: image left | text right -->
+    <a class="case-row flipped" href="/case-fiddlers-spirit.html">
+      <div class="case-row-img">
+        <img src="../Quick Portfolio/Murals/Athens-2021-Fiddlers-Spirit-Panorama.jpg" alt="Playing the Sound of the Wind, Athens AL">
+      </div>
+      <div class="case-row-info">
+        <span class="case-num">02</span>
+        <h3>Playing the Sound of the Wind</h3>
+        <span class="case-meta">2021 · Athens, AL · 24′ × 48′</span>
+        <p class="case-desc">Commissioned by Athens Main Street to honor the Tennessee Valley Old Times Fiddlers Convention. My family has always moved through the world by music — my grandfather hosted the Grand Ole Opry alongside Dolly Parton. My father passed in November 2020. This wall was a chance to honor all of it.</p>
+        <span class="case-link">Read the story →</span>
+      </div>
+    </a>
+
+    <!-- The Scottie: image left | text center | image right -->
+    <a class="case-row dual" href="/case-scottie.html">
+      <div class="case-row-img">
+        <img src="../Quick Portfolio/CAFE/STEPHENSON-The Scottie-1976.jpg" alt="The Scottie — 1976 era, Nashville TN">
+      </div>
+      <div class="case-row-info">
+        <span class="case-num">03</span>
+        <h3>The Scottie</h3>
+        <span class="case-meta">2023 · Nashville, TN · Multi-story</span>
+        <p class="case-desc">Rangewater Real Estate came looking for something purely decorative for their new luxury development. I went back to my early studio work — deconstructed Victorian ornament, and a quiet nod to Nudie Cohn, the tailor who dressed the legends of country music since the 1940s. Nashville deserved more than wallpaper.</p>
+        <span class="case-link">Read the story →</span>
+      </div>
+      <div class="case-row-img">
+        <img src="../Quick Portfolio/CAFE/STEPHENSON-The Scottie-1982.jpg" alt="The Scottie — 1982 era, Nashville TN">
+      </div>
+    </a>
+
+  </section>
+
+  <!-- SELECTED WORKS STRIP -->
+  <section class="works-strip">
+    <div class="works-strip-header">
+      <h2>Selected Works</h2>
+      <a href="/murals.html">View all work →</a>
+    </div>
+    <div class="works-grid">
+      <figure>
+        <img src="gallery/01AdamStephenson.jpg" alt="From the Ashes, 2020">
+        <figcaption class="works-overlay">
+          <span class="overlay-title">From the Ashes</span>
+          <span class="overlay-meta">2020 · 8′ × 16′ · Chattanooga, TN · Burnin' Bridges Festival</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="gallery/02AdamStephenson.jpg" alt="Playing the Sound of the Wind, 2021">
+        <figcaption class="works-overlay">
+          <span class="overlay-title">Playing the Sound of the Wind</span>
+          <span class="overlay-meta">2021 · 24′ × 48′ · Athens, AL</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="gallery/03AdamStephenson.jpg" alt="Homecoming, 2019">
+        <figcaption class="works-overlay">
+          <span class="overlay-title">Homecoming</span>
+          <span class="overlay-meta">2019 · 40′ × 70′ · Decatur, AL</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="gallery/04AdamStephenson.jpg" alt="Homecoming — scale view, 2019">
+        <figcaption class="works-overlay">
+          <span class="overlay-title">Homecoming</span>
+          <span class="overlay-meta">2019 · 40′ × 70′ · Decatur, AL</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="gallery/05AdamStephenson.jpg" alt="Appalachian Sunsets, 2024">
+        <figcaption class="works-overlay">
+          <span class="overlay-title">Appalachian Sunsets</span>
+          <span class="overlay-meta">2024 · 4 Walls · Aerosol · Atlanta, GA</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="gallery/06AdamStephenson.jpg" alt="Hall of the Magician, 2026">
+        <figcaption class="works-overlay">
+          <span class="overlay-title">Hall of the Magician</span>
+          <span class="overlay-meta">WIP · 18′h × 54′w × 56′d · The Upton · Atlanta, GA</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="gallery/07AdamStephenson.jpg" alt="Hall of the Magician, 2026">
+        <figcaption class="works-overlay">
+          <span class="overlay-title">Hall of the Magician</span>
+          <span class="overlay-meta">WIP · 18′h × 54′w × 56′d · The Upton · Atlanta, GA</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="gallery/08AdamStephenson.jpg" alt="New Horizons, 2024">
+        <figcaption class="works-overlay">
+          <span class="overlay-title">New Horizons</span>
+          <span class="overlay-meta">2024 · 10′ × 18′ · Interior Acrylic</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="gallery/09AdamStephenson.jpg" alt="True Strength, 2022">
+        <figcaption class="works-overlay">
+          <span class="overlay-title">True Strength</span>
+          <span class="overlay-meta">2022 · 16′ × 16′ · Atlanta, GA</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="gallery/10AdamStephenson.jpg" alt="Hand of the Fool, 2022">
+        <figcaption class="works-overlay">
+          <span class="overlay-title">Hand of the Fool</span>
+          <span class="overlay-meta">2022 · 8′ × 8′ · Atlanta, GA</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="gallery/11AdamStephenson.jpg" alt="The Temptress, 2021">
+        <figcaption class="works-overlay">
+          <span class="overlay-title">The Temptress</span>
+          <span class="overlay-meta">2021 · 8′ × 16′ · Waverly, TN</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="gallery/12AdamStephenson.jpg" alt="Nudie Blues, 2024">
+        <figcaption class="works-overlay">
+          <span class="overlay-title">Nudie Blues</span>
+          <span class="overlay-meta">2024 · 25′ × 76′ · Nashville, TN</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="gallery/13AdamStephenson.jpg" alt="Nudie Blues, 2024">
+        <figcaption class="works-overlay">
+          <span class="overlay-title">Nudie Blues</span>
+          <span class="overlay-meta">2024 · 25′ × 76′ · Nashville, TN</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="gallery/14AdamStephenson.jpg" alt="Oats, 2024">
+        <figcaption class="works-overlay">
+          <span class="overlay-title">Oats</span>
+          <span class="overlay-meta">2024 · 16′ × 20′ · Cabbagetown, Atlanta, GA · Forward Warrior Mural Festival</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="gallery/15AdamStephenson.jpg" alt="Inman Park Festival 2023">
+        <figcaption class="works-overlay">
+          <span class="overlay-title">Inman Park Festival</span>
+          <span class="overlay-meta">2023 · 24″ × 36″ · Digital Illustration · Atlanta, GA</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="gallery/16AdamStephenson.jpg" alt="Inman Park Festival 2024">
+        <figcaption class="works-overlay">
+          <span class="overlay-title">Inman Park Festival</span>
+          <span class="overlay-meta">2024 · 24″ × 36″ · Digital Illustration · Atlanta, GA</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="gallery/17AdamStephenson.jpg" alt="Jaz, 2024">
+        <figcaption class="works-overlay">
+          <span class="overlay-title">Jaz</span>
+          <span class="overlay-meta">2024 · 18″ × 24″ · Acrylic on Canvas</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="gallery/18AdamStephenson.jpg" alt="Paola, 2024">
+        <figcaption class="works-overlay">
+          <span class="overlay-title">Paola</span>
+          <span class="overlay-meta">2024 · 18′ × 18′ · Atlanta, GA · Atlanta Crossroads Mural Festival</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="gallery/19AdamStephenson.jpg" alt="Riverclay Arts Festival, 2021">
+        <figcaption class="works-overlay">
+          <span class="overlay-title">Riverclay Arts Festival</span>
+          <span class="overlay-meta">2021 · 10′ × 10′ · Chalk Pastel</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="gallery/20AdamStephenson.jpg" alt="Chalktoberfest, 2021">
+        <figcaption class="works-overlay">
+          <span class="overlay-title">Chalktoberfest</span>
+          <span class="overlay-meta">2021 · 10′ × 10′ · Chalk Pastel · Marietta, GA</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="gallery/21AdamStephenson.jpg" alt="Taylor, 2024">
+        <figcaption class="works-overlay">
+          <span class="overlay-title">Taylor</span>
+          <span class="overlay-meta">2024 · Underground Atlanta · Atlanta, GA</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="gallery/22AdamStephenson.jpg" alt="Red Bank, TN">
+        <figcaption class="works-overlay">
+          <span class="overlay-title">Red Bank</span>
+          <span class="overlay-meta">2025 · Red Bank, TN</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <span class="cta-eyebrow">Let's work together</span>
+    <h2>Every wall is a conversation waiting to happen.</h2>
+    <p>Whether you're thinking about a large-scale mural for a public space or a limited print for your home, I'd love to hear what you have in mind.</p>
+    <div class="cta-actions">
+      <a class="cta-btn accent" href="/contact.html">Start a mural conversation</a>
+      <a class="cta-btn" href="/contact.html">Commission a print</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-name">Adam Stephenson</span>
+    <nav>
+      <ul>
+        <li><a href="/murals.html">Murals</a></li>
+        <li><a href="/digital.html">Digital & Design</a></li>
+        <li><a href="/fineart.html">Fine Art</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="footer-social">
+      <a href="https://instagram.com" target="_blank">@adamstephenson.art</a>
+    </div>
+  </footer>
+
+</body>
+</html>
