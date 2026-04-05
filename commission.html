@@ -93,7 +93,7 @@
       font-size: 1.4rem; font-weight: 400; color: var(--text);
       margin-bottom: 16px; line-height: 1.2;
     }
-    .step p { font-size: 15px; font-weight: 400; line-height: 1.75; color: var(--text-dim); }
+    .step p { font-size: 17px; font-weight: 400; line-height: 1.75; color: var(--text-dim); }
     .step .step-tag {
       display: inline-block; margin-top: 20px;
       font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
@@ -135,7 +135,7 @@
       font-size: 2.2rem; font-weight: 400; color: var(--text); line-height: 1;
     }
     .price-callout-note {
-      font-size: 15px; color: var(--text-dim); line-height: 1.6;
+      font-size: 17px; color: var(--text-dim); line-height: 1.6;
       margin-bottom: 24px;
     }
     .price-callout-factors { display: flex; flex-direction: column; gap: 12px; }
@@ -164,7 +164,7 @@
       margin-bottom: 14px;
     }
     .vinyl-text p {
-      font-size: 15px; color: var(--text-dim); line-height: 1.7; max-width: 580px;
+      font-size: 17px; color: var(--text-dim); line-height: 1.7; max-width: 580px;
     }
     .vinyl-text p strong { color: var(--text); font-weight: 400; }
     .vinyl-price {
@@ -197,18 +197,17 @@
     }
 
     /* FIT */
-    .fit { padding: 80px 48px; border-bottom: 1px solid var(--border); }
-    .fit-inner { display: grid; grid-template-columns: 280px 1fr; gap: 64px; align-items: start; }
-    .fit-palette { position: sticky; top: 112px; }
-    .fit-palette img { width: 100%; display: block; }
-    .fit-single { max-width: 720px; }
+    .fit { display: grid; grid-template-columns: 380px 1fr; min-height: 560px; overflow: hidden; border-bottom: 1px solid var(--border); }
+    .fit-palette { overflow: hidden; border-right: 1px solid var(--border); }
+    .fit-palette img { width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block; }
+    .fit-content { padding: 72px 64px; }
     .fit-heading {
       font-family: 'Playfair Display', Georgia, serif;
       font-size: 1.5rem; font-weight: 400; color: var(--text);
       margin-bottom: 36px;
     }
-    .fit-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
-    .fit-list li { font-size: 16px; font-weight: 400; color: var(--text-dim); line-height: 1.6; padding-left: 24px; position: relative; }
+    .fit-list { list-style: none; display: flex; flex-direction: column; gap: 18px; max-width: 680px; }
+    .fit-list li { font-size: 17px; font-weight: 400; color: var(--text-dim); line-height: 1.6; padding-left: 24px; position: relative; }
     .fit-list li::before { content: '↗'; position: absolute; left: 0; font-size: 13px; color: var(--accent); top: 2px; }
     .fit-list li strong { color: var(--text); font-weight: 400; }
 
@@ -275,9 +274,9 @@
       .vinyl-option { grid-template-columns: 1fr; }
       .vinyl-text { border-right: none; border-bottom: 1px solid var(--border); padding: 28px 24px; }
       .vinyl-price { padding: 24px 24px; }
-      .fit { padding: 64px 24px; }
-      .fit-inner { grid-template-columns: 1fr; gap: 32px; }
-      .fit-palette { position: static; }
+      .fit { grid-template-columns: 1fr; min-height: unset; }
+      .fit-palette { display: none; }
+      .fit-content { padding: 56px 24px; }
       .travel { padding: 56px 24px; grid-template-columns: 1fr; gap: 24px; }
       .commission-cta { padding: 72px 24px 80px; }
       footer { flex-direction: column; align-items: flex-start; gap: 24px; padding: 40px 24px; }
@@ -291,7 +290,7 @@
       .pricing { padding: 48px 20px; }
       .price-callout-text { padding: 24px 20px; }
       .price-callout-price { padding: 20px 20px; }
-      .fit { padding: 48px 20px; }
+      .fit-content { padding: 40px 20px; }
       .travel { padding: 48px 20px; }
       .commission-cta { padding: 56px 20px 64px; }
       footer { padding: 32px 20px; }
@@ -418,12 +417,11 @@
 
     <!-- GOOD FIT -->
     <section class="fit" aria-label="Project fit">
-      <span class="section-label">Is this a good fit?</span>
-      <div class="fit-inner">
-        <div class="fit-palette">
-          <img src="images/STEPHENSON-Paint-Palette.jpg" alt="Adam Stephenson's paint palette" loading="lazy">
-        </div>
-      <div class="fit-single">
+      <div class="fit-palette">
+        <img src="images/STEPHENSON-Paint-Palette.jpg" alt="Adam Stephenson's paint palette" loading="lazy">
+      </div>
+      <div class="fit-content">
+        <span class="section-label">Is this a good fit?</span>
         <h3 class="fit-heading">We're probably a good fit if —</h3>
         <ul class="fit-list" role="list">
           <li><strong>You want something that couldn't come from anyone else.</strong> If you've seen a piece of mine and thought "I want that energy in my space," we're already speaking the same language. That's the best place to start.</li>
@@ -431,7 +429,6 @@
           <li><strong>You're ready to invest in something that's genuinely yours.</strong> Handcrafted, one-of-one, built to last. I use top-quality materials on every project regardless of scale, because the work represents both of us.</li>
           <li><strong>You want the wall to still matter in ten years.</strong> Not just look good at the opening. The pieces that get remembered, the ones communities protect, the ones that still stop people cold a decade later. Those happen when an artist has room to go somewhere real. I take that seriously.</li>
         </ul>
-      </div>
       </div>
     </section>
 
