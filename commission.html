@@ -198,6 +198,9 @@
 
     /* FIT */
     .fit { padding: 80px 48px; border-bottom: 1px solid var(--border); }
+    .fit-inner { display: grid; grid-template-columns: 280px 1fr; gap: 64px; align-items: start; }
+    .fit-palette { position: sticky; top: 112px; }
+    .fit-palette img { width: 100%; display: block; }
     .fit-single { max-width: 720px; }
     .fit-heading {
       font-family: 'Playfair Display', Georgia, serif;
@@ -273,6 +276,8 @@
       .vinyl-text { border-right: none; border-bottom: 1px solid var(--border); padding: 28px 24px; }
       .vinyl-price { padding: 24px 24px; }
       .fit { padding: 64px 24px; }
+      .fit-inner { grid-template-columns: 1fr; gap: 32px; }
+      .fit-palette { position: static; }
       .travel { padding: 56px 24px; grid-template-columns: 1fr; gap: 24px; }
       .commission-cta { padding: 72px 24px 80px; }
       footer { flex-direction: column; align-items: flex-start; gap: 24px; padding: 40px 24px; }
@@ -414,6 +419,10 @@
     <!-- GOOD FIT -->
     <section class="fit" aria-label="Project fit">
       <span class="section-label">Is this a good fit?</span>
+      <div class="fit-inner">
+        <div class="fit-palette">
+          <img src="images/STEPHENSON-Paint-Palette.jpg" alt="Adam Stephenson's paint palette" loading="lazy">
+        </div>
       <div class="fit-single">
         <h3 class="fit-heading">We're probably a good fit if —</h3>
         <ul class="fit-list" role="list">
@@ -422,6 +431,7 @@
           <li><strong>You're ready to invest in something that's genuinely yours.</strong> Handcrafted, one-of-one, built to last. I use top-quality materials on every project regardless of scale, because the work represents both of us.</li>
           <li><strong>You want the wall to still matter in ten years.</strong> Not just look good at the opening. The pieces that get remembered, the ones communities protect, the ones that still stop people cold a decade later. Those happen when an artist has room to go somewhere real. I take that seriously.</li>
         </ul>
+      </div>
       </div>
     </section>
 
