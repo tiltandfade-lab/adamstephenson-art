@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Murals — Adam Stephenson | Public Artist</title>
+  <meta name="description" content="Public murals, festival walls, and permanent installations by Adam Stephenson — across Atlanta, the American South, and beyond.">
+  <meta name="author" content="Adam Stephenson">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://adamstephenson.art/murals.html">
+  <meta property="og:title" content="Murals — Adam Stephenson">
+  <meta property="og:description" content="Public murals, festival walls, and permanent installations across the Southeast and beyond.">
+  <meta property="og:image" content="https://adamstephenson.art/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #1C1C1E;
+      --accent: #D4763B;
+      --text: #E8E8E6;
+      --text-dim: #888884;
+      --border: #2E2E30;
+    }
+
+    html { font-size: 17px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .skip-nav {
+      position: absolute; top: -100%; left: 16px; z-index: 9999;
+      padding: 8px 20px; background: var(--accent); color: #fff;
+      font-size: 14px; letter-spacing: 0.1em; text-decoration: none; transition: top 0.2s;
+    }
+    .skip-nav:focus { top: 16px; }
+
+    #hero-sparkle {
+      position: fixed; inset: 0; width: 100%; height: 100%;
+      z-index: 0; pointer-events: none;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 48px; background: rgba(0,0,0,0.30);
+    }
+    nav .wordmark {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 16px; font-weight: 400; letter-spacing: 0.06em;
+      color: var(--text); text-decoration: none;
+    }
+    nav ul { display: flex; gap: 40px; list-style: none; }
+    nav ul a {
+      font-size: 15px; font-weight: 400; letter-spacing: 0.10em;
+      text-transform: uppercase; color: var(--text); text-decoration: none; transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--text-dim); }
+    nav ul a.active { color: var(--accent); }
+
+    /* PAGE HEADER */
+    .page-header {
+      position: relative;
+      z-index: 1;
+      padding: 160px 48px 80px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .page-header-text { max-width: 680px; }
+    .page-eyebrow {
+      font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 20px; display: block;
+    }
+    .page-header h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      font-weight: 400; line-height: 1.05; color: var(--text);
+    }
+    .page-header p {
+      margin-top: 24px; font-size: 17px; font-weight: 400;
+      line-height: 1.75; color: var(--text-dim); max-width: 520px;
+    }
+    .page-header-meta {
+      text-align: right; flex-shrink: 0;
+    }
+    .page-header-meta span {
+      display: block; font-size: 13px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--text-dim); line-height: 2;
+    }
+
+    /* GALLERY */
+    .gallery-section {
+      position: relative; z-index: 1;
+      padding: 64px 48px 96px;
+    }
+
+    .gallery-grid {
+      columns: 3;
+      column-gap: 4px;
+    }
+
+    .gallery-grid figure {
+      break-inside: avoid;
+      margin: 0 0 4px 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery-grid figure img {
+      width: 100%; height: auto; display: block;
+      filter: brightness(0.88);
+      transition: filter 0.4s, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .gallery-grid figure:hover img {
+      filter: brightness(1.0);
+      transform: scale(1.025);
+    }
+
+    .gallery-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 48px 18px 18px;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+      opacity: 0; transition: opacity 0.35s;
+      display: flex; flex-direction: column; gap: 5px;
+    }
+    .gallery-grid figure:hover .gallery-overlay { opacity: 1; }
+
+    .overlay-title {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 15px; font-weight: 600; color: #fff; letter-spacing: 0.04em;
+    }
+    .overlay-meta {
+      font-size: 14px; font-weight: 400; letter-spacing: 0.10em;
+      text-transform: uppercase; color: rgba(255,255,255,0.65);
+    }
+
+    /* CTA STRIP */
+    .cta-strip {
+      position: relative; z-index: 1;
+      padding: 72px 48px;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between; gap: 40px;
+    }
+    .cta-strip p {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 400; color: var(--text-dim); max-width: 600px;
+    }
+    .cta-strip p strong { color: var(--text); font-weight: 400; }
+    .cta-btn {
+      display: inline-block; padding: 14px 36px; flex-shrink: 0;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 15px; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase;
+      text-decoration: none; background: var(--accent); border: 1px solid var(--accent);
+      color: #fff; transition: background 0.25s, color 0.25s;
+    }
+    .cta-btn:hover { background: transparent; color: var(--accent); }
+
+    /* FOOTER */
+    footer {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--border); padding: 40px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    footer .footer-name {
+      font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim);
+    }
+    footer nav { position: static; background: none; padding: 0; }
+    footer nav ul { display: flex; gap: 32px; }
+    footer .footer-social a {
+      font-size: 15px; letter-spacing: 0.08em; color: var(--text-dim);
+      text-decoration: none; transition: color 0.2s;
+    }
+    footer .footer-social a:hover { color: var(--accent); }
+
+    /* CASE STUDIES */
+    .case-studies { border-top: 1px solid var(--border); }
+    .case-studies-header { padding: 64px 48px 48px; }
+    .case-studies-header h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 400; color: var(--text);
+    }
+    .case-row {
+      display: grid; grid-template-columns: 1fr 2fr;
+      border-top: 1px solid var(--border);
+      text-decoration: none; color: inherit; min-height: 480px;
+    }
+    .case-row.flipped { grid-template-columns: 2fr 1fr; }
+    .case-row.dual { grid-template-columns: 1fr 1.4fr 1fr; }
+    .case-row:hover .case-row-img img { filter: brightness(1.0); }
+    .case-row:hover .case-link { letter-spacing: 0.22em; }
+    .case-row-info {
+      padding: 56px 52px 64px; display: flex; flex-direction: column;
+      gap: 16px; justify-content: center; border-right: 1px solid var(--border);
+    }
+    .case-row.flipped .case-row-info { border-right: none; border-left: 1px solid var(--border); }
+    .case-row.dual .case-row-info { border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+    .case-num { font-size: 15px; letter-spacing: 0.20em; color: var(--accent); }
+    .case-row h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 400; color: var(--text); line-height: 1.1;
+    }
+    .case-meta { font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); margin-top: -4px; }
+    .case-desc { font-size: 15px; font-weight: 400; color: var(--text-dim); line-height: 1.75; margin-top: 8px; }
+    .case-link { font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text); margin-top: 12px; transition: letter-spacing 0.3s; display: inline-block; }
+    .case-row-img { overflow: hidden; }
+    .case-row-img img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.88); transition: filter 0.5s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      nav ul { gap: 24px; }
+      nav ul a { font-size: 13px; }
+      .page-header { padding: 120px 24px 56px; flex-direction: column; align-items: flex-start; }
+      .page-header-meta { text-align: left; }
+      .case-studies-header { padding: 48px 24px 36px; }
+      .case-row, .case-row.flipped, .case-row.dual { grid-template-columns: 1fr; min-height: unset; }
+      .case-row .case-row-info { order: 2; border-right: none; border-top: 1px solid var(--border); padding: 40px 24px; }
+      .case-row .case-row-img { order: 1; min-height: 280px; }
+      .case-row.flipped .case-row-info { order: 2; border-left: none; border-top: 1px solid var(--border); padding: 40px 24px; }
+      .case-row.flipped .case-row-img { order: 1; }
+      .scottie-first { display: none; }
+      .case-row.dual .case-row-img:last-child { order: 1; }
+      .case-row.dual .case-row-info { order: 3; border-left: none; border-right: none; border-top: 1px solid var(--border); padding: 40px 24px; }
+      .gallery-section { padding: 48px 24px 72px; }
+      .gallery-grid { columns: 2; }
+      .gallery-overlay { opacity: 1; background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 80%); }
+      .cta-strip { padding: 56px 24px; flex-direction: column; align-items: flex-start; }
+      footer { flex-direction: column; align-items: flex-start; gap: 24px; padding: 40px 24px; }
+      footer nav ul { gap: 20px; flex-wrap: wrap; }
+    }
+    @media (max-width: 540px) {
+      nav ul { display: none; }
+      nav { padding: 18px 20px; }
+      .page-header { padding: 100px 20px 48px; }
+      .gallery-section { padding: 40px 16px 64px; }
+      .gallery-grid { columns: 1; }
+      .cta-strip { padding: 48px 20px; }
+      footer { padding: 32px 20px; }
+    }
+    /* HAMBURGER MENU */
+    .nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px 4px; z-index: 101; }
+    .nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--text); transition: transform 0.3s, opacity 0.3s; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    @media (max-width: 900px) {
+      .nav-toggle { display: flex; }
+      nav ul { display: flex !important; flex-direction: column; position: fixed; top: 0; left: 0; right: 0; padding: 80px 32px 48px; background: rgba(28,28,30,0.97); backdrop-filter: blur(12px); gap: 0; transform: translateY(-100%); transition: transform 0.38s cubic-bezier(0.4,0,0.2,1); z-index: 99; border-bottom: 1px solid var(--border); pointer-events: none; }
+      nav ul.is-open { transform: translateY(0); pointer-events: auto; }
+      nav ul li { border-bottom: 1px solid var(--border); }
+      nav ul a { font-size: 16px !important; display: block; padding: 16px 0; letter-spacing: 0.12em; }
+      footer nav ul { position: static !important; transform: none !important; flex-direction: row !important; background: none; padding: 0; border: none; pointer-events: auto; backdrop-filter: none; }
+      footer nav ul li { border-bottom: none !important; }
+      footer nav ul a { display: inline !important; padding: 0 !important; font-size: 15px !important; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-nav">Skip to main content</a>
+  <canvas id="hero-sparkle"></canvas>
+
+  <nav aria-label="Primary navigation"></nav>
+
+  <main id="main">
+
+    <header class="page-header">
+      <div class="page-header-text">
+        <span class="page-eyebrow">Work</span>
+        <h1>Murals</h1>
+        <p>Public commissions, festival walls, and permanent installations — from 10-foot lobby pieces to 70-foot exterior murals across the American South and beyond.</p>
+      </div>
+      <div class="page-header-meta" aria-label="Stats">
+        <span>Since 2019</span>
+        <span>Southeast & beyond</span>
+      </div>
+    </header>
+
+    <section class="case-studies" aria-label="Case studies">
+      <div class="case-studies-header">
+        <h2>Case Studies</h2>
+      </div>
+
+      <a class="case-row" href="case-homecoming.html">
+        <div class="case-row-info">
+          <span class="case-num">01</span>
+          <h3>Homecoming</h3>
+          <span class="case-meta">2019 · Decatur, AL · 40′ × 70′</span>
+          <p class="case-desc">Painted in my hometown for the Alabama College of Art — and for my sister Lara Lee, who grew up on those same streets and passed away in 2006. Not a memorial, but a celebration of the beautiful, ephemeral parts of life. She holds a flower whose stem is dead but whose bloom is still full.</p>
+          <span class="case-link">Read the story →</span>
+        </div>
+        <div class="case-row-img">
+          <img src="../Quick Portfolio/Murals/Homecoming-2019-Decatur-AL-Full.jpg" alt="Homecoming, Decatur AL">
+        </div>
+      </a>
+
+      <a class="case-row flipped" href="case-fiddlers-spirit.html">
+        <div class="case-row-img">
+          <img src="../Quick Portfolio/Murals/Athens-2021-Fiddlers-Spirit-Panorama.jpg" alt="Playing the Sound of the Wind, Athens AL">
+        </div>
+        <div class="case-row-info">
+          <span class="case-num">02</span>
+          <h3>Playing the Sound of the Wind</h3>
+          <span class="case-meta">2021 · Athens, AL · 24′ × 48′</span>
+          <p class="case-desc">Commissioned by Athens Main Street to honor the Tennessee Valley Old Times Fiddlers Convention. My family has always moved through the world by music — my grandfather hosted the Grand Ole Opry alongside Dolly Parton. My father passed in November 2020. This wall was a chance to honor all of it.</p>
+          <span class="case-link">Read the story →</span>
+        </div>
+      </a>
+
+      <a class="case-row dual" href="case-scottie.html">
+        <div class="case-row-img scottie-first">
+          <img src="../Quick Portfolio/CAFE/STEPHENSON-The Scottie-1976.jpg" alt="The Scottie — 1976 era, Nashville TN">
+        </div>
+        <div class="case-row-info">
+          <span class="case-num">03</span>
+          <h3>The Scottie</h3>
+          <span class="case-meta">2023 · Nashville, TN · Multi-story</span>
+          <p class="case-desc">Rangewater Real Estate came looking for something purely decorative for their new luxury development. I went back to my early studio work — deconstructed Victorian ornament, and a quiet nod to Nudie Cohn, the tailor who dressed the legends of country music since the 1940s. Nashville deserved more than wallpaper.</p>
+          <span class="case-link">Read the story →</span>
+        </div>
+        <div class="case-row-img">
+          <img src="../Quick Portfolio/CAFE/STEPHENSON-The Scottie-1982.jpg" alt="The Scottie — 1982 era, Nashville TN">
+        </div>
+      </a>
+
+    </section>
+
+    <section class="gallery-section" aria-label="Mural gallery">
+      <div class="gallery-grid" role="list">
+
+        <figure role="listitem">
+          <img src="../Quick Portfolio/Murals/ACMF-2024-Atlanta-Full.jpg" alt="Atlanta Crossroads Mural Festival 2024, Atlanta, GA — full wall view" loading="lazy">
+          <figcaption class="gallery-overlay" aria-hidden="true">
+            <span class="overlay-title">ACMF 2024</span>
+            <span class="overlay-meta">Atlanta, GA · Festival Wall</span>
+          </figcaption>
+        </figure>
+
+        <figure role="listitem">
+          <img src="../Quick Portfolio/Murals/Homecoming-2019-Decatur-AL-Full.jpg" alt="Homecoming mural, Decatur, AL, 2019 — full view, 40 by 70 feet" loading="lazy">
+          <figcaption class="gallery-overlay" aria-hidden="true">
+            <span class="overlay-title">Homecoming</span>
+            <span class="overlay-meta">2019 · Decatur, AL · 40′ × 70′</span>
+          </figcaption>
+        </figure>
+
+        <figure role="listitem">
+          <img src="../Quick Portfolio/Murals/STEPHENSON-Mural-Decatur-AL-Homecoming-Action.jpg" alt="Homecoming mural, Decatur, AL — action shot" loading="lazy">
+          <figcaption class="gallery-overlay" aria-hidden="true">
+            <span class="overlay-title">Homecoming — In Progress</span>
+            <span class="overlay-meta">2019 · Decatur, AL</span>
+          </figcaption>
+        </figure>
+
+        <figure role="listitem">
+          <img src="../Quick Portfolio/Murals/Athens-2021-Fiddlers-Spirit-Panorama.jpg" alt="Playing the Sound of the Wind, Athens, AL, 2021 — panorama view" loading="lazy">
+          <figcaption class="gallery-overlay" aria-hidden="true">
+            <span class="overlay-title">Playing the Sound of the Wind</span>
+            <span class="overlay-meta">2021 · Athens, AL · 24′ × 48′</span>
+          </figcaption>
+        </figure>
+
+        <figure role="listitem">
+          <img src="../Quick Portfolio/Murals/Athens-2021-Fiddlers-Spirit-Fisheye.jpg" alt="Playing the Sound of the Wind, Athens, AL — progress shot" loading="lazy">
+          <figcaption class="gallery-overlay" aria-hidden="true">
+            <span class="overlay-title">Playing the Sound of the Wind — Progress</span>
+            <span class="overlay-meta">2021 · Athens, AL</span>
+          </figcaption>
+        </figure>
+
+        <figure role="listitem">
+          <img src="../Quick Portfolio/Murals/STEPHENSON-Mural-Atlanta-GA-Upton-Ceiling.jpg" alt="The Upton ceiling mural, Atlanta, GA" loading="lazy">
+          <figcaption class="gallery-overlay" aria-hidden="true">
+            <span class="overlay-title">The Upton — Ceiling</span>
+            <span class="overlay-meta">Atlanta, GA · Residential Commission</span>
+          </figcaption>
+        </figure>
+
+        <figure role="listitem">
+          <img src="../Quick Portfolio/Murals/STEPHENSON-True-Strength-Mural-Atlanta-GA-Pullman-Yards.jpg" alt="True Strength mural, Pullman Yards, Atlanta, GA" loading="lazy">
+          <figcaption class="gallery-overlay" aria-hidden="true">
+            <span class="overlay-title">True Strength</span>
+            <span class="overlay-meta">Atlanta, GA · Pullman Yards</span>
+          </figcaption>
+        </figure>
+
+        <figure role="listitem">
+          <img src="../Quick Portfolio/Murals/STEPHENSON-Mural-Huntsville-AL-BD-Full.jpg" alt="Huntsville mural, Alabama, full view" loading="lazy">
+          <figcaption class="gallery-overlay" aria-hidden="true">
+            <span class="overlay-title">Bridging Districts</span>
+            <span class="overlay-meta">Huntsville, AL · Commercial Commission</span>
+          </figcaption>
+        </figure>
+
+        <figure role="listitem">
+          <img src="../Quick Portfolio/Murals/STEPHENSON-Mural-RedBank-TN-Outer Wall-Full.png.jpg" alt="Red Bank mural, Chattanooga TN — outer wall full view" loading="lazy">
+          <figcaption class="gallery-overlay" aria-hidden="true">
+            <span class="overlay-title">Red Bank — Outer Wall</span>
+            <span class="overlay-meta">Red Bank, TN · Riverclay Festival</span>
+          </figcaption>
+        </figure>
+
+        <figure role="listitem">
+          <img src="../Quick Portfolio/Murals/Burn-2020-From-the-Ashes-Phoenix.jpg" alt="From the Ashes — Phoenix, 2020" loading="lazy">
+          <figcaption class="gallery-overlay" aria-hidden="true">
+            <span class="overlay-title">From the Ashes</span>
+            <span class="overlay-meta">2020 · Phoenix</span>
+          </figcaption>
+        </figure>
+
+        <figure role="listitem">
+          <img src="../Quick Portfolio/Murals/STEPHENSON-Mural-Sceptre-Brewing-Decatur-GA.jpg" alt="Sceptre Brewing mural, Decatur, GA" loading="lazy">
+          <figcaption class="gallery-overlay" aria-hidden="true">
+            <span class="overlay-title">Sceptre Brewing</span>
+            <span class="overlay-meta">Decatur, GA · Commercial Commission</span>
+          </figcaption>
+        </figure>
+
+        <figure role="listitem">
+          <img src="../Quick Portfolio/Murals/STEPHENSON-Mural-Spa-Aeon-Emory-Village.jpg" alt="Spa Aeon mural, Emory Village, Atlanta, GA" loading="lazy">
+          <figcaption class="gallery-overlay" aria-hidden="true">
+            <span class="overlay-title">Spa Aeon</span>
+            <span class="overlay-meta">Emory Village, Atlanta, GA</span>
+          </figcaption>
+        </figure>
+
+        <figure role="listitem">
+          <img src="../Quick Portfolio/Murals/STEPHENSON-Hand-of-the-Fool-Mural-Atlanta-GA-Stacks-Lofts.jpg" alt="Hand of the Fool mural, Stacks Lofts, Atlanta, GA" loading="lazy">
+          <figcaption class="gallery-overlay" aria-hidden="true">
+            <span class="overlay-title">Hand of the Fool</span>
+            <span class="overlay-meta">Atlanta, GA · Stacks Lofts</span>
+          </figcaption>
+        </figure>
+
+        <figure role="listitem">
+          <img src="../Quick Portfolio/Murals/STEPHENSON-The-Temptress-Mural-Waverly-TN.jpg" alt="The Temptress mural, Waverly, TN" loading="lazy">
+          <figcaption class="gallery-overlay" aria-hidden="true">
+            <span class="overlay-title">The Temptress</span>
+            <span class="overlay-meta">Waverly, TN</span>
+          </figcaption>
+        </figure>
+
+        <figure role="listitem">
+          <img src="../Quick Portfolio/Murals/STEPHENSON-Mural-Waverly-TN-Detail.jpg" alt="Mural detail, Waverly, TN" loading="lazy">
+          <figcaption class="gallery-overlay" aria-hidden="true">
+            <span class="overlay-title">The Temptress — Detail</span>
+            <span class="overlay-meta">Waverly, TN</span>
+          </figcaption>
+        </figure>
+
+        <figure role="listitem">
+          <img src="../Quick Portfolio/Murals/STEPHENSON-Mural-Nashville-TN-Scottie-1976.png" alt="The Scottie — 1976 era detail, Nashville, TN" loading="lazy">
+          <figcaption class="gallery-overlay" aria-hidden="true">
+            <span class="overlay-title">The Scottie — 1976</span>
+            <span class="overlay-meta">Nashville, TN</span>
+          </figcaption>
+        </figure>
+
+        <figure role="listitem">
+          <img src="../Quick Portfolio/Murals/STEPHENSON-Mural-Nashville-TN-Scottie-1982.png" alt="The Scottie — 1982 era detail, Nashville, TN" loading="lazy">
+          <figcaption class="gallery-overlay" aria-hidden="true">
+            <span class="overlay-title">The Scottie — 1982</span>
+            <span class="overlay-meta">Nashville, TN</span>
+          </figcaption>
+        </figure>
+
+        <figure role="listitem">
+          <img src="../Quick Portfolio/Murals/STEPHENSON-Mural-Kicky.jpg" alt="Kicky mural" loading="lazy">
+          <figcaption class="gallery-overlay" aria-hidden="true">
+            <span class="overlay-title">Kicky</span>
+            <span class="overlay-meta">Commercial Commission</span>
+          </figcaption>
+        </figure>
+
+        <figure role="listitem">
+          <img src="../Quick Portfolio/CAFE/Hall of the Magician.jpg" alt="Hall of the Magician mural — work in progress" loading="lazy">
+          <figcaption class="gallery-overlay" aria-hidden="true">
+            <span class="overlay-title">Hall of the Magician</span>
+            <span class="overlay-meta">WIP</span>
+          </figcaption>
+        </figure>
+
+        <figure role="listitem">
+          <img src="../Quick Portfolio/Fine Art & Portraits/STEPHENSON-Portrait-Taylor-compressed.jpg" alt="Taylor — figurative mural, 2024" loading="lazy">
+          <figcaption class="gallery-overlay" aria-hidden="true">
+            <span class="overlay-title">Taylor</span>
+            <span class="overlay-meta">2024 · Mural</span>
+          </figcaption>
+        </figure>
+
+      </div>
+    </section>
+
+    <div class="cta-strip">
+      <p><strong>Have a wall?</strong> Let's talk about what it could become.</p>
+      <a href="contact.html" class="cta-btn">Start a conversation</a>
+    </div>
+
+  </main>
+
+  <footer aria-label="Site footer"></footer>
+
+  <script>
+    (function () {
+      const canvas = document.getElementById('hero-sparkle');
+      const ctx = canvas.getContext('2d');
+      function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+      window.addEventListener('resize', resize); resize();
+      const COUNT = 880;
+      const ACCENT = [212, 118, 59], WHITE = [255, 248, 235], BLUE = [120, 195, 230];
+      const DOC_H = () => Math.max(document.body.scrollHeight, window.innerHeight);
+      const particles = Array.from({ length: COUNT }, () => {
+        const rand = Math.random();
+        const color = rand < 0.15 ? ACCENT : rand < 0.30 ? BLUE : WHITE;
+        return {
+          x: Math.random() * canvas.width, y: Math.random() * DOC_H(),
+          r: Math.random() * 1.4 + 0.4,
+          vx: (Math.random() - 0.5) * 0.18, vy: (Math.random() - 0.5) * 0.18,
+          phase: Math.random() * Math.PI * 2,
+          speed: Math.random() * 0.00875 + 0.00375,
+          maxAlpha: Math.random() * 0.38 + 0.12, color,
+        };
+      });
+      function draw() {
+        const scrollY = window.scrollY, docH = DOC_H();
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (const p of particles) {
+          p.phase += p.speed; p.x += p.vx; p.y += p.vy;
+          if (p.x < -4) p.x = canvas.width + 4;
+          if (p.x > canvas.width + 4) p.x = -4;
+          if (p.y < 0) p.y = docH; if (p.y > docH) p.y = 0;
+          const screenY = p.y - scrollY;
+          if (screenY < -4 || screenY > canvas.height + 4) continue;
+          const alpha = (Math.sin(p.phase) * 0.5 + 0.5) * p.maxAlpha;
+          const [r, g, b] = p.color;
+          ctx.beginPath(); ctx.arc(p.x, screenY, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${r},${g},${b},${alpha.toFixed(3)})`; ctx.fill();
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+  </script>
+
+  <script src="nav.js"></script>
+  <script src="footer.js"></script>
+
+</body>
+</html>

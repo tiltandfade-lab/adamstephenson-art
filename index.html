@@ -3,7 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adam Stephenson — Public Artist</title>
+  <title>Adam Stephenson — Public Artist | Atlanta, GA</title>
+  <meta name="description" content="Adam Stephenson is a public artist based in Atlanta, GA — murals, festival walls, and permanent installations since 2019.">
+  <meta name="author" content="Adam Stephenson">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://adamstephenson.art/">
+  <meta property="og:title" content="Adam Stephenson — Public Artist">
+  <meta property="og:description" content="Large-scale public murals, festival walls, and permanent installations. Based in Atlanta, available nationwide.">
+  <meta property="og:image" content="https://adamstephenson.art/og-image.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Adam Stephenson — Public Artist">
+  <meta name="twitter:description" content="Large-scale public murals, festival walls, and permanent installations. Based in Atlanta, available nationwide.">
+  <meta name="twitter:image" content="https://adamstephenson.art/og-image.jpg">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
@@ -12,6 +29,25 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    /* Skip nav — visible on focus only */
+    .skip-nav {
+      position: absolute;
+      top: -100%;
+      left: 16px;
+      z-index: 9999;
+      padding: 8px 20px;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      transition: top 0.2s;
+    }
+    .skip-nav:focus {
+      top: 16px;
     }
 
     :root {
@@ -108,11 +144,20 @@
       pointer-events: none;
     }
 
+    #hero-sparkle {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
     .hero-name {
       position: absolute;
       bottom: 52px;
       left: 48px;
-      z-index: 2;
+      z-index: 3;
     }
 
     .hero-name h1 {
@@ -138,7 +183,7 @@
       position: absolute;
       bottom: 52px;
       right: 48px;
-      z-index: 2;
+      z-index: 3;
       font-size: 15px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -190,7 +235,7 @@
       text-decoration: none;
       color: inherit;
       overflow: hidden;
-      min-height: 520px;
+      min-height: 680px;
       display: flex;
       flex-direction: column;
     }
@@ -574,24 +619,214 @@
       color: var(--accent);
     }
 
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+
+      /* Nav — tighten padding, shrink gap */
+      nav {
+        padding: 20px 24px;
+      }
+      nav ul {
+        gap: 24px;
+      }
+      nav ul a {
+        font-size: 13px;
+      }
+
+      /* Hero name position */
+      .hero-name {
+        left: 24px;
+        bottom: 40px;
+      }
+      .hero-scroll {
+        right: 24px;
+        bottom: 40px;
+      }
+
+      /* Tagline */
+      .tagline {
+        padding: 56px 24px 48px;
+      }
+
+      /* Section previews — stack to 1 column */
+      .section-previews {
+        grid-template-columns: 1fr;
+      }
+      .preview-item {
+        min-height: 380px;
+      }
+
+      /* Works grid — 2 columns */
+      .works-grid {
+        columns: 2;
+      }
+      .works-strip {
+        padding: 64px 24px;
+      }
+
+      /* Case studies — each row stacks: image(s) on top, text below */
+      .case-studies-header {
+        padding: 56px 24px 40px;
+      }
+      .case-row,
+      .case-row.flipped,
+      .case-row.dual {
+        grid-template-columns: 1fr;
+        min-height: unset;
+      }
+      /* default row: info is first in DOM → push it below the image */
+      .case-row .case-row-info {
+        order: 2;
+      }
+      .case-row .case-row-img {
+        order: 1;
+      }
+      /* flipped row: img is already first in DOM — no reorder needed */
+      .case-row.flipped .case-row-info {
+        order: 2;
+        border-left: none;
+        border-right: none;
+        border-top: 1px solid var(--border);
+      }
+      .case-row.flipped .case-row-img {
+        order: 1;
+      }
+      /* dual row: hide first image on mobile, show only second img → info */
+      .scottie-first { display: none; }
+      .case-row.dual .case-row-img:last-child  { order: 1; }
+      .case-row.dual .case-row-info {
+        order: 3;
+        border-left: none;
+        border-right: none;
+        border-top: 1px solid var(--border);
+      }
+      .case-row-info {
+        border-right: none;
+        border-top: 1px solid var(--border);
+        padding: 40px 24px 40px;
+      }
+      .case-row-img {
+        min-height: 280px;
+      }
+
+      /* Masonry gallery — always show overlay on touch devices */
+      .works-overlay {
+        opacity: 1;
+        background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 80%);
+      }
+
+      /* CTA */
+      .cta {
+        padding: 80px 24px 88px;
+      }
+
+      /* Footer — stack */
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        padding: 40px 24px;
+      }
+      footer nav ul {
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 540px) {
+
+      /* Nav — hide links, just wordmark */
+      nav ul {
+        display: none;
+      }
+      nav {
+        padding: 18px 20px;
+      }
+
+      /* Works grid — single column on small phones */
+      .works-grid {
+        columns: 1;
+      }
+      .works-strip {
+        padding: 48px 16px;
+      }
+
+      /* Overlay stays visible on small screens too */
+      .works-overlay {
+        opacity: 1;
+        background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 80%);
+      }
+
+      /* Section previews */
+      .preview-item {
+        min-height: 320px;
+      }
+
+      /* Tagline */
+      .tagline {
+        padding: 48px 20px 40px;
+      }
+
+      /* Case studies */
+      .case-studies-header {
+        padding: 48px 20px 32px;
+      }
+      .case-row-info {
+        padding: 32px 20px;
+      }
+      .case-row-img {
+        min-height: 240px;
+      }
+
+      /* CTA */
+      .cta {
+        padding: 64px 20px 72px;
+        gap: 28px;
+      }
+      .cta-actions {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+      }
+      .cta-btn {
+        text-align: center;
+      }
+
+      /* Footer */
+      footer {
+        padding: 32px 20px;
+      }
+    }
+
+    /* HAMBURGER MENU */
+    .nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px 4px; z-index: 101; }
+    .nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--text); transition: transform 0.3s, opacity 0.3s; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    @media (max-width: 900px) {
+      .nav-toggle { display: flex; }
+      nav ul { display: flex !important; flex-direction: column; position: fixed; top: 0; left: 0; right: 0; padding: 80px 32px 48px; background: rgba(28,28,30,0.97); backdrop-filter: blur(12px); gap: 0; transform: translateY(-100%); transition: transform 0.38s cubic-bezier(0.4,0,0.2,1); z-index: 99; border-bottom: 1px solid var(--border); pointer-events: none; }
+      nav ul.is-open { transform: translateY(0); pointer-events: auto; }
+      nav ul li { border-bottom: 1px solid var(--border); }
+      nav ul a { font-size: 16px !important; display: block; padding: 16px 0; letter-spacing: 0.12em; }
+      footer nav ul { position: static !important; transform: none !important; flex-direction: row !important; background: none; padding: 0; border: none; pointer-events: auto; backdrop-filter: none; }
+      footer nav ul li { border-bottom: none !important; }
+      footer nav ul a { display: inline !important; padding: 0 !important; font-size: 15px !important; }
+    }
   </style>
 </head>
 <body>
+  <a href="#main" class="skip-nav">Skip to main content</a>
+  <canvas id="hero-sparkle"></canvas>
 
   <!-- NAV -->
-  <nav>
-    <a href="/" class="wordmark">Adam Stephenson</a>
-    <ul>
-      <li><a href="/murals.html">Murals</a></li>
-      <li><a href="/digital.html">Digital & Design</a></li>
-      <li><a href="/fineart.html">Fine Art</a></li>
-      <li><a href="/about.html">About</a></li>
-      <li><a href="/contact.html">Contact</a></li>
-    </ul>
-  </nav>
+  <nav aria-label="Primary navigation"></nav>
+
+  <main id="main">
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" aria-label="Hero — Homecoming mural, Decatur AL">
     <img
       src="../Quick Portfolio/Murals/STEPHENSON-Mural-Decatur-AL-Homecoming-Action.jpg"
       alt="Homecoming mural, Decatur, AL — artist at work"
@@ -614,7 +849,7 @@
   <!-- SECTION PREVIEWS -->
   <div class="section-previews">
 
-    <a class="preview-item" href="/murals.html">
+    <a class="preview-item" href="murals.html">
       <div class="img-wrap">
         <img
           src="../Quick Portfolio/Murals/ACMF-2024-Atlanta-Full.jpg"
@@ -628,7 +863,7 @@
       </div>
     </a>
 
-    <a class="preview-item" href="/digital.html">
+    <a class="preview-item" href="digital.html">
       <div class="img-wrap">
         <img
           src="../Quick Portfolio/Digital Commissions/IPNA-2023-Inman-Park-Festival-Poster.jpg"
@@ -642,7 +877,7 @@
       </div>
     </a>
 
-    <a class="preview-item" href="/fineart.html">
+    <a class="preview-item" href="fineart.html">
       <div class="img-wrap">
         <img
           src="../Quick Portfolio/Fine Art & Portraits/STEPHENSON-FineArt-Jaz-1.jpg"
@@ -659,13 +894,13 @@
   </div>
 
   <!-- CASE STUDIES -->
-  <section class="case-studies">
+  <section class="case-studies" aria-label="Case studies">
     <div class="case-studies-header">
       <h2>Case Studies</h2>
     </div>
 
     <!-- Homecoming: text left | image right -->
-    <a class="case-row" href="/case-homecoming.html">
+    <a class="case-row" href="case-homecoming.html">
       <div class="case-row-info">
         <span class="case-num">01</span>
         <h3>Homecoming</h3>
@@ -679,7 +914,7 @@
     </a>
 
     <!-- Fiddler's Spirit: image left | text right -->
-    <a class="case-row flipped" href="/case-fiddlers-spirit.html">
+    <a class="case-row flipped" href="case-fiddlers-spirit.html">
       <div class="case-row-img">
         <img src="../Quick Portfolio/Murals/Athens-2021-Fiddlers-Spirit-Panorama.jpg" alt="Playing the Sound of the Wind, Athens AL">
       </div>
@@ -693,8 +928,8 @@
     </a>
 
     <!-- The Scottie: image left | text center | image right -->
-    <a class="case-row dual" href="/case-scottie.html">
-      <div class="case-row-img">
+    <a class="case-row dual" href="case-scottie.html">
+      <div class="case-row-img scottie-first">
         <img src="../Quick Portfolio/CAFE/STEPHENSON-The Scottie-1976.jpg" alt="The Scottie — 1976 era, Nashville TN">
       </div>
       <div class="case-row-info">
@@ -712,10 +947,10 @@
   </section>
 
   <!-- SELECTED WORKS STRIP -->
-  <section class="works-strip">
+  <section class="works-strip" aria-label="Selected works gallery">
     <div class="works-strip-header">
       <h2>Selected Works</h2>
-      <a href="/murals.html">View all work →</a>
+      <a href="murals.html">View all work →</a>
     </div>
     <div class="works-grid">
       <figure>
@@ -881,27 +1116,92 @@
     <h2>Every wall is a conversation waiting to happen.</h2>
     <p>Whether you're thinking about a large-scale mural for a public space or a limited print for your home, I'd love to hear what you have in mind.</p>
     <div class="cta-actions">
-      <a class="cta-btn accent" href="/contact.html">Start a mural conversation</a>
-      <a class="cta-btn" href="/contact.html">Commission a print</a>
+      <a class="cta-btn accent" href="contact.html">Start a mural conversation</a>
+      <a class="cta-btn" href="contact.html">Commission a print</a>
     </div>
   </section>
 
+  </main><!-- /main -->
+
   <!-- FOOTER -->
-  <footer>
-    <span class="footer-name">Adam Stephenson</span>
-    <nav>
-      <ul>
-        <li><a href="/murals.html">Murals</a></li>
-        <li><a href="/digital.html">Digital & Design</a></li>
-        <li><a href="/fineart.html">Fine Art</a></li>
-        <li><a href="/about.html">About</a></li>
-        <li><a href="/contact.html">Contact</a></li>
-      </ul>
-    </nav>
-    <div class="footer-social">
-      <a href="https://instagram.com" target="_blank">@adamstephenson.art</a>
-    </div>
-  </footer>
+  <footer aria-label="Site footer"></footer>
+
+  <script>
+    (function () {
+      const canvas = document.getElementById('hero-sparkle');
+      const ctx = canvas.getContext('2d');
+
+      function resize() {
+        canvas.width  = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      const COUNT  = 880;
+      const ACCENT = [212, 118, 59];   /* #D4763B — warm orange */
+      const WHITE  = [255, 248, 235];  /* warm white */
+      const BLUE   = [120, 195, 230];  /* sky blue */
+
+      /* particles live in "world" space — y is relative to full document height */
+      const DOC_H = () => Math.max(document.body.scrollHeight, window.innerHeight);
+
+      const particles = Array.from({ length: COUNT }, () => {
+        const rand = Math.random();
+        const color = rand < 0.15 ? ACCENT : rand < 0.30 ? BLUE : WHITE;
+        return {
+        x:        Math.random() * canvas.width,
+        y:        Math.random() * DOC_H(),            /* spread across full doc */
+        r:        Math.random() * 1.4 + 0.4,          /* 0.4 – 1.8 px */
+        vx:       (Math.random() - 0.5) * 0.18,
+        vy:       (Math.random() - 0.5) * 0.18,
+        phase:    Math.random() * Math.PI * 2,
+        speed:    Math.random() * 0.00875 + 0.00375,   /* twinkle cadence +25% */
+        maxAlpha: Math.random() * 0.38 + 0.12,        /* 0.12 – 0.50 */
+        color,
+        };
+      });
+
+      function draw() {
+        const scrollY = window.scrollY;
+        const docH    = DOC_H();
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (const p of particles) {
+          p.phase += p.speed;
+          p.x += p.vx;
+          p.y += p.vy;
+
+          /* wrap X in screen space */
+          if (p.x < -4) p.x = canvas.width + 4;
+          if (p.x > canvas.width + 4) p.x = -4;
+          /* wrap Y in doc space */
+          if (p.y < 0)     p.y = docH;
+          if (p.y > docH)  p.y = 0;
+
+          /* project world Y → screen Y */
+          const screenY = p.y - scrollY;
+          /* skip if outside viewport */
+          if (screenY < -4 || screenY > canvas.height + 4) continue;
+
+          const alpha = (Math.sin(p.phase) * 0.5 + 0.5) * p.maxAlpha;
+          const [r, g, b] = p.color;
+
+          ctx.beginPath();
+          ctx.arc(p.x, screenY, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${r},${g},${b},${alpha.toFixed(3)})`;
+          ctx.fill();
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      draw();
+    })();
+  </script>
+
+  <script src="nav.js"></script>
+  <script src="footer.js"></script>
 
 </body>
 </html>

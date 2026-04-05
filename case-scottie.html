@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Scottie — Adam Stephenson | Public Artist</title>
+  <meta name="description" content="The Scottie — a multi-story mural for Rangewater Real Estate in Nashville, Tennessee, 2023.">
+  <meta name="author" content="Adam Stephenson">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://adamstephenson.art/case-scottie.html">
+  <meta property="og:title" content="The Scottie — Adam Stephenson">
+  <meta property="og:description" content="A multi-story mural in Nashville, TN — deconstructed Victorian ornament and a quiet nod to Nudie Cohn, the man who dressed the legends of country music.">
+  <meta property="og:image" content="https://adamstephenson.art/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #1C1C1E; --accent: #D4763B; --text: #E8E8E6; --text-dim: #888884; --border: #2E2E30; }
+    html { font-size: 17px; scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Josefin Sans', sans-serif; font-weight: 400; -webkit-font-smoothing: antialiased; }
+
+    .skip-nav { position: absolute; top: -100%; left: 16px; z-index: 9999; padding: 8px 20px; background: var(--accent); color: #fff; font-size: 14px; letter-spacing: 0.1em; text-decoration: none; transition: top 0.2s; }
+    .skip-nav:focus { top: 16px; }
+
+    #hero-sparkle { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 24px 48px; background: rgba(0,0,0,0.30); }
+    nav .wordmark { font-family: 'Playfair Display', Georgia, serif; font-size: 16px; font-weight: 400; letter-spacing: 0.06em; color: var(--text); text-decoration: none; }
+    nav ul { display: flex; gap: 40px; list-style: none; }
+    nav ul a { font-size: 15px; font-weight: 400; letter-spacing: 0.10em; text-transform: uppercase; color: var(--text); text-decoration: none; transition: color 0.2s; }
+    nav ul a:hover { color: var(--text-dim); }
+    nav ul a.active { color: var(--accent); }
+
+    /* HERO */
+    .case-hero { position: relative; z-index: 1; height: 72vh; min-height: 440px; overflow: hidden; }
+    .case-hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; filter: brightness(0.75); }
+    .case-hero-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 80px 48px 40px;
+      background: linear-gradient(to top, rgba(28,28,30,0.92) 0%, transparent 100%);
+    }
+    .case-eyebrow { font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 12px; }
+    .case-hero-title { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(3rem, 6vw, 5rem); font-weight: 400; color: var(--text); line-height: 1.0; }
+    .case-hero-meta { margin-top: 12px; font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-dim); }
+
+    /* STORY */
+    .case-story {
+      position: relative; z-index: 1;
+      padding: 80px 48px;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1.7fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .story-label { font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-dim); display: block; margin-bottom: 32px; }
+    .story-pull { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.4rem, 2.2vw, 1.9rem); font-weight: 400; font-style: italic; color: var(--text); line-height: 1.4; }
+    .story-details { margin-top: 48px; display: flex; flex-direction: column; gap: 20px; }
+    .story-detail-label { font-size: 12px; letter-spacing: 0.20em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 4px; }
+    .story-detail-value { font-size: 15px; color: var(--text-dim); line-height: 1.5; }
+    .story-right p { font-size: 17px; font-weight: 400; line-height: 1.85; color: var(--text-dim); margin-bottom: 24px; }
+    .story-right p:last-child { margin-bottom: 0; }
+    .story-right p strong { color: var(--text); font-weight: 400; }
+
+    /* IMAGE GRID — 3 tall panels for this one */
+    .case-images {
+      position: relative; z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 4px;
+      border-bottom: 1px solid var(--border);
+    }
+    .case-images figure { overflow: hidden; margin: 0; }
+    .case-images figure img { width: 100%; height: 100%; min-height: 480px; object-fit: cover; object-position: center top; display: block; filter: brightness(0.85); transition: filter 0.4s, transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .case-images figure:hover img { filter: brightness(1.0); transform: scale(1.03); }
+    /* Scale shot spans full width at bottom */
+    .case-images-bottom {
+      position: relative; z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      border-bottom: 1px solid var(--border);
+    }
+    .case-images-bottom figure { overflow: hidden; margin: 0; }
+    .case-images-bottom figure img { width: 100%; height: 100%; min-height: 360px; object-fit: cover; display: block; filter: brightness(0.85); transition: filter 0.4s, transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .case-images-bottom figure:hover img { filter: brightness(1.0); transform: scale(1.03); }
+
+    /* CASE NAV */
+    .case-nav { position: relative; z-index: 1; padding: 56px 48px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .case-nav a { font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    .case-nav a:hover { color: var(--accent); }
+
+    /* FOOTER */
+    footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 40px 48px; display: flex; align-items: center; justify-content: space-between; }
+    footer .footer-name { font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); }
+    footer nav { position: static; background: none; padding: 0; }
+    footer nav ul { display: flex; gap: 32px; }
+    footer .footer-social a { font-size: 15px; letter-spacing: 0.08em; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    footer .footer-social a:hover { color: var(--accent); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; } nav ul { gap: 24px; } nav ul a { font-size: 13px; }
+      .case-hero { height: 56vh; }
+      .case-hero-overlay { padding: 60px 24px 32px; }
+      .case-story { padding: 56px 24px; grid-template-columns: 1fr; gap: 40px; }
+      .case-images { grid-template-columns: 1fr 1fr; }
+      .case-images figure img { min-height: 300px; }
+      .case-images-bottom { grid-template-columns: 1fr; }
+      .case-images-bottom figure img { min-height: 280px; }
+      .case-nav { padding: 40px 24px; }
+      footer { flex-direction: column; align-items: flex-start; gap: 24px; padding: 40px 24px; }
+      footer nav ul { gap: 20px; flex-wrap: wrap; }
+    }
+    @media (max-width: 540px) {
+      nav ul { display: none; } nav { padding: 18px 20px; }
+      .case-hero { height: 50vh; }
+      .case-images { grid-template-columns: 1fr; }
+      .case-images figure img { min-height: 280px; }
+      footer { padding: 32px 20px; }
+    }
+    /* HAMBURGER MENU */
+    .nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px 4px; z-index: 101; }
+    .nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--text); transition: transform 0.3s, opacity 0.3s; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    @media (max-width: 900px) {
+      .nav-toggle { display: flex; }
+      nav ul { display: flex !important; flex-direction: column; position: fixed; top: 0; left: 0; right: 0; padding: 80px 32px 48px; background: rgba(28,28,30,0.97); backdrop-filter: blur(12px); gap: 0; transform: translateY(-100%); transition: transform 0.38s cubic-bezier(0.4,0,0.2,1); z-index: 99; border-bottom: 1px solid var(--border); pointer-events: none; }
+      nav ul.is-open { transform: translateY(0); pointer-events: auto; }
+      nav ul li { border-bottom: 1px solid var(--border); }
+      nav ul a { font-size: 16px !important; display: block; padding: 16px 0; letter-spacing: 0.12em; }
+      footer nav ul { position: static !important; transform: none !important; flex-direction: row !important; background: none; padding: 0; border: none; pointer-events: auto; backdrop-filter: none; }
+      footer nav ul li { border-bottom: none !important; }
+      footer nav ul a { display: inline !important; padding: 0 !important; font-size: 15px !important; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-nav">Skip to main content</a>
+  <canvas id="hero-sparkle"></canvas>
+
+  <nav aria-label="Primary navigation"></nav>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <div class="case-hero">
+      <img src="../Quick Portfolio/CAFE/STEPHENSON-The Scottie-1976.jpg" alt="The Scottie — multi-story mural, Nashville, Tennessee, 2023">
+      <div class="case-hero-overlay">
+        <span class="case-eyebrow">Case Study 03</span>
+        <h1 class="case-hero-title">The Scottie</h1>
+        <p class="case-hero-meta">2023 &ensp;·&ensp; Nashville, TN &ensp;·&ensp; Multi-story</p>
+      </div>
+    </div>
+
+    <!-- STORY -->
+    <section class="case-story" aria-label="Project story">
+      <div class="story-left">
+        <span class="story-label">The Work</span>
+        <p class="story-pull">"They wanted something purely decorative. Nashville deserved more than wallpaper."</p>
+        <div class="story-details">
+          <div class="story-detail-item">
+            <span class="story-detail-label">Year</span>
+            <span class="story-detail-value">2023</span>
+          </div>
+          <div class="story-detail-item">
+            <span class="story-detail-label">Location</span>
+            <span class="story-detail-value">Nashville, Tennessee</span>
+          </div>
+          <div class="story-detail-item">
+            <span class="story-detail-label">Scale</span>
+            <span class="story-detail-value">Multi-story</span>
+          </div>
+          <div class="story-detail-item">
+            <span class="story-detail-label">Client</span>
+            <span class="story-detail-value">Rangewater Real Estate</span>
+          </div>
+          <div class="story-detail-item">
+            <span class="story-detail-label">Budget</span>
+            <span class="story-detail-value">$56,000</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-right">
+        <p>Rangewater reached out in December of 2022. They were looking for something very different for the city of Nashville — something for their new luxury development, The Scottie. After lengthy discussions, it became clear that they were looking for a purely decorative work. Nothing narrative. Nothing with a message. Just beautiful.</p>
+        <p>I went back to my early studio work, where I spent years deconstructing Victorian ornament — pulling it apart and rebuilding it with rhythm, tension, and color. But I wanted the piece to mean something to the city it would live in. <strong>Nudie Cohn</strong> gave me the thread. The Ukrainian-born tailor rose to fame in Nashville outfitting the legends of country music since the 1940s — rhinestones, sequins, wildly ornamental suits that turned performers into icons. Elvis wore Nudie's work. Hank Williams wore Nudie's work. The suits were extravagant enough to be almost absurd, and somehow more country for it.</p>
+        <p>The Scottie pulls those two things together: the lush geometry of Victorian surface design and the outsized, joyful ornamentation of Nudie Cohn's world. It's decorative all the way down — and underneath the decoration, it's a nod to the culture that made Nashville what it is.</p>
+      </div>
+    </section>
+
+    <!-- IMAGES — three tall panels -->
+    <div class="case-images" aria-label="Project photography — panel views">
+      <figure>
+        <img src="../Quick Portfolio/Murals/STEPHENSON-Mural-Nashville-TN-Scottie-1976.png" alt="The Scottie — 1976 era panel" loading="lazy">
+      </figure>
+      <figure>
+        <img src="../Quick Portfolio/Murals/STEPHENSON-Mural-Nashville-TN-Scottie-1982.png" alt="The Scottie — 1982 era panel" loading="lazy">
+      </figure>
+      <figure>
+        <img src="../Quick Portfolio/Murals/STEPHENSON-Mural-Nashville-TN-Scottie-2014.png" alt="The Scottie — 2014 era panel" loading="lazy">
+      </figure>
+    </div>
+
+    <!-- IMAGES — process and scale -->
+    <div class="case-images-bottom" aria-label="Project photography — scale and process">
+      <figure>
+        <img src="../Quick Portfolio/Process & Progress/Scottie-2023-Nashville-Scale.jpg" alt="The Scottie — artist for scale, Nashville" loading="lazy">
+      </figure>
+      <figure>
+        <img src="../Quick Portfolio/Process & Progress/Scottie-2023-Nashville-Detail.jpg" alt="The Scottie — detail of ornamental pattern" loading="lazy">
+      </figure>
+    </div>
+
+    <!-- CASE NAV -->
+    <nav class="case-nav" aria-label="Case study navigation">
+      <a href="case-fiddlers-spirit.html">← Previous: Playing the Sound of the Wind</a>
+      <a href="murals.html">Back to Murals →</a>
+    </nav>
+
+  </main>
+
+  <footer aria-label="Site footer"></footer>
+
+  <script>
+    (function () {
+      const canvas = document.getElementById('hero-sparkle');
+      const ctx = canvas.getContext('2d');
+      function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+      window.addEventListener('resize', resize); resize();
+      const COUNT = 880, ACCENT = [212, 118, 59], WHITE = [255, 248, 235], BLUE = [120, 195, 230];
+      const DOC_H = () => Math.max(document.body.scrollHeight, window.innerHeight);
+      const particles = Array.from({ length: COUNT }, () => {
+        const rand = Math.random();
+        const color = rand < 0.15 ? ACCENT : rand < 0.30 ? BLUE : WHITE;
+        return { x: Math.random() * canvas.width, y: Math.random() * DOC_H(), r: Math.random() * 1.4 + 0.4, vx: (Math.random() - 0.5) * 0.18, vy: (Math.random() - 0.5) * 0.18, phase: Math.random() * Math.PI * 2, speed: Math.random() * 0.00875 + 0.00375, maxAlpha: Math.random() * 0.38 + 0.12, color };
+      });
+      function draw() {
+        const scrollY = window.scrollY, docH = DOC_H();
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (const p of particles) {
+          p.phase += p.speed; p.x += p.vx; p.y += p.vy;
+          if (p.x < -4) p.x = canvas.width + 4; if (p.x > canvas.width + 4) p.x = -4;
+          if (p.y < 0) p.y = docH; if (p.y > docH) p.y = 0;
+          const screenY = p.y - scrollY;
+          if (screenY < -4 || screenY > canvas.height + 4) continue;
+          const alpha = (Math.sin(p.phase) * 0.5 + 0.5) * p.maxAlpha;
+          const [r, g, b] = p.color;
+          ctx.beginPath(); ctx.arc(p.x, screenY, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${r},${g},${b},${alpha.toFixed(3)})`; ctx.fill();
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+  </script>
+
+  <script src="nav.js"></script>
+  <script src="footer.js"></script>
+
+</body>
+</html>
