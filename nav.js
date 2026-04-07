@@ -34,9 +34,12 @@
     'about.html':               'about.html',
     'commission.html':          'commission.html',
     'contact.html':             'contact.html',
-    'case-homecoming.html':     'murals.html',
-    'case-fiddlers-spirit.html':'murals.html',
-    'case-scottie.html':        'murals.html'
+    'case-homecoming.html':          'murals.html',
+    'case-fiddlers-spirit.html':     'murals.html',
+    'case-scottie.html':             'murals.html',
+    'case-appalachian-sunsets.html': 'murals.html',
+    'case-upton.html':               'murals.html',
+    'case-true-strength.html':       'murals.html'
   };
 
   var filename = window.location.pathname.split('/').pop() || 'index.html';

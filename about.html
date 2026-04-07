@@ -157,6 +157,50 @@
       letter-spacing: 0.06em;
     }
 
+    /* CV */
+    .about-cv {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+    }
+    .about-cv h2 {
+      font-size: 12px; letter-spacing: 0.20em; text-transform: uppercase;
+      color: var(--text-dim); margin-bottom: 28px;
+    }
+    .cv-group { margin-bottom: 32px; }
+    .cv-group:last-child { margin-bottom: 0; }
+    .cv-group h3 {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 400; color: var(--accent); margin-bottom: 16px;
+    }
+    .cv-list { list-style: none; padding: 0; margin: 0; }
+    .cv-list li {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 20px;
+      align-items: baseline;
+    }
+    .cv-list li:last-child { border-bottom: none; }
+    .cv-year {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 15px; color: var(--accent); letter-spacing: 0.04em;
+    }
+    .cv-body { font-size: 16px; color: var(--text-dim); line-height: 1.55; }
+    .cv-body strong { color: var(--text); font-weight: 400; }
+    .cv-download {
+      display: inline-block; margin-top: 28px;
+      padding: 12px 28px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 13px; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase;
+      text-decoration: none;
+      background: transparent;
+      border: 1px solid var(--accent); color: var(--accent);
+      transition: background 0.25s, color 0.25s;
+    }
+    .cv-download:hover { background: var(--accent); color: #fff; }
+
     /* CTA */
     .about-cta {
       padding: 40px 0 0;
@@ -294,15 +338,85 @@
           <h2>Select clients & collaborators</h2>
           <div class="client-list" role="list">
             <span role="listitem">Alabama College of Art</span>
+            <span role="listitem">City of Red Bank, TN</span>
+            <span role="listitem">Gallery Residential / The Upton</span>
             <span role="listitem">Rangewater Real Estate</span>
+            <span role="listitem">Museum of Contemporary Art Georgia</span>
             <span role="listitem">Atlanta Crossroads Mural Festival</span>
+            <span role="listitem">Athens Main Street</span>
             <span role="listitem">Inman Park Neighborhood Assoc.</span>
+            <span role="listitem">Yehimi Cambrón Studio</span>
+            <span role="listitem">Megan Mosholder Studio</span>
             <span role="listitem">Riverclay Festival</span>
             <span role="listitem">Burnin' Bridges Festival</span>
             <span role="listitem">Sceptre Brewing</span>
             <span role="listitem">NOW Community Mural Program</span>
             <span role="listitem">Kicky Art</span>
           </div>
+        </div>
+
+        <div class="about-cv" aria-label="Curriculum Vitae">
+          <h2>Curriculum Vitae</h2>
+
+          <div class="cv-group">
+            <h3>Selected Public Art & Commissioned Murals</h3>
+            <ul class="cv-list">
+              <li><span class="cv-year">2026</span><span class="cv-body"><strong>The Hall of the Magician</strong> — 3D installation, The Upton Luxury Apartments (Gallery Residential), Atlanta, GA <em>(in progress)</em></span></li>
+              <li><span class="cv-year">2024</span><span class="cv-body"><strong>Appalachian Sunsets</strong> — Public Art Commission, City of Red Bank, TN</span></li>
+              <li><span class="cv-year">2024</span><span class="cv-body"><strong>Nudie Blues</strong> (The Scottie) — Rangewater Real Estate, Nashville, TN</span></li>
+              <li><span class="cv-year">2024</span><span class="cv-body"><strong>New Horizons</strong> — Harriet at Mid City, Huntsville, AL</span></li>
+              <li><span class="cv-year">2023</span><span class="cv-body"><strong>American Classic</strong> — CarQuest, Decatur, AL</span></li>
+              <li><span class="cv-year">2021</span><span class="cv-body"><strong>Playing the Sound of the Wind</strong> — Athens Main Street, Athens, AL</span></li>
+              <li><span class="cv-year">2019</span><span class="cv-body"><strong>Homecoming</strong> — Alabama College of Art, Decatur, AL</span></li>
+            </ul>
+          </div>
+
+          <div class="cv-group">
+            <h3>Selected Collaborations & Assistantships</h3>
+            <ul class="cv-list">
+              <li><span class="cv-year">2023</span><span class="cv-body">Patricia Hernandez — <em>MERAKI</em>, public mural, Atlanta, GA</span></li>
+              <li><span class="cv-year">2023</span><span class="cv-body">Megan Mosholder — <em>Spectrum Gradation</em>, permanent installation, Museum of Contemporary Art, Atlanta, GA</span></li>
+              <li><span class="cv-year">2022</span><span class="cv-body">Yehimi Cambrón — <em>Now We Thrive</em>, solo exhibition, Chapman Cultural Center, Spartanburg, SC</span></li>
+              <li><span class="cv-year">2022</span><span class="cv-body">Megan Mosholder — <em>Ad Astra</em>, permanent outdoor installation, Microsoft, Atlantic Station, Atlanta, GA</span></li>
+              <li><span class="cv-year">2021</span><span class="cv-body">Christina Kwan — <em>The Unseen</em>, Edgewood/Candler Park MARTA Station, Atlanta, GA</span></li>
+              <li><span class="cv-year">2021</span><span class="cv-body">Yehimi Cambrón — <em>Chinga La Migra</em>, Museum of Contemporary Art, Atlanta, GA</span></li>
+              <li><span class="cv-year">2019</span><span class="cv-body">Yehimi Cambrón — <em>Monuments: Our Immigrant Mothers</em>, Decatur, GA</span></li>
+            </ul>
+          </div>
+
+          <div class="cv-group">
+            <h3>Selected Festivals & Live Art</h3>
+            <ul class="cv-list">
+              <li><span class="cv-year">2024–25</span><span class="cv-body">Forward Warrior — Atlanta, GA <em>(2024, 2025)</em></span></li>
+              <li><span class="cv-year">2024</span><span class="cv-body">Atlanta Crossroads Mural Festival — Atlanta, GA</span></li>
+              <li><span class="cv-year">2022–23</span><span class="cv-body">Riverbend Festival (live mural performance) — Chattanooga, TN</span></li>
+              <li><span class="cv-year">2022</span><span class="cv-body">Off the Tracks — Co-organizer & participant, Atlanta, GA</span></li>
+              <li><span class="cv-year">2022</span><span class="cv-body">Pieces of Pullman — Pullman Yards, Atlanta, GA</span></li>
+              <li><span class="cv-year">2020</span><span class="cv-body">Burnin' Bridges Mural Festival — Chattanooga, TN</span></li>
+            </ul>
+          </div>
+
+          <div class="cv-group">
+            <h3>Selected Illustration & Design</h3>
+            <ul class="cv-list">
+              <li><span class="cv-year">2025</span><span class="cv-body">Community Mural Program — Digital community mural designs, Wal-Mart, various locations</span></li>
+              <li><span class="cv-year">2023</span><span class="cv-body">Inman Park Festival — Poster and apparel design, Atlanta, GA</span></li>
+              <li><span class="cv-year">—</span><span class="cv-body"><em>Capturing the Spirit of Oakland</em> — Poster and apparel design, Atlanta, GA</span></li>
+            </ul>
+          </div>
+
+          <div class="cv-group">
+            <h3>Press & Features</h3>
+            <ul class="cv-list">
+              <li><span class="cv-year">2022</span><span class="cv-body">A North Alabama Mural Trail Artist's Experience — Podcast appearance</span></li>
+              <li><span class="cv-year">2022</span><span class="cv-body">Off the Tracks Mural Festival — WABE Radio interview</span></li>
+              <li><span class="cv-year">2021</span><span class="cv-body">Mural on Merchants Alley in Athens Finished — WHNT press feature</span></li>
+              <li><span class="cv-year">2019</span><span class="cv-body"><em>Go Dark: A Wild East Story</em> — Documentary feature</span></li>
+              <li><span class="cv-year">2019</span><span class="cv-body">Decatur Native Creating Mural on Second Avenue — Decatur Daily</span></li>
+            </ul>
+          </div>
+
+          <a class="cv-download" href="docs/Adam-Stephenson-CV-2026.pdf" download>Download full CV (PDF)</a>
         </div>
 
         <div class="about-cta">
