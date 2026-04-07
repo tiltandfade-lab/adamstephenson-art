@@ -45,21 +45,47 @@ A web app that generates dungeon/urban adventure content for tabletop RPGs. Adam
 - **Netlify site:** https://adamstephenson-art.netlify.app
 - **Netlify admin:** https://app.netlify.com/projects/adamstephenson-art
 - **Netlify ↔ GitHub:** Connected via GitHub App (installation ID 121387029). Push to `main` = auto-deploy.
+- **Remote protocol: SSH** (`git@github.com:tiltandfade-lab/adamstephenson-art.git`). HTTPS keeps expiring its cached token and prompting for a username, which always fails because GitHub no longer accepts account passwords at that prompt. SSH avoids the whole credential dance.
 - **Deploys verified working** as of 2026-04-04.
 
-### Git workflow (Adam runs these from terminal)
-```bash
-# First time — clone to this folder (run from Work directory):
-git clone https://github.com/tiltandfade-lab/adamstephenson-art.git
+### Deploy workflow — IMPORTANT for Claude
 
-# Every time after — push changes Claude wrote:
-cd ~/Desktop/Work/adamstephenson-art
-git add .
-git commit -m "describe what changed"
-git push
+**Claude can stage and commit locally, but cannot push.** The sandbox does not carry Adam's GitHub credentials or SSH key. Every deploy Claude does:
+
+1. `git add <specific files>` — prefer staging specific paths over `git add .` so internal docs (like `docs/CONSULTANT-READINESS.md`) don't accidentally get published.
+2. `git commit -m "..."` with a real descriptive message.
+3. **Stop there.** Tell Adam the commit is staged and give him the exact push command.
+
+**The push command to give Adam, every time:**
+```bash
+cd ~/Desktop/Work/adamstephenson-art && git push origin main
 ```
 
-> Claude writes files to this folder. Adam pushes. Netlify deploys. No FTP, no tokens.
+That's it. No username prompt, because the remote is SSH. Netlify picks it up in ~30 seconds.
+
+### If the push ever asks for a username again
+
+The remote got reset to HTTPS somehow. Fix:
+```bash
+git remote set-url origin git@github.com:tiltandfade-lab/adamstephenson-art.git
+git push origin main
+```
+
+### Sandbox quirk Claude should know about
+
+When Claude runs `git add` from the sandbox bash, Git will emit a pile of `unable to unlink '.git/objects/tmp_obj_…': Operation not permitted` warnings. These are harmless — staging still works. Sometimes Git also leaves a stale `.git/index.lock`; if so, delete it with `rm -f .git/index.lock` (Claude may need to call `allow_cowork_file_delete` on `.git/index.lock` first to enable deletes in the Desktop folder for this session).
+
+> Claude writes files and commits. Adam pushes over SSH. Netlify deploys. No FTP, no tokens, no username prompts.
+
+### ⚠️ Netlify deploy cap — BATCH COMMITS
+
+**Netlify Starter plan = 20 production deploys/month.** When exceeded, Netlify takes the **entire site offline** ("This team has exceeded the credit limit") until the billing cycle resets or the team upgrades. This already bit us once on 2026-04-07.
+
+**Rule for Claude going forward:** Do NOT push after every small edit. Batch related changes into a single commit, and only hand Adam the push command when a meaningful chunk of work is ready to ship. If iterating on multiple files in one session, stage everything and make ONE commit at the end rather than committing per-file.
+
+Rough budget: aim for **≤15 production deploys per month** on the Netlify side to leave headroom for emergencies. If Adam wants to see intermediate work, preview locally or use a branch deploy instead of pushing to `main`.
+
+**Backup plan if Netlify gets stingy again:** Cloudflare Pages (unlimited bandwidth, 500 builds/mo free) is pre-approved as a migration target. Same GitHub repo, repoint DNS, ~10 min to set up.
 
 ---
 
