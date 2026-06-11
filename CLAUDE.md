@@ -131,8 +131,26 @@ Rough budget: aim for **≤15 production deploys per month** on the Netlify side
 | Design Document v2 | `Work/Quick Portfolio/Portfolio_Website_Design_Document_v2.docx` | Full spec: all pages, case studies with exact image filenames/dimensions, CMS strategy, open questions. **Read this before building anything.** |
 | Portfolio Brief | `Work/Quick Portfolio/Adam_Stephenson_Portfolio_Brief_for_Google_Stitch.docx` | Brief written specifically for Stitch mockup generation. Curatorial decisions, image inventory. |
 | Bio | `Work/Quick Portfolio/STEPHENSON-Bio.docx` | Third-person bio for About page. |
-| CV | `Work/Quick Portfolio/STEPHENSON-CV-2026.docx` | Full CV: commissions 2019–2026, collaborations, festivals, exhibitions, press. |
+| CV (canon) | `Work/Quick Portfolio/_Documents/STEPHENSON-CV-2026.docx` | **Curated, hand-edited shareable CV.** Read `Work/Quick Portfolio/_Documents/CV-ARCHITECTURE.md` before touching. Notion is the unedited source-of-truth history; this docx is the curated subset. The website's `docs/Adam-Stephenson-CV-2026.pdf` is a downstream mirror. |
 | Images | `Work/Quick Portfolio/` + subfolders | All portfolio images. Two .heic files need conversion before web use. |
+
+---
+
+## Data ownership and additive-default rule
+
+The role-wide rail (auto-memory `feedback_additive_default_data_ops.md`) applies here: operations on user-curated data are additive by default. Destructive ops require explicit confirmation with item counts.
+
+**Curated data, never wipe or regenerate without explicit conversation:**
+- `Work/Quick Portfolio/` and all subfolders. Adam's hand-curated portfolio source set, including images, the Design Document v2, the Stitch Brief, the canon Bio, the canon CV, and the documents subdirectory. Image files in particular are irreplaceable, some originate from older drives or one-off exports.
+- The case study source images (Homecoming, Playing the Sound of the Wind, The Upton, Appalachian Sunsets). Heic-to-WebP conversion produces a new file; it does not delete the original.
+- `docs/Adam-Stephenson-CV-2026.pdf` is a downstream mirror, regenerable. The canon `.docx` is not.
+- The CHANGELOG and any `docs/CONSULTANT-READINESS.md`-style internal notes. Don't "tidy" them by deletion.
+
+**Concrete rules:**
+1. When converting image formats (heic to WebP, resizing, compression), write the converted file alongside the original. Do not overwrite the original.
+2. Do not run `git rm` or any bulk file deletion against `Work/Quick Portfolio/` from this repo's tooling. The portfolio source set is outside this repo's authority.
+3. If you regenerate a downstream artifact (the CV PDF, an exported image kit), confirm with Adam that the upstream source is intact before doing so.
+4. Do not attempt to "deduplicate" the portfolio image set. Variants and crops exist on purpose.
 
 ---
 
@@ -174,7 +192,15 @@ When starting a new session, Claude should:
 
 ---
 
-## Change Log
+## Changelog discipline
+
+This repo has `CHANGELOG.md`. When you make a load-bearing change (anything that touches deployed pages, the deploy pipeline, the design system, or the case-study set), add a dated CHANGELOG entry in the same edit. CLAUDE.md describes current state, CHANGELOG.md is the audit trail of how we got here.
+
+Format: Keep-a-Changelog. Group by Fixed / Added / Changed / Removed.
+
+The historical "Change Log" table that previously lived in this CLAUDE.md is preserved at the bottom of this file as a sibling source-of-truth. New entries go in CHANGELOG.md, not the inline table.
+
+## Change Log (legacy inline, do not extend; new entries go in CHANGELOG.md)
 
 | Date | What happened |
 |---|---|
