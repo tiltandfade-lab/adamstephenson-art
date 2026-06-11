@@ -267,6 +267,11 @@
       to   { transform: scale(1.06); }
     }
 
+    /* perf: freeze all hero animation once the hero is scrolled out of view */
+    .hero.offscreen .hero-slides img {
+      animation-play-state: paused;
+    }
+
     @keyframes riseIn {
       from { opacity: 0; transform: translateY(26px); }
       to   { opacity: 1; transform: none; }
@@ -1038,10 +1043,10 @@
   <section class="hero" aria-label="Featured murals">
     <div class="hero-slides">
       <img class="active" src="images/STEPHENSON-Mural-Decatur-AL-Homecoming-Action.jpg" alt="Homecoming mural, Decatur, AL, artist at work" fetchpriority="high">
-      <img src="images/STEPHENSON-Mural-RedBank-TN-Two-Walls-Full.jpg" alt="Red Bank — two-wall exterior mural by Adam Stephenson in Red Bank, Tennessee (2025)" loading="lazy" decoding="async">
+      <img src="images/STEPHENSON-Mural-RedBank-TN-Outer-Wall-Full.jpg" alt="Red Bank — exterior wall mural by Adam Stephenson in Red Bank, Tennessee (2025)" loading="lazy" decoding="async">
       <img src="images/Athens-2021-Fiddlers-Spirit-Panorama.jpg" alt="Playing the Sound of the Wind — 24×48 ft mural by Adam Stephenson in Athens, Alabama (2021)" loading="lazy" decoding="async">
       <img src="images/STEPHENSON-Mural-Atlanta-GA-Upton-Ceiling.jpg" alt="Hall of the Magician — immersive ceiling mural by Adam Stephenson at The Upton, Atlanta, Georgia" loading="lazy" decoding="async">
-      <img src="images/ACMF-2024-Atlanta-Full.jpg" alt="Paola — 18×18 ft mural by Adam Stephenson at Atlanta Crossroads Mural Festival (2024)" loading="lazy" decoding="async">
+      <img src="images/Burn-2020-From-the-Ashes-Phoenix.jpg" alt="From the Ashes — phoenix mural by Adam Stephenson at Burnin' Bridges Mural Festival, Chattanooga, Tennessee (2020)" loading="lazy" decoding="async">
     </div>
     <div class="hero-name">
       <h1>Adam<br>Stephenson</h1>
@@ -1343,6 +1348,8 @@
 
   <script>
     (function () {
+      /* science switch: append ?sparkle=off to the URL to disable particles */
+      if (new URLSearchParams(location.search).get('sparkle') === 'off') return;
       const canvas = document.getElementById('hero-sparkle');
       const ctx = canvas.getContext('2d');
 
@@ -1419,11 +1426,20 @@
     (function () {
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      /* hero slide rotation */
+      /* hero slide rotation — fully paused while the hero is offscreen */
+      const hero = document.querySelector('.hero');
       const slides = document.querySelectorAll('.hero-slides img');
+      let heroVisible = true;
+      if (hero && 'IntersectionObserver' in window) {
+        new IntersectionObserver((entries) => {
+          heroVisible = entries[0].isIntersecting;
+          hero.classList.toggle('offscreen', !heroVisible);
+        }, { threshold: 0.05 }).observe(hero);
+      }
       if (slides.length > 1 && !reduce) {
         let i = 0;
         setInterval(() => {
+          if (!heroVisible) return;
           slides[i].classList.remove('active');
           i = (i + 1) % slides.length;
           slides[i].classList.add('active');
