@@ -253,23 +253,12 @@
       display: block;
       opacity: 0;
       transition: opacity 1.8s ease;
-      animation: kenburns 18s ease-in-out infinite alternate;
-      animation-play-state: paused; /* perf: only the visible slide animates */
+      /* Ken Burns removed 2026-06-10: continuous full-viewport transform
+         animation tanked fps alongside the particle canvas. Crossfade only. */
     }
 
     .hero-slides img.active {
       opacity: 1;
-      animation-play-state: running;
-    }
-
-    @keyframes kenburns {
-      from { transform: scale(1); }
-      to   { transform: scale(1.06); }
-    }
-
-    /* perf: freeze all hero animation once the hero is scrolled out of view */
-    .hero.offscreen .hero-slides img {
-      animation-play-state: paused;
     }
 
     @keyframes riseIn {
