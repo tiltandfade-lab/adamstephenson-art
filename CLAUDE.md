@@ -120,7 +120,7 @@ Rough budget: aim for **≤15 production deploys per month** on the Netlify side
 | Body font | Inter | Clean, neutral. |
 | Heading font | TBD in Stitch mockups | |
 | Image layout | Masonry grid | Required — 6 aspect ratio categories (0.60:1 to 2.36:1). |
-| Motion budget | Event-driven only | The sparkle canvas (880 particles, rAF) is the only allowed continuous animation. Never add infinite/continuous CSS animations on large elements (Ken Burns etc.) — tanked fps on 2026-06-10. Event-triggered transitions (scroll reveal, hover, slide crossfade) are fine. Hero images: landscape, ≤1920px, ≤600KB. |
+| Motion budget | Zero continuous animation | Adam's call 2026-06-10: 60fps beats sprinkles. Sparkle canvas removed from index.html (held the page under 60fps even after sprite/30fps optimization); other pages still carry the old canvas — remove it as each page gets its refresh. Never add infinite/continuous animations (Ken Burns etc.). Event-triggered transitions (scroll reveal, hover, slide crossfade) are fine. Hero images: landscape, ≤1920px, ≤600KB. |
 | Image format | WebP, srcset | Max 2400px wide, under 300KB each. |
 
 ---

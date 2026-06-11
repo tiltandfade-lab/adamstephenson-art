@@ -19,6 +19,8 @@ Update protocol: when you make a load-bearing change to this repo (anything that
 - About page stat corrected 70 ft → 76 ft; Oakland poster year filled in (2024); CV PDF mirror refreshed (committed with this batch, from prior session).
 
 ### Removed
+- Sparkle particle canvas removed from the homepage. Profiled as the fps bottleneck (confirmed via `?sparkle=off` A/B); even rewritten with sprite stamping + 30fps it kept the page under 60fps. New site-wide rule: zero continuous animation (see CLAUDE.md motion budget). Other pages still carry the old canvas until their refresh.
+- Ken Burns hero zoom (same fps reasoning); hero is crossfade-only.
 - Unpushed Web3Forms contact-form commit reverted; Netlify Forms retained until the Cloudflare Pages migration.
 
 ---

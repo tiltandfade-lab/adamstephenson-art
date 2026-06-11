@@ -193,8 +193,8 @@
     }
 
     nav.scrolled {
-      /* no backdrop-filter: blurring over the always-repainting sparkle
-         canvas costs a re-blur every frame. Opaque-ish bg is free. */
+      /* no backdrop-filter — re-blurs every frame over moving content.
+         Opaque-ish bg is free. */
       background: rgba(28,28,30,0.94);
       padding: 16px 48px;
       border-bottom: 1px solid var(--border);
@@ -276,15 +276,6 @@
       right: 0;
       height: 40%;
       background: linear-gradient(to top, rgba(28,28,30,0.75) 0%, transparent 100%);
-      pointer-events: none;
-    }
-
-    #hero-sparkle {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
       pointer-events: none;
     }
 
@@ -1022,7 +1013,6 @@
 </head>
 <body>
   <a href="#main" class="skip-nav">Skip to main content</a>
-  <canvas id="hero-sparkle"></canvas>
 
   <!-- NAV -->
   <nav aria-label="Primary navigation"></nav>
@@ -1336,102 +1326,9 @@
   <!-- FOOTER -->
   <footer aria-label="Site footer"></footer>
 
-  <script>
-    (function () {
-      /* science switch: append ?sparkle=off to the URL to disable particles */
-      if (new URLSearchParams(location.search).get('sparkle') === 'off') return;
-      const canvas = document.getElementById('hero-sparkle');
-      const ctx = canvas.getContext('2d');
-
-      /* ── perf rewrite 2026-06-10 ──
-         Old loop did beginPath/arc/fill + a new fillStyle string per particle
-         per frame (880x), and read document.body.scrollHeight every frame.
-         Now: pre-rendered sprites stamped via drawImage + globalAlpha,
-         cached doc height, and 30fps rendering — same look, fraction of
-         the cost, hover/scroll effects keep their full frame budget. */
-
-      const COUNT  = 880;
-      const COLORS = [
-        { name: 'accent', rgb: [212, 118, 59] },   /* #D4763B — warm orange */
-        { name: 'white',  rgb: [255, 248, 235] },  /* warm white */
-        { name: 'blue',   rgb: [120, 195, 230] },  /* sky blue */
-      ];
-
-      /* one tiny offscreen canvas per color */
-      const SPRITE_R = 8;
-      const sprites = {};
-      for (const { name, rgb: [r, g, b] } of COLORS) {
-        const s = document.createElement('canvas');
-        s.width = s.height = SPRITE_R * 2;
-        const sc = s.getContext('2d');
-        sc.beginPath();
-        sc.arc(SPRITE_R, SPRITE_R, SPRITE_R, 0, Math.PI * 2);
-        sc.fillStyle = `rgb(${r},${g},${b})`;
-        sc.fill();
-        sprites[name] = s;
-      }
-
-      let docH = window.innerHeight;
-      function resize() {
-        canvas.width  = window.innerWidth;
-        canvas.height = window.innerHeight;
-        docH = Math.max(document.body.scrollHeight, window.innerHeight);
-      }
-      window.addEventListener('resize', resize);
-      window.addEventListener('load', resize); /* layout grows as images load */
-      resize();
-
-      const particles = Array.from({ length: COUNT }, () => {
-        const rand = Math.random();
-        const sprite = rand < 0.15 ? sprites.accent : rand < 0.30 ? sprites.blue : sprites.white;
-        return {
-          x:        Math.random() * canvas.width,
-          y:        Math.random() * docH,             /* spread across full doc */
-          r:        Math.random() * 1.4 + 0.4,        /* 0.4 – 1.8 px */
-          vx:       (Math.random() - 0.5) * 0.18,
-          vy:       (Math.random() - 0.5) * 0.18,
-          phase:    Math.random() * Math.PI * 2,
-          speed:    Math.random() * 0.00875 + 0.00375,
-          maxAlpha: Math.random() * 0.38 + 0.12,      /* 0.12 – 0.50 */
-          sprite,
-        };
-      });
-
-      /* render every other frame (30fps); speeds doubled to compensate */
-      let skip = false;
-      function draw() {
-        requestAnimationFrame(draw);
-        skip = !skip;
-        if (skip) return;
-
-        const scrollY = window.scrollY;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        for (const p of particles) {
-          p.phase += p.speed * 2;
-          p.x += p.vx * 2;
-          p.y += p.vy * 2;
-
-          /* wrap X in screen space, Y in doc space */
-          if (p.x < -4) p.x = canvas.width + 4;
-          if (p.x > canvas.width + 4) p.x = -4;
-          if (p.y < 0)    p.y = docH;
-          if (p.y > docH) p.y = 0;
-
-          /* project world Y → screen Y; skip offscreen */
-          const screenY = p.y - scrollY;
-          if (screenY < -4 || screenY > canvas.height + 4) continue;
-
-          ctx.globalAlpha = (Math.sin(p.phase) * 0.5 + 0.5) * p.maxAlpha;
-          const d = p.r * 2;
-          ctx.drawImage(p.sprite, p.x - p.r, screenY - p.r, d, d);
-        }
-        ctx.globalAlpha = 1;
-      }
-
-      requestAnimationFrame(draw);
-    })();
-  </script>
+  <!-- sparkle canvas removed 2026-06-10: even optimized (sprite stamping,
+       30fps) it held the page under 60fps. Decision: zero continuous
+       animation anywhere on the site. See CLAUDE.md motion budget. -->
 
   <script>
     (function () {
