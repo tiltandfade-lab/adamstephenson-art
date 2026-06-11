@@ -254,11 +254,12 @@
       opacity: 0;
       transition: opacity 1.8s ease;
       animation: kenburns 18s ease-in-out infinite alternate;
-      will-change: transform, opacity;
+      animation-play-state: paused; /* perf: only the visible slide animates */
     }
 
     .hero-slides img.active {
       opacity: 1;
+      animation-play-state: running;
     }
 
     @keyframes kenburns {
@@ -1036,11 +1037,11 @@
   <!-- HERO -->
   <section class="hero" aria-label="Featured murals">
     <div class="hero-slides">
-      <img class="active" src="images/STEPHENSON-Mural-Decatur-AL-Homecoming-Action.jpg" alt="Homecoming mural, Decatur, AL, artist at work">
-      <img src="images/STEPHENSON-Mural-RedBank-TN-Two-Walls-Full.jpg" alt="Red Bank — two-wall exterior mural by Adam Stephenson in Red Bank, Tennessee (2025)" loading="lazy">
-      <img src="images/Athens-2021-Fiddlers-Spirit-Panorama.jpg" alt="Playing the Sound of the Wind — 24×48 ft mural by Adam Stephenson in Athens, Alabama (2021)" loading="lazy">
-      <img src="images/STEPHENSON-Mural-Atlanta-GA-Upton-Ceiling.jpg" alt="Hall of the Magician — immersive ceiling mural by Adam Stephenson at The Upton, Atlanta, Georgia" loading="lazy">
-      <img src="images/ACMF-2024-Atlanta-Full.jpg" alt="Paola — 18×18 ft mural by Adam Stephenson at Atlanta Crossroads Mural Festival (2024)" loading="lazy">
+      <img class="active" src="images/STEPHENSON-Mural-Decatur-AL-Homecoming-Action.jpg" alt="Homecoming mural, Decatur, AL, artist at work" fetchpriority="high">
+      <img src="images/STEPHENSON-Mural-RedBank-TN-Two-Walls-Full.jpg" alt="Red Bank — two-wall exterior mural by Adam Stephenson in Red Bank, Tennessee (2025)" loading="lazy" decoding="async">
+      <img src="images/Athens-2021-Fiddlers-Spirit-Panorama.jpg" alt="Playing the Sound of the Wind — 24×48 ft mural by Adam Stephenson in Athens, Alabama (2021)" loading="lazy" decoding="async">
+      <img src="images/STEPHENSON-Mural-Atlanta-GA-Upton-Ceiling.jpg" alt="Hall of the Magician — immersive ceiling mural by Adam Stephenson at The Upton, Atlanta, Georgia" loading="lazy" decoding="async">
+      <img src="images/ACMF-2024-Atlanta-Full.jpg" alt="Paola — 18×18 ft mural by Adam Stephenson at Atlanta Crossroads Mural Festival (2024)" loading="lazy" decoding="async">
     </div>
     <div class="hero-name">
       <h1>Adam<br>Stephenson</h1>
