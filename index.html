@@ -189,12 +189,13 @@
       padding: 24px 48px;
       background: rgba(0,0,0,0.30);
       backdrop-filter: blur(0px);
-      transition: background 0.35s ease, padding 0.35s ease, backdrop-filter 0.35s ease;
+      transition: background 0.35s ease, padding 0.35s ease;
     }
 
     nav.scrolled {
-      background: rgba(28,28,30,0.86);
-      backdrop-filter: blur(14px);
+      /* no backdrop-filter: blurring over the always-repainting sparkle
+         canvas costs a re-blur every frame. Opaque-ish bg is free. */
+      background: rgba(28,28,30,0.94);
       padding: 16px 48px;
       border-bottom: 1px solid var(--border);
     }
