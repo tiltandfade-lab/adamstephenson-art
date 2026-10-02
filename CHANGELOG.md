@@ -68,6 +68,7 @@ Update protocol: when you make a load-bearing change to this repo (anything that
 - "My Work" top ornament (final values from Adam via the lab: cool white #EEF3F5, rule on the band's top edge so the diamonds straddle the hero/band seam, twinkle 0.45s soft, glint 84px / 1.1s; band no longer clips and sits at z-index 10, under the nav): rule with a small diamond 30px in from each side and a larger diamond centered. One-shot on reveal: center diamond twinkles in, the side diamonds travel out from it drawing the rule, center glints again when they land. Driven by `--orn-*` variables, including vertical position (`--orn-y` from the top or bottom via `--orn-from`, with a separate phone value); static under reduced motion. Tuned in `labs/ornament.html` (gitignored).
 
 ### Removed
+- Murals page gallery: "Bridging Districts" (Huntsville, AL) removed (Adam). Image file stays in the repo, unused.
 - Commission page "Is This a Good Fit?" section (palette photo + list) and its styles. Adam: delete the whole section. `images/STEPHENSON-Paint-Palette.jpg` stays in the repo, now unused.
 - Commission page travel section ("I travel for the right project." and its state list) and its styles. Adam: delete it.
 - About page stats row (76 ft Largest Wall / 2019 Went Pro / 10+ States & Counting) and its styles. Adam: "very ai".
