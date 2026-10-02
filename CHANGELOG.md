@@ -32,6 +32,9 @@ Update protocol: when you make a load-bearing change to this repo (anything that
 - Section headings centered horizontally and vertically in their bands (symmetric padding, grid centering); "View all work" stays pinned right of "Selected Works" and drops beneath it on phones.
 
 - Contact page: the 2021 *Song of the Mockingbird* pencil sketch (`LOCK - Lockhart Mural Concepts/Process/sketch.png`, cropped to the perched bird) ghosted behind the form column with the same treatment as the heading linework: off-white at 13%, full height, centered. Pencil alpha levelled (40 to 150) so strokes read as solid light lines.
+- Commission closing section: deleted "Tell me about your wall. We'll take it from there. No commitment, no pressure, just a conversation." (Adam).
+- Commission vinyl option (Same look, lower floor / $2,000) removed with its styles (Adam). `.vinyl-label` kept: it styles the "Painted Murals" label.
+- Closing CTA headlines (commission, home) get `text-wrap: balance` so Lemon Milk caps don't strand a word ("THE") on its own line.
 - Contact page: "Based In / Atlanta, GA" removed (Adam); only Email remains under the heading.
 - Contact page sketch background now `cover` instead of full-height-only, so it spans the full width with no side margins (Adam).
 - Contact page is now one centered column (Adam): "Let's make something beautiful" heading, Email / Based In side by side, then the form (max 680px) with the Send button and response note centered beneath it. The two-column split and its divider are gone; the mockingbird sketch moved from behind the form to behind the whole page (`.page-wrap::before`, still 8%, full height, centered).

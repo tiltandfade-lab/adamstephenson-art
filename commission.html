@@ -244,44 +244,15 @@
     }
     .price-callout-factors { display: flex; flex-direction: column; gap: 12px; }
 
-    /* VINYL OPTION */
-    .vinyl-option {
-      margin-top: 2px;
-      border: 1px solid var(--border);
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 0;
-      align-items: center;
-    }
-    .vinyl-text {
-      padding: 36px 40px;
-      border-right: 1px solid var(--border);
-    }
+    /* small accent label ("Painted Murals"); name kept from the removed vinyl option */
     .vinyl-label {
       font-size: 12px; letter-spacing: 0.20em; text-transform: uppercase;
       color: var(--accent); display: block; margin-bottom: 16px;
     }
-    .vinyl-text h3,
     .price-callout-text h3 {
       font-family: 'Lemon Milk', 'Josefin Sans', sans-serif;
       font-size: 1.5rem; font-weight: 400; color: var(--text);
       margin-bottom: 14px;
-    }
-    .vinyl-text p {
-      font-size: 17px; color: var(--text-dim); line-height: 1.7; max-width: 580px;
-    }
-    .vinyl-text p strong { color: var(--text); font-weight: 400; }
-    .vinyl-price {
-      padding: 36px 40px;
-      display: flex; flex-direction: column; gap: 6px;
-      white-space: nowrap;
-    }
-    .vinyl-price .price-from {
-      font-size: 13px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--text-dim);
-    }
-    .vinyl-price .price-num {
-      font-family: 'Lemon Milk', 'Josefin Sans', sans-serif;
-      font-size: 2.2rem; font-weight: 400; color: var(--text); line-height: 1;
     }
 
     /* PRICING FACTORS (inside callout) */
@@ -321,8 +292,8 @@
       font-family: 'Lemon Milk', 'Josefin Sans', sans-serif;
       font-size: clamp(2.2rem, 4vw, 3.4rem);
       font-weight: 400; line-height: 1.15; color: var(--text); max-width: 600px;
+      text-wrap: balance; /* even line lengths in Lemon Milk caps */
     }
-    .commission-cta p { font-size: 17px; color: var(--text-dim); max-width: 440px; line-height: 1.7; }
     .cta-btn {
       display: inline-block; padding: 16px 48px;
       font-family: 'Josefin Sans', sans-serif;
@@ -357,9 +328,6 @@
       .price-callout { grid-template-columns: 1fr; }
       .price-callout-text { border-right: none; border-bottom: 1px solid rgba(148,214,207, 0.25); padding: 28px 24px; }
       .price-callout-price { padding: 24px 24px; }
-      .vinyl-option { grid-template-columns: 1fr; }
-      .vinyl-text { border-right: none; border-bottom: 1px solid var(--border); padding: 28px 24px; }
-      .vinyl-price { padding: 24px 24px; }
       .commission-cta { padding: 72px 24px 80px; }
       footer { flex-direction: column; align-items: flex-start; gap: 24px; padding: 40px 24px; }
       footer nav ul { gap: 20px; flex-wrap: wrap; }
@@ -503,18 +471,6 @@
         </div>
       </div>
 
-      <div class="vinyl-option">
-        <div class="vinyl-text">
-          <span class="vinyl-label">Also Available: Vinyl Murals</span>
-          <h3>Same look, lower floor.</h3>
-          <p>Printed vinyl murals are a practical option when budget is the constraint. Same design process, same art, installed on high-grade architectural vinyl. <strong>Starting at $2,000.</strong> A good fit for interiors, temporary installations, and spaces where paint isn't an option.</p>
-        </div>
-        <div class="vinyl-price">
-          <span class="price-from">Starting at</span>
-          <span class="price-num">$2,000</span>
-        </div>
-      </div>
-
     </section>
 
 
@@ -522,7 +478,6 @@
     <!-- CTA -->
     <section class="commission-cta" aria-label="Get started">
       <h2>Ready to start the conversation?</h2>
-      <p>Tell me about your wall. We'll take it from there. No commitment, no pressure, just a conversation.</p>
       <a href="contact.html" class="cta-btn">Get in touch</a>
     </section>
 
