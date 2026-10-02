@@ -50,8 +50,7 @@
     .page-eyebrow { font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; display: block; }
     .page-header h1 { font-family: 'Lemon Milk', 'Josefin Sans', sans-serif; font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 400; line-height: 1.05; color: var(--text); }
     .page-header p { margin-top: 24px; font-size: 18px; font-weight: 400; line-height: 1.75; color: var(--text-dim); max-width: 520px; }
-    .page-header-meta { text-align: right; flex-shrink: 0; }
-    .page-header-meta span { display: block; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-dim); line-height: 2; }
+    .page-header .page-subhead { margin-top: 20px; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; line-height: 1.8; max-width: none; } /* category subhead, as on Murals (Adam 2026-10-02) */
 
     /* Poster-style grid — 3 columns with natural aspect ratios */
     .gallery-section { position: relative; z-index: 1; padding: 64px 48px 96px; }
@@ -114,7 +113,6 @@
     @media (max-width: 900px) {
       nav { padding: 20px 24px; } nav ul { gap: 24px; } nav ul a { font-size: 13px; }
       .page-header { padding: 120px 24px 56px; flex-direction: column; align-items: flex-start; }
-      .page-header-meta { text-align: left; }
       .gallery-section { padding: 48px 24px 72px; }
       .poster-grid { grid-template-columns: repeat(2, 1fr); }
       .poster-item.wide { grid-column: span 1; }
@@ -161,12 +159,7 @@
       <div class="page-header-text">
         <span class="page-eyebrow">Work</span>
         <h1>Digital &<br>Design</h1>
-        <p>Festival posters, printed mural commissions, and digital illustration, work built to live on paper, screen, and everything in between. The same eye for scale and composition, scaled down.</p>
-      </div>
-      <div class="page-header-meta" aria-label="Stats">
-        <span>Posters</span>
-        <span>Illustration</span>
-        <span>Print & Digital</span>
+        <p class="page-subhead">Festival Posters | Printed Murals | Digital Illustration</p>
       </div>
     </header>
 
