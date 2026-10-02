@@ -69,6 +69,15 @@
       overflow: hidden;
     }
     .page-header-text { position: relative; z-index: 1; }
+    /* soft dark fade behind the text only: dark on the text side, clear by ~65% across (Adam 2026-10-02) */
+    .page-header-image::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(to right,
+        rgba(26, 23, 20, 0.88) 0%,
+        rgba(26, 23, 20, 0.72) 32%,
+        rgba(26, 23, 20, 0.35) 50%,
+        rgba(26, 23, 20, 0) 66%);
+    }
     .page-header-image img {
       position: absolute; inset: 0;
       width: 100%; height: 100%;
@@ -348,6 +357,7 @@
     @media (max-width: 900px) {
       nav { padding: 20px 24px; } nav ul { gap: 24px; } nav ul a { font-size: 13px; }
       .page-header { grid-template-columns: 1fr; min-height: unset; }
+      .page-header-image::after { background: linear-gradient(to bottom, rgba(26, 23, 20, 0.55) 0%, rgba(26, 23, 20, 0.78) 100%); }
       .page-header-text { padding: 120px 24px 56px; }
       .process { padding: 64px 24px; }
       .section-band { padding: 48px 24px; }
