@@ -196,7 +196,7 @@
 
     /* CASE STUDIES */
     .case-studies { border-top: 1px solid var(--border); }
-    .case-studies-header { padding: 64px 48px 48px; position: relative; isolation: isolate; overflow: hidden; }
+    .case-studies-header { padding: 64px 48px; display: grid; place-items: center; text-align: center; position: relative; isolation: isolate; overflow: hidden; }
     /* Hall of the Magician linework band behind section headings (Adam's pick 2026-10-02, see index.html) */
     .case-studies-header::after {
       content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
@@ -240,7 +240,7 @@
       nav ul { gap: 24px; }
       nav ul a { font-size: 13px; }
       .page-header { padding: 120px 24px 56px; flex-direction: column; align-items: flex-start; }
-      .case-studies-header { padding: 48px 24px 36px; }
+      .case-studies-header { padding: 48px 24px; }
       .case-row, .case-row.flipped, .case-row.dual { grid-template-columns: 1fr; min-height: unset; }
       .case-row .case-row-info { order: 2; border-right: none; border-top: 1px solid var(--border); padding: 40px 24px; }
       .case-row .case-row-img { order: 1; min-height: 280px; }

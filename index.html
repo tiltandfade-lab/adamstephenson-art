@@ -312,13 +312,14 @@
        Adam's pick 2026-10-02 (labs/section-headings.html): off-white Playfair
        over a 13% band of Hall of the Magician linework (Upton proposal PSD,
        Cover > Layer 1), tinted with a CSS mask, top slice of the drawing. */
-    .section-heading {
-      padding: 72px 48px 56px;
-    }
-
+    /* centered both ways in the band (Adam 2026-10-02): symmetric padding + grid centering */
     .section-heading,
     .case-studies-header,
     .works-strip-header {
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 64px 48px;
       position: relative;
       isolation: isolate;
       overflow: hidden;
@@ -449,13 +450,13 @@
     }
 
     .works-strip-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
+      grid-template-columns: 1fr auto 1fr;
       gap: 24px;
       margin: 0 -48px 48px;
-      padding: 72px 48px 56px;
     }
+
+    .works-strip-header h2 { grid-column: 2; }
+    .works-strip-header a { grid-column: 3; justify-self: end; }
 
 
     .works-strip-header a {
@@ -529,10 +530,6 @@
     /* ── CASE STUDIES ── */
     .case-studies {
       border-top: 1px solid var(--border);
-    }
-
-    .case-studies-header {
-      padding: 72px 48px 56px;
     }
 
 
@@ -772,8 +769,9 @@
       }
 
       /* Section heading */
-      .section-heading {
-        padding: 56px 24px 40px;
+      .section-heading,
+      .case-studies-header {
+        padding: 48px 24px;
       }
 
       /* Section previews — stack to 1 column */
@@ -793,13 +791,10 @@
       }
       .works-strip-header {
         margin: 0 -24px 32px;
-        padding: 56px 24px 40px;
+        padding: 48px 24px;
       }
 
       /* Case studies — each row stacks: image(s) on top, text below */
-      .case-studies-header {
-        padding: 56px 24px 40px;
-      }
       .case-row,
       .case-row.flipped,
       .case-row.dual {
@@ -884,8 +879,12 @@
       }
       .works-strip-header {
         margin: 0 -16px 24px;
-        padding: 48px 16px 32px;
+        padding: 40px 16px;
+        grid-template-columns: 1fr;
+        gap: 12px;
       }
+      .works-strip-header h2,
+      .works-strip-header a { grid-column: 1; justify-self: center; }
 
       /* Overlay stays visible on small screens too */
       .works-overlay {
@@ -899,14 +898,12 @@
       }
 
       /* Section heading */
-      .section-heading {
-        padding: 48px 20px 32px;
+      .section-heading,
+      .case-studies-header {
+        padding: 40px 20px;
       }
 
       /* Case studies */
-      .case-studies-header {
-        padding: 48px 20px 32px;
-      }
       .case-row-info {
         padding: 32px 20px;
       }
@@ -1261,7 +1258,6 @@
     <p class="cta-kicker">Let's make a landmark.</p>
     <div class="cta-actions">
       <a class="cta-btn accent" href="contact.html">Start a conversation</a>
-      <a class="cta-btn" href="contact.html">Commission a print</a>
     </div>
   </section>
 

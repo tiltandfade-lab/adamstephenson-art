@@ -26,9 +26,12 @@ Update protocol: when you make a load-bearing change to this repo (anything that
 ### Added
 - `images/HOTM-Linework-Texture.webp`: Hall of the Magician linework (Upton proposal PSD, Cover group, Layer 1; extracted for the bumper lab), top 2560×960, alpha-only, 228 KB.
 
+- Section headings centered horizontally and vertically in their bands (symmetric padding, grid centering); "View all work" stays pinned right of "Selected Works" and drops beneath it on phones.
+
 ### Removed
 - Red Bank outer-wall photo from the homepage hero rotation (Adam: bad photo of him at that scale). Red Bank stays in Selected Works.
 - Homepage "Scroll" cue.
+- Homepage CTA "Commission a print" button (Adam: "one button, one contact"). "Start a conversation" is the only button.
 
 ### Added
 - `labs/section-headings.html` (gitignored, never deploys): color/type/treatment options for section headings.
