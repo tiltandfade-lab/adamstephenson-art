@@ -7,6 +7,6 @@ cd "$(dirname "$0")/.."
 rm -rf dist
 mkdir -p dist/docs
 cp ./*.html ./*.js sitemap.xml robots.txt dist/
-cp -R images gallery dist/
+cp -R images gallery fonts dist/
 cp docs/*.pdf dist/docs/
 echo "dist/ ready: $(find dist -type f | wc -l | tr -d ' ') files"

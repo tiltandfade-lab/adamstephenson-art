@@ -130,6 +130,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Josefin+Sans:wght@300;400;600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
   <style>
+    /* Lemon Milk: Adam's brand font (2026-10-02), section headings for now */
+    @font-face {
+      font-family: 'Lemon Milk';
+      src: url(fonts/LEMONMILK-Medium.otf) format('opentype');
+      font-weight: 500;
+      font-display: swap;
+    }
+
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -324,6 +332,9 @@
       --tex-fade-b: 22%;
       --tex-edge: 0;
       --tex-curve: 0.45;
+      /* linework position: --tex-x nudges it sideways (vw, so it scales with the band), --tex-y as before */
+      --tex-x: 0vw;
+      --tex-y: 21%;
       display: grid;
       place-items: center;
       text-align: center;
@@ -363,8 +374,8 @@
         linear-gradient(to bottom, rgb(0 0 0 / var(--tex-edge)) 0%, calc(var(--tex-fade-t) * var(--tex-curve)), #000 var(--tex-fade-t), #000 calc(100% - var(--tex-fade-b)), calc(100% - var(--tex-fade-b) * var(--tex-curve)), rgb(0 0 0 / var(--tex-edge)) 100%);
       -webkit-mask-size: cover, 100% 100%, 100% 100%;
       mask-size: cover, 100% 100%, 100% 100%;
-      -webkit-mask-position: center 21%, 0 0, 0 0;
-      mask-position: center 21%, 0 0, 0 0;
+      -webkit-mask-position: calc(50% + var(--tex-x)) var(--tex-y), 0 0, 0 0;
+      mask-position: calc(50% + var(--tex-x)) var(--tex-y), 0 0, 0 0;
       -webkit-mask-repeat: no-repeat;
       mask-repeat: no-repeat;
       -webkit-mask-composite: source-in;
@@ -520,9 +531,11 @@
     .section-heading h2,
     .case-studies-header h2,
     .works-strip-header h2 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(2rem, 3vw, 2.8rem);
-      font-weight: 400;
+      font-family: 'Lemon Milk', 'Josefin Sans', sans-serif;
+      font-size: var(--h-size, clamp(1.5rem, 2.4vw, 2.2rem));
+      font-weight: 500;
+      letter-spacing: var(--h-track, 0.04em);
+      text-transform: uppercase;
       line-height: 1.1;
       color: var(--text);
     }
