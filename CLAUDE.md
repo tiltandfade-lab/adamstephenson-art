@@ -30,12 +30,16 @@ A web app that generates dungeon/urban adventure content for tabletop RPGs. Adam
 |---|---|---|
 | Design mockups | Google Stitch | Free tier, 350 gen/mo. Adam creates mockups, hands to Claude to build |
 | Code | Raw HTML / CSS / JS | No framework. Bespoke per page. |
-| Hosting | Netlify (free tier) | 300 credits/mo hard cap. ~30GB bandwidth. No surprise charges. |
+| Hosting | **Netlify (live)** → Cloudflare planned, see "Cloudflare migration plan" below | Cloudflare: no deploy cap, 25 MiB per-file limit. Build: `bash scripts/build.sh` → `dist/` (Netlify ignores it and publishes the repo root). |
 | Repo | GitHub (`tiltandfade-lab/adamstephenson-art`) | |
 | CMS | Notion (Art Practice HQ) | Portfolio database already well-structured. Used as data source, not build step. |
 | Images | WebP, max 2400px, under 300KB | Responsive srcset. Two .heic files need conversion (Bastrop LA + Homewood AL installs). |
 
-**Deploy pipeline:** `git push origin main` → Netlify auto-deploys in ~30 seconds. Branch deploys get preview URLs automatically.
+**Deploy pipeline:** `git push origin main` → Netlify auto-deploys the repo root (20 production deploys/month cap). After the Cloudflare cutover, Cloudflare runs `scripts/build.sh` and deploys `dist/`.
+
+**What gets published (Cloudflare):** only what `scripts/build.sh` copies — the root `*.html` and `*.js`, `images/`, `gallery/`, `docs/*.pdf`, `sitemap.xml`, `robots.txt`. `stitch-references/` (files up to 39 MB, over Cloudflare's limit), `CLAUDE.md`, `CHANGELOG.md`, `README.md`, `STITCH-BRIEF.md` and other notes stay out. **When adding a new top-level folder or file type the site needs, add it to `scripts/build.sh`.**
+
+**Contact form:** live uses Netlify Forms (`netlify` attribute in `contact.html`), which stops working the moment the site leaves Netlify. The Web3Forms replacement is in the archive branch and ships first (step 1 of the migration plan).
 
 ---
 
@@ -85,7 +89,7 @@ When Claude runs `git add` from the sandbox bash, Git will emit a pile of `unabl
 
 Rough budget: aim for **≤15 production deploys per month** on the Netlify side to leave headroom for emergencies. If Adam wants to see intermediate work, preview locally or use a branch deploy instead of pushing to `main`.
 
-**Backup plan if Netlify gets stingy again:** Cloudflare Pages (unlimited bandwidth, 500 builds/mo free) is pre-approved as a migration target. Same GitHub repo, repoint DNS, ~10 min to set up.
+**Migration planned:** steps in "Cloudflare migration plan" below. Once cut over, this whole Netlify section can be retired.
 
 ---
 
@@ -115,12 +119,16 @@ Rough budget: aim for **≤15 production deploys per month** on the Netlify side
 
 | Token | Value | Notes |
 |---|---|---|
-| Background | `#1C1C1E` | Dark. Adam's work is highly colorful — white bg washes it out. |
-| Accent | `#D4763B` | Warm amber. |
-| Body font | Inter | Clean, neutral. |
-| Heading font | TBD in Stitch mockups | |
+| Background | `#1A1714` | Warm near-black (swapped from #1C1C1E 2026-06-11 — that hex is Apple systemGray6, an AI tell). Dark because Adam's work is colorful — white washes it out. |
+| Accent | `#94D6CF` | Verdigris, sampled from The Scottie (swapped from burnt orange #D4763B 2026-06-11 — charcoal+orange is the AI duo). Steel blue `#82B3C8` approved as optional secondary. Parchment `#F7EBD1` reserved as ink color for hand-drawn SVG marks. Accent-background buttons use dark text `#1A1714`, never white. Text `#EAE6E0`, dim `#B8B2A9`, border `#2E2A26`. |
+| Display font | Playfair Display (live) | 2026-10-02: Adam kept the live fonts. Big Shoulders Display ("just ugly") and the Young Serif trial are archived, not live. Hand lettering may take over wordmark + key display moments later. |
+| Quote/italic font | Playfair Display italic (live) | Newsreader was part of the archived June pass. |
+| Nav/labels | Josefin Sans | |
+| Body font | DM Sans | |
+| Artwork treatment | Live: preview tiles dim + hover zoom | The June de-AI rules (full brightness, no hover scale) are archived, not live. Reconsider during the full sweep. |
+| Link style | Live: tracked caps + "→" arrows | The June rules (underlined sentence case, no arrows, no eyebrows) are archived, not live. Reconsider during the full sweep. |
 | Image layout | Masonry grid | Required — 6 aspect ratio categories (0.60:1 to 2.36:1). |
-| Motion budget | Zero continuous animation | Adam's call 2026-06-10: 60fps beats sprinkles. Sparkle canvas removed from index.html (held the page under 60fps even after sprite/30fps optimization); other pages still carry the old canvas — remove it as each page gets its refresh. Never add infinite/continuous animations (Ken Burns etc.). Event-triggered transitions (scroll reveal, hover, slide crossfade) are fine. Hero images: landscape, ≤1920px, ≤600KB. |
+| Motion budget | Zero continuous animation (goal) | Adam's call 2026-06-10: 60fps beats sprinkles. Homepage sparkle is gone; **inner pages still run the sparkle canvas** (recolored verdigris 2026-10-02, because the removal was archived with the June pass). Never add Ken Burns or other infinite animations. Event-triggered transitions are fine. |
 | Image format | WebP, srcset | Max 2400px wide, under 300KB each. |
 
 ---
@@ -182,6 +190,36 @@ When starting a new session, Claude should:
 
 ---
 
+## Where we are — 2026-10-02 (rollback + sweep start)
+
+**Rollback.** The 10 unpushed June commits are archived on branch `archive/june-local-2026-06-11` (tag `archive-june-local`). Local `main` was reset to the live site (`origin/main` 9e73c8c), then only these carried forward:
+- **Palette** (warm near-black `#1A1714`, verdigris `#94D6CF`, warmed text/dim/border, dark text on accent buttons), applied by value mapping across all 13 pages. Also recolored the commission price callout tint and the inner-page sparkle particles, which the June commit had missed or removed.
+- **Notes and tooling:** this file, CHANGELOG.md, `scripts/build.sh`, `.gitignore`.
+- Anything else from June (Web3Forms contact form, copy, de-AI rules) can be pulled from the archive branch file by file: `git show archive/june-local-2026-06-11:<file>`.
+
+**Working rule:** work locally until Adam is happy, then ONE push. Preview with the `art-site` launch config (python http.server on port 5181, repo root).
+
+**Done this session (local, unpushed):** hero drops the Red Bank slide (still in Selected Works); hero subline = "Public Artist | Muralist | Designer | Atlanta Based" (verbatim); homepage statement section replaced by a "My work" section heading; Scroll cue removed; murals page intro + "Since 2019 / Southeast & beyond" replaced by the subhead "Public commissions | Festivals | Permanent Installations" (verbatim).
+
+**Open:**
+1. Section heading color: Adam is choosing in `labs/section-headings.html` (gitignored, never deploys). Apply the pick to every section heading site-wide.
+2. Sparkle canvas on inner pages: keep (verdigris) or remove? Adam's call.
+3. Full-site sweep (copy slop pass, truth pass on claims, About rewrite, Hall of the Magician update with 6 new photos in `/Volumes/Work Drive/UP - The Upton/Final Photos/`). June backlog notes are in the archive branch's CLAUDE.md.
+
+## Cloudflare migration plan (agreed shape, 2026-10-02)
+
+One variable at a time; each step is reversible; the domain moves last.
+1. **Form first, still on Netlify.** Swap Netlify Forms → Web3Forms (code exists in the archive branch's `contact.html`). Adam creates the free key at web3forms.com himself. Ships in the sweep push; test one real submission on the live site. Export old Netlify submissions (Netlify → Forms → CSV).
+2. **Cloudflare in parallel.** Connect the GitHub repo to a Cloudflare project that runs `bash scripts/build.sh` and serves `dist/`. Check the preview URL against the live site, including Netlify-style pretty URLs (`/murals` → `murals.html`), since Google has indexed those.
+3. **Add the domain to Cloudflare (Free plan) without switching yet.** Confirm the imported DNS has all five Google MX records (`aspmx.l.google.com` 1, `alt1`/`alt2` 5, `alt3`/`alt4` 10). **Never enable Cloudflare Email Routing**: it replaces the root MX and breaks Google Workspace mail. DNSSEC is off at get.art (no DS record, checked 2026-10-02), so the nameserver switch can't strand the domain.
+4. **Switch nameservers at get.art** to the two Cloudflare gives. Both hosts serve the same site during propagation, so there is no downtime.
+5. **Attach apex + www to the Cloudflare project.** Verify site, form, and a test email both ways.
+6. **A few days later:** disconnect Netlify and cancel.
+
+Side effects: the Cloudflare build stops publishing `CLAUDE.md`, `CHANGELOG.md` and `STITCH-BRIEF.md` (Netlify serves them publicly today). Optional: the domain has no SPF/DMARC records; adding Google's SPF helps Workspace mail land in inboxes.
+
+Cloudflare-native form (later, optional): Cloudflare Email Sending only touches the `cf-bounce` subdomain (safe for Workspace), and sends to verified addresses are free, but it needs the domain on Cloudflare first. Revisit after cutover if Web3Forms disappoints.
+
 ## Open Questions / Still To Do
 
 - [ ] Domain: Point `adamstephenson.art` DNS to Netlify (Adam does this in his domain registrar — add a CNAME for `www` pointing to `adamstephenson-art.netlify.app`, and an A record or ALIAS for apex)
@@ -190,6 +228,7 @@ When starting a new session, Claude should:
 - [ ] Convert two .heic images (Bastrop LA install + Homewood AL install) to WebP before using on site
 - [ ] Decide on heading font (currently TBD)
 - [ ] TTRPG app: separate repo, later phase
+- [ ] SEO + LLM-trust pass (deferred 2026-06-11): fact consistency across pages, expand sameAs, consider llms.txt / plain-text facts page — make the site legible to LLMs searching for muralists
 
 ---
 

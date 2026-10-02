@@ -10,6 +10,60 @@ Update protocol: when you make a load-bearing change to this repo (anything that
 
 ---
 
+## 2026-10-02
+
+### Changed
+- **Rollback to the live site + palette only.** The 10 unpushed June commits are archived on branch `archive/june-local-2026-06-11` (tag `archive-june-local`); `main` reset to `origin/main` (9e73c8c). Carried forward: the warm near-black + verdigris palette (value-mapped across all 13 pages, dark text on accent backgrounds), plus CLAUDE.md, this changelog, `scripts/build.sh` and `.gitignore`. Not carried: Big Shoulders/Young Serif/Newsreader, sparkle removal on inner pages, de-AI link and image rules, June copy, Web3Forms form.
+- Palette also applied to things the June commit missed: commission price-callout tint and border (orange alpha → verdigris alpha) and the inner-page sparkle particles.
+- Homepage hero subline: "Public Artist · Atlanta, GA" → "Public Artist | Muralist | Designer | Atlanta Based" (verbatim Adam).
+- Homepage statement section ("You remember the art that impacts you..." + two intro lines) replaced by a plain "My work" section heading above the Murals / Digital & Design / Figurative tiles.
+- Murals page header: intro sentence and "Since 2019 / Southeast & beyond" meta replaced by the subhead "Public commissions | Festivals | Permanent Installations" (verbatim Adam).
+
+### Removed
+- Red Bank outer-wall photo from the homepage hero rotation (Adam: bad photo of him at that scale). Red Bank stays in Selected Works.
+- Homepage "Scroll" cue.
+
+### Added
+- `labs/section-headings.html` (gitignored, never deploys): color/type/treatment options for section headings.
+
+---
+
+## 2026-09-30
+
+### Added
+- `scripts/build.sh`: Cloudflare Pages build. Copies only the public site into `dist/` (89 files, largest 5.8 MB), keeping `stitch-references/` (two files over Cloudflare's 25 MiB limit), `CLAUDE.md` and working notes off the live site. Verified locally: 13 pages, 170 internal links, none missing.
+- `.gitignore` for `dist/` and `.DS_Store`.
+
+### Changed
+- Contact form moved off Netlify Forms to Web3Forms (JSON POST to `api.web3forms.com`, honeypot `botcheck`). Until `WEB3FORMS_KEY` is set, submitting opens the visitor's email app with name, email and message filled in. Send failures show the email address instead of a false "received".
+- CLAUDE.md: hosting documented as Cloudflare Pages (migration in progress, cutover target 2026-10-02).
+
+---
+
+## 2026-06-11
+
+### Changed
+- Statement line 2 finalized: "Some of it the soul keeps." (Adam-picked from active-voice drafts). Each sentence now renders as its own unbreakable line (span + nowrap) with fluid type sized off the measured 11.65em width of the longer line, so the lines never wrap at any viewport width, they just shrink.
+- Homepage statement rewritten (verbatim Adam, chat 2026-06-11): "We remember the art that impacts us. It can become something that is carried by the soul." Replaces the 2026-06-10 Voice & Ideas line. Orphan on the old line fixed structurally with `text-wrap: balance` on the statement and CTA headline.
+- Display font: Young Serif → Big Shoulders Display (Adam's pick after a five-candidate comparison; condensed civic-poster sans, fits the mural-festival world). Hero name now uppercase 700 at tightened line-height; page h1s and case-hero titles 700; mid-level headings 500. Newsreader italic retained for pull quotes, DM Sans body, Josefin Sans nav.
+- Palette swap (de-AI pass batch 3): background #1C1C1E (Apple systemGray6) → warm near-black #1A1714; accent burnt orange #D4763B → verdigris #94D6CF sampled from The Scottie; text/dim/border tokens warmed to match (#EAE6E0 / #B8B2A9 / #2E2A26). Accent-background buttons switched to dark text (verdigris is light; white failed contrast). Steel blue #82B3C8 approved as optional secondary; parchment #F7EBD1 reserved as hand-drawn-mark ink.
+- Contact page h1 "Let's make something worth seeing." → "Every mural starts with an email." (Adam-approved); intro first sentence trimmed to avoid repeating the h1.
+- De-AI-pattern visual pass (batch 2): Playfair Display replaced site-wide with Young Serif (Newsreader italic for pull quotes/kicker — Young Serif has no italic). All artwork now renders at full brightness with no hover zoom; scrims only behind text. Links restyled to underlined sentence case; homepage preview links varied ("See the murals" / "See the design work" / "See the paintings"). Fade-up scroll reveals replaced with one-shot clip-path image wipe (images only, text static, reduced-motion safe). Hero/statement/CTA type weights normalized to 400, hero max size trimmed for Young Serif's heavier color.
+- Copy: contact intro and message placeholder rewritten in Adam's voice (approved 2026-06-11, no em dashes per Adam); homepage CTA button "Start a conversation" → "Let's Talk!".
+
+### Removed
+- All decorative accent eyebrows (cta/contact/about/page/case "Case Study 01"-style labels) and all "→" link arrow suffixes (case-study prev/next pagination arrows retained). Letter-spacing hover tricks removed.
+
+- Sparkle particle canvas removed from ALL remaining pages (about, contact, murals, commission, digital, fineart, and all six case studies) — completes the zero-continuous-animation rule that started with the homepage on 2026-06-10. First batch of the de-AI-pattern visual pass.
+
+### Fixed
+- Image wipe reveal rebuilt after images rendered black in local preview (curtain stuck): clip-path transition replaced with a transform-based curtain (`::after` slides off), plus triple fallback — transitionend cleanup, 1.6s per-element timer, 5s global timer — so an image can never stay hidden regardless of browser quirks.
+- Appalachian Sunsets mislocated as "Atlanta, GA" in homepage gallery caption + alt — corrected to Red Bank, TN (four walls confirmed correct).
+- `about.html` headshot alt text said "painting the Homecoming mural in Decatur" but the image is the Scottie headshot — corrected.
+- Homepage section-preview tiles had one-word alts ("Murals", "Digital & Design", "Figurative") — replaced with descriptive artwork alts.
+
+---
+
 ## 2026-06-10 (branch: visual-refresh)
 
 ### Changed
