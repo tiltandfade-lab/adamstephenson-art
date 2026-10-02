@@ -226,7 +226,7 @@
     .ornament-echo { --orn-from: 0; }
     .orn-line {
       position: absolute; top: 50%; translate: 0 -50%; height: var(--orn-line);
-      left: calc(var(--orn-inset) + var(--orn-side) / 2); right: calc(var(--orn-inset) + var(--orn-side) / 2);
+      left: 0; right: 0; /* rule runs edge to edge; diamonds sit --orn-inset in */
       background: var(--orn); opacity: var(--orn-line-opacity);
     }
     .orn-side, .orn-center { position: absolute; top: 50%; translate: 0 -50%; background: var(--orn); clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
@@ -244,8 +244,8 @@
       --tex-fade-b: 22%;
       --tex-edge: 0;
       --tex-curve: 0.45;
-      --tex-x: 0vw;
-      --tex-y: 21%;
+      --tex-x: 0.45vw;
+      --tex-y: 3%;
     }
     .case-studies-header::after {
       content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;

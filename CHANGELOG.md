@@ -31,6 +31,10 @@ Update protocol: when you make a load-bearing change to this repo (anything that
 - Section headings centered horizontally and vertically in their bands (symmetric padding, grid centering); "View all work" stays pinned right of "Selected Works" and drops beneath it on phones.
 
 - Contact page: the 2021 *Song of the Mockingbird* pencil sketch (`LOCK - Lockhart Mural Concepts/Process/sketch.png`, cropped to the perched bird) ghosted behind the form column with the same treatment as the heading linework: off-white at 13%, full height, centered. Pencil alpha levelled (40 to 150) so strokes read as solid light lines.
+- About page copy (Adam's edits, verbatim): "What I'm after is a threshold" → "My best work seeks to reveal a threshold"; cut "where elements become legible in relation to each other and the connections between things can actually be felt"; musician line → "The moment a musician and their instrument dissolve into each other and reach into a realm beyond the physical."; cut "That's the kind of experience I want a wall to hold."; "My best work draws from" → "My heart is embedded in work that draws from"; cut the "genuine trust ... reach out" paragraph; pull quote now ends "for them and their communities."; cut "I studied fine art formally and learned the rest on walls."
+- Digital page: "Personal Project" → "Personal Work" so both personal pieces match.
+- Section ornament rule now runs edge to edge (diamonds stay 30px in). On "My Work" the side diamonds still draw it (clip-path tracks them exactly), then it runs on to the edges in 0.35s (`--orn-extend-dur`).
+- Heading linework position set by Adam in the lab: `--tex-x: 0.45vw`, `--tex-y: 3%`.
 - Section headings ("My Work", "Case Studies", "Selected Works", murals "Case Studies") switched from Playfair Display to Lemon Milk Medium, Adam's brand font: uppercase, `clamp(1.5rem, 2.4vw, 2.2rem)`, 0.04em tracking (`--h-size`, `--h-track`). Served from `fonts/LEMONMILK-Medium.otf` (34 KB); `scripts/build.sh` now copies `fonts/`. Everything else stays Playfair for now.
 - Heading linework position is now variable: `--tex-x` (sideways nudge in vw, so it scales with the band) and `--tex-y` (21%). The drawing's own mirror axis measures 0.39% of the width left of center; the lab has a snap-to-center button.
 - Mockingbird sketch (contact form and all contact leads) faded from 13% to 8% (Adam).
@@ -41,6 +45,7 @@ Update protocol: when you make a load-bearing change to this repo (anything that
 - "My Work" top ornament (final values from Adam via the lab: cool white #EEF3F5, rule on the band's top edge so the diamonds straddle the hero/band seam, twinkle 0.45s soft, glint 84px / 1.1s; band no longer clips and sits at z-index 10, under the nav): rule with a small diamond 30px in from each side and a larger diamond centered. One-shot on reveal: center diamond twinkles in, the side diamonds travel out from it drawing the rule, center glints again when they land. Driven by `--orn-*` variables, including vertical position (`--orn-y` from the top or bottom via `--orn-from`, with a separate phone value); static under reduced motion. Tuned in `labs/ornament.html` (gitignored).
 
 ### Removed
+- About page stats row (76 ft Largest Wall / 2019 Went Pro / 10+ States & Counting) and its styles. Adam: "very ai".
 - Red Bank outer-wall photo from the homepage hero rotation (Adam: bad photo of him at that scale). Red Bank stays in Selected Works.
 - Homepage "Scroll" cue.
 - Homepage CTA "Commission a print" button (Adam: "one button, one contact"). "Start a conversation" is the only button.

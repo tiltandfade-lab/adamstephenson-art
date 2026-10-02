@@ -333,8 +333,8 @@
       --tex-edge: 0;
       --tex-curve: 0.45;
       /* linework position: --tex-x nudges it sideways (vw, so it scales with the band), --tex-y as before */
-      --tex-x: 0vw;
-      --tex-y: 21%;
+      --tex-x: 0.45vw;
+      --tex-y: 3%;
       display: grid;
       place-items: center;
       text-align: center;
@@ -404,7 +404,8 @@
       --orn-draw-dur: 1.20s;
       --orn-draw-delay: 0.60s;
       --orn-draw-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
-      --orn-echo-lag: 0.2s;   /* bottom echo starts this long after the top draw */
+      --orn-echo-lag: 0.2s;
+      --orn-extend-dur: 0.35s; /* line runs on from the diamonds to the edges */   /* bottom echo starts this long after the top draw */
       /* vertical position: the rule's center sits --orn-y from the band's top
          (--orn-from: 1) or bottom (--orn-from: 0). Phones override --orn-y below. */
       --orn-y: 0px;
@@ -426,13 +427,13 @@
       --orn-lag: var(--orn-echo-lag);
     }
 
+    /* the rule runs edge to edge; the diamonds sit --orn-inset in from each side */
     .orn-line {
       position: absolute;
       top: 50%;
-      left: calc(var(--orn-inset) + var(--orn-side) / 2);
-      right: calc(var(--orn-inset) + var(--orn-side) / 2);
+      left: 0;
+      right: 0;
       height: var(--orn-line);
-      transform-origin: center;
       translate: 0 -50%;
       background: var(--orn);
       opacity: var(--orn-line-opacity);
@@ -494,7 +495,10 @@
         var(--orn-glint-end) var(--orn-glint-dur) calc(var(--orn-draw-delay) + var(--orn-draw-dur) - 0.15s) ease-out none;
     }
     .section-heading.in .orn-line {
-      animation: orn-draw var(--orn-draw-dur) calc(var(--orn-draw-delay) + var(--orn-lag, 0s)) var(--orn-draw-ease) both;
+      /* drawn by the side diamonds (clip tracks them exactly), then runs on to the edges */
+      animation:
+        orn-draw var(--orn-draw-dur) calc(var(--orn-draw-delay) + var(--orn-lag, 0s)) var(--orn-draw-ease) both,
+        orn-extend var(--orn-extend-dur) calc(var(--orn-draw-delay) + var(--orn-lag, 0s) + var(--orn-draw-dur)) ease-out forwards;
     }
     .section-heading.in .orn-left {
       animation: orn-out-left var(--orn-draw-dur) calc(var(--orn-draw-delay) + var(--orn-lag, 0s)) var(--orn-draw-ease) both;
@@ -513,8 +517,12 @@
       100% { opacity: 0; transform: scale(1.3) rotate(45deg); }
     }
     @keyframes orn-draw {
-      from { transform: scaleX(0); }
-      to   { transform: scaleX(1); }
+      from { clip-path: inset(0 50%); }
+      to   { clip-path: inset(0 calc(var(--orn-inset) + var(--orn-side) / 2)); }
+    }
+    @keyframes orn-extend {
+      from { clip-path: inset(0 calc(var(--orn-inset) + var(--orn-side) / 2)); }
+      to   { clip-path: inset(0 0); }
     }
     /* side diamonds start under the center diamond: travel = half the band minus their resting offset */
     @keyframes orn-out-left {
