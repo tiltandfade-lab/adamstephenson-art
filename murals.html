@@ -163,11 +163,11 @@
       display: flex; align-items: center; justify-content: space-between; gap: 40px;
     }
     /* Song of the Mockingbird pencil sketch, full flight, behind the contact lead.
-       Same treatment as the contact form and heading linework: off-white at 13%. Adam 2026-10-02. */
+       Same treatment as the contact form and heading linework, off-white at 8% (Adam 2026-10-02). */
     .cta-strip { position: relative; isolation: isolate; overflow: hidden; }
     .cta-strip::before {
       content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-      background: var(--text); opacity: 0.13;
+      background: var(--text); opacity: 0.08;
       -webkit-mask: url(images/Song-of-the-Mockingbird-Flight.webp) center / cover no-repeat;
       mask: url(images/Song-of-the-Mockingbird-Flight.webp) center / cover no-repeat;
     }
@@ -227,11 +227,35 @@
     .orn-right { right: var(--orn-inset); }
     .orn-center { left: 50%; translate: -50% -50%; width: var(--orn-center); height: var(--orn-center); }
     /* Hall of the Magician linework band behind section headings (Adam's pick 2026-10-02, see index.html) */
+    .case-studies-header {
+      /* edge fade on the linework (labs/heading-fade.html): how much of the band fades at
+         each side, the alpha left at the very edge, and where the fade hits half strength */
+      --tex-fade-l: 0%;
+      --tex-fade-r: 0%;
+      --tex-fade-t: 0%;
+      --tex-fade-b: 0%;
+      --tex-edge: 0;
+      --tex-curve: 0.5;
+    }
     .case-studies-header::after {
       content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
       background: var(--text); opacity: 0.13;
-      -webkit-mask: url(images/HOTM-Linework-Texture.webp) center 21% / cover no-repeat;
-      mask: url(images/HOTM-Linework-Texture.webp) center 21% / cover no-repeat;
+      -webkit-mask-image:
+        url(images/HOTM-Linework-Texture.webp),
+        linear-gradient(to right, rgb(0 0 0 / var(--tex-edge)) 0%, calc(var(--tex-fade-l) * var(--tex-curve)), #000 var(--tex-fade-l), #000 calc(100% - var(--tex-fade-r)), calc(100% - var(--tex-fade-r) * var(--tex-curve)), rgb(0 0 0 / var(--tex-edge)) 100%),
+        linear-gradient(to bottom, rgb(0 0 0 / var(--tex-edge)) 0%, calc(var(--tex-fade-t) * var(--tex-curve)), #000 var(--tex-fade-t), #000 calc(100% - var(--tex-fade-b)), calc(100% - var(--tex-fade-b) * var(--tex-curve)), rgb(0 0 0 / var(--tex-edge)) 100%);
+      mask-image:
+        url(images/HOTM-Linework-Texture.webp),
+        linear-gradient(to right, rgb(0 0 0 / var(--tex-edge)) 0%, calc(var(--tex-fade-l) * var(--tex-curve)), #000 var(--tex-fade-l), #000 calc(100% - var(--tex-fade-r)), calc(100% - var(--tex-fade-r) * var(--tex-curve)), rgb(0 0 0 / var(--tex-edge)) 100%),
+        linear-gradient(to bottom, rgb(0 0 0 / var(--tex-edge)) 0%, calc(var(--tex-fade-t) * var(--tex-curve)), #000 var(--tex-fade-t), #000 calc(100% - var(--tex-fade-b)), calc(100% - var(--tex-fade-b) * var(--tex-curve)), rgb(0 0 0 / var(--tex-edge)) 100%);
+      -webkit-mask-size: cover, 100% 100%, 100% 100%;
+      mask-size: cover, 100% 100%, 100% 100%;
+      -webkit-mask-position: center 21%, 0 0, 0 0;
+      mask-position: center 21%, 0 0, 0 0;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-composite: source-in;
+      mask-composite: intersect;
     }
     .case-studies-header h2 {
       font-family: 'Playfair Display', Georgia, serif;

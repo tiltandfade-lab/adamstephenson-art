@@ -31,6 +31,8 @@ Update protocol: when you make a load-bearing change to this repo (anything that
 - Section headings centered horizontally and vertically in their bands (symmetric padding, grid centering); "View all work" stays pinned right of "Selected Works" and drops beneath it on phones.
 
 - Contact page: the 2021 *Song of the Mockingbird* pencil sketch (`LOCK - Lockhart Mural Concepts/Process/sketch.png`, cropped to the perched bird) ghosted behind the form column with the same treatment as the heading linework: off-white at 13%, full height, centered. Pencil alpha levelled (40 to 150) so strokes read as solid light lines.
+- Mockingbird sketch (contact form and all contact leads) faded from 13% to 8% (Adam).
+- Heading linework mask rebuilt as three intersected layers (texture, left-right gradient, top-bottom gradient) driven by `--tex-fade-l/r/t/b`, `--tex-edge`, `--tex-curve` on the section bands, so the texture itself can fade at its edges. Values at 0 for now (no visible change); tuned in `labs/heading-fade.html` (gitignored).
 - Contact leads (the closing call-to-action band on home, murals, digital, fine art and commission): full *Song of the Mockingbird* flight sketch behind each, off-white at 13%, `cover` so the wide bands show the whole sequence. About page CTA is inline buttons, not a band, so it has none.
 - Static ornament (top rule with three diamonds + bottom echo with two) on the other section bands of the same rank: homepage "Case Studies" and "Selected Works", murals "Case Studies". Only "My Work" animates. Murals page carries a static copy of the ornament CSS.
 - "My Work" bottom echo: the same draw on the band's bottom edge (straddling the seam with the preview tiles), side diamonds only, starting 0.2s after the top one (`--orn-echo-lag`).
