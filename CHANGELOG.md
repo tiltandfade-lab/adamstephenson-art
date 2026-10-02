@@ -16,10 +16,12 @@ Update protocol: when you make a load-bearing change to this repo (anything that
 - **Rollback to the live site + palette only.** The 10 unpushed June commits are archived on branch `archive/june-local-2026-06-11` (tag `archive-june-local`); `main` reset to `origin/main` (9e73c8c). Carried forward: the warm near-black + verdigris palette (value-mapped across all 13 pages, dark text on accent backgrounds), plus CLAUDE.md, this changelog, `scripts/build.sh` and `.gitignore`. Not carried: Big Shoulders/Young Serif/Newsreader, sparkle removal on inner pages, de-AI link and image rules, June copy, Web3Forms form.
 - Palette also applied to things the June commit missed: commission price-callout tint and border (orange alpha → verdigris alpha) and the inner-page sparkle particles.
 - Homepage hero subline: "Public Artist · Atlanta, GA" → "Public Artist | Muralist | Designer | Atlanta Based" (verbatim Adam).
-- Homepage statement section ("You remember the art that impacts you..." + two intro lines) replaced by a plain "My work" section heading above the Murals / Digital & Design / Figurative tiles.
-- Murals page header: intro sentence and "Since 2019 / Southeast & beyond" meta replaced by the subhead "Public commissions | Festivals | Permanent Installations" (verbatim Adam).
+- Homepage statement section ("You remember the art that impacts you..." + two intro lines) replaced by a plain "My Work" section heading above the Murals / Digital & Design / Figurative tiles.
+- Murals page header: intro sentence and "Since 2019 / Southeast & beyond" meta replaced by the subhead "Public Commissions | Festivals | Permanent Installations" (verbatim Adam).
 
-- Section headings (Adam's pick from the lab: "Off-white · Playfair · None", linework full band, top slice, 13%): homepage "My work", "Case Studies", "Selected Works" and murals "Case Studies" are now off-white Playfair over a full-width band of Hall of the Magician linework, tinted by CSS mask. Homepage "Selected Works" header extended to a full-width band.
+- Section headings (Adam's pick from the lab: "Off-white · Playfair · None", linework full band, top slice, 13%): homepage "My Work", "Case Studies", "Selected Works" and murals "Case Studies" are now off-white Playfair over a full-width band of Hall of the Magician linework, tinted by CSS mask. Homepage "Selected Works" header extended to a full-width band.
+
+- Headings and section labels set in title case site-wide (Adam 2026-10-02: "if Case Studies is init cap then My Work should be too"): My Work, murals subhead "Public Commissions", commission page The Process / Is This a Good Fit? / What Goes into the Price / Also Available: Vinyl Murals, About stats Went Pro / States & Counting / Largest Wall, contact Based In. Sentence-style headlines (commission h1, contact h1, CTAs) left as sentences for the copy sweep.
 
 ### Added
 - `images/HOTM-Linework-Texture.webp`: Hall of the Magician linework (Upton proposal PSD, Cover group, Layer 1; extracted for the bumper lab), top 2560×960, alpha-only, 228 KB.
