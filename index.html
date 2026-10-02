@@ -325,6 +325,13 @@
       overflow: hidden;
     }
 
+    /* "My Work" carries the ornament, which overhangs the band's top edge:
+       no clipping, and stacked above the hero and previews (nav stays on top at 100). */
+    .section-heading {
+      overflow: visible;
+      z-index: 10;
+    }
+
     .section-heading::after,
     .case-studies-header::after,
     .works-strip-header::after {
@@ -339,31 +346,31 @@
       mask: url(images/HOTM-Linework-Texture.webp) center 21% / cover no-repeat;
     }
 
-    /* "My Work" top ornament (Adam 2026-10-02): cool white rule, a small diamond
+    /* "My Work" top ornament (Adam 2026-10-02): verdigris rule on the band's top edge, a small diamond
        30px in from each side, a larger diamond centered. One-shot on reveal: the
        center diamond twinkles in, the side diamonds travel out from it drawing the
        rule, and the center glints again when they land. Static when reduced motion.
        Tune the variables in labs/ornament.html and paste its output here. */
     .ornament {
-      --orn: #EEF3F5;
+      --orn: #94D6CF;
       --orn-inset: 30px;
       --orn-side: 10px;
       --orn-center: 20px;
       --orn-line: 1px;
       --orn-line-opacity: 1;
-      --orn-twinkle-dur: 0.7s;
-      --orn-twinkle-delay: 0.2s;
+      --orn-twinkle-dur: 0.45s;
+      --orn-twinkle-delay: 0.10s;
       --orn-twinkle-spin: -90deg;
-      --orn-twinkle-ease: cubic-bezier(0.2, 0.7, 0.3, 1.4);
-      --orn-glint-size: 64px;
-      --orn-glint-dur: 0.9s;
+      --orn-twinkle-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+      --orn-glint-size: 84px;
+      --orn-glint-dur: 1.10s;
       --orn-glint-end: orn-glint;
-      --orn-draw-dur: 1.2s;
-      --orn-draw-delay: 0.6s;
+      --orn-draw-dur: 1.20s;
+      --orn-draw-delay: 0.60s;
       --orn-draw-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
       /* vertical position: the rule's center sits --orn-y from the band's top
          (--orn-from: 1) or bottom (--orn-from: 0). Phones override --orn-y below. */
-      --orn-y: 11px;
+      --orn-y: 0px;
       --orn-from: 1;
 
       position: absolute;
@@ -1042,7 +1049,7 @@
         padding: 40px 20px;
       }
       .ornament {
-        --orn-y: 11px;
+        --orn-y: 0px;
       }
 
       /* Case studies */
