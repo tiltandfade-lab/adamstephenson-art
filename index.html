@@ -346,13 +346,13 @@
       mask: url(images/HOTM-Linework-Texture.webp) center 21% / cover no-repeat;
     }
 
-    /* "My Work" top ornament (Adam 2026-10-02): verdigris rule on the band's top edge, a small diamond
+    /* "My Work" ornaments (Adam 2026-10-02): cool white rule on the band's top edge, a small diamond
        30px in from each side, a larger diamond centered. One-shot on reveal: the
        center diamond twinkles in, the side diamonds travel out from it drawing the
        rule, and the center glints again when they land. Static when reduced motion.
        Tune the variables in labs/ornament.html and paste its output here. */
     .ornament {
-      --orn: #94D6CF;
+      --orn: #EEF3F5;
       --orn-inset: 30px;
       --orn-side: 10px;
       --orn-center: 20px;
@@ -368,6 +368,7 @@
       --orn-draw-dur: 1.20s;
       --orn-draw-delay: 0.60s;
       --orn-draw-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+      --orn-echo-lag: 0.2s;   /* bottom echo starts this long after the top draw */
       /* vertical position: the rule's center sits --orn-y from the band's top
          (--orn-from: 1) or bottom (--orn-from: 0). Phones override --orn-y below. */
       --orn-y: 0px;
@@ -381,6 +382,12 @@
       height: calc(var(--orn-center) + 2px);
       pointer-events: none;
       container-type: inline-size;
+    }
+
+    /* bottom echo: same draw on the band's bottom edge, side diamonds only */
+    .ornament-echo {
+      --orn-from: 0;
+      --orn-lag: var(--orn-echo-lag);
     }
 
     .orn-line {
@@ -451,13 +458,13 @@
         var(--orn-glint-end) var(--orn-glint-dur) calc(var(--orn-draw-delay) + var(--orn-draw-dur) - 0.15s) ease-out none;
     }
     .section-heading.in .orn-line {
-      animation: orn-draw var(--orn-draw-dur) var(--orn-draw-delay) var(--orn-draw-ease) both;
+      animation: orn-draw var(--orn-draw-dur) calc(var(--orn-draw-delay) + var(--orn-lag, 0s)) var(--orn-draw-ease) both;
     }
     .section-heading.in .orn-left {
-      animation: orn-out-left var(--orn-draw-dur) var(--orn-draw-delay) var(--orn-draw-ease) both;
+      animation: orn-out-left var(--orn-draw-dur) calc(var(--orn-draw-delay) + var(--orn-lag, 0s)) var(--orn-draw-ease) both;
     }
     .section-heading.in .orn-right {
-      animation: orn-out-right var(--orn-draw-dur) var(--orn-draw-delay) var(--orn-draw-ease) both;
+      animation: orn-out-right var(--orn-draw-dur) calc(var(--orn-draw-delay) + var(--orn-lag, 0s)) var(--orn-draw-ease) both;
     }
 
     @keyframes orn-twinkle {
@@ -1148,6 +1155,11 @@
       <span class="orn-center"></span>
     </div>
     <h2>My Work</h2>
+    <div class="ornament ornament-echo" aria-hidden="true">
+      <span class="orn-line"></span>
+      <span class="orn-side orn-left"></span>
+      <span class="orn-side orn-right"></span>
+    </div>
   </div>
 
   <!-- SECTION PREVIEWS -->
