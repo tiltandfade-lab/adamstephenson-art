@@ -347,6 +347,9 @@
       footer nav ul li { border-bottom: none !important; }
       footer nav ul a { display: inline !important; padding: 0 !important; font-size: 15px !important; }
     }
+    /* Homecoming lattice behind the page heading (lattice.js; tuned in labs/lattice.html, Adam 2026-10-02) */
+    .page-header { isolation: isolate; overflow: hidden; }
+    .page-header > [data-lattice] { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
   </style>
 </head>
 <body>
@@ -358,6 +361,7 @@
   <main id="main">
 
     <header class="page-header">
+      <div data-lattice aria-hidden="true"></div>
       <div class="page-header-text">
         <h1>Murals</h1>
         <p class="page-subhead">Public Commissions | Festivals | Permanent Installations</p>
@@ -675,5 +679,18 @@
   <script src="nav.js"></script>
   <script src="footer.js"></script>
 
+  <script src="lattice.js"></script>
+  <script>
+    /* lattice: plays once when the fonts are in (header at its final size); re-lays out quietly on resize */
+    (function () {
+      if (!window.Lattice) return;
+      var hosts = document.querySelectorAll('[data-lattice]'), lastW = 0, t;
+      function mount(quiet) { lastW = window.innerWidth; Lattice.mountAll(quiet ? { static: true } : {}); }
+      (document.fonts ? document.fonts.ready : Promise.resolve()).then(function () { mount(false); });
+      window.addEventListener('resize', function () {
+        clearTimeout(t); t = setTimeout(function () { if (window.innerWidth !== lastW) mount(true); }, 200);
+      });
+    })();
+  </script>
 </body>
 </html>
