@@ -339,6 +339,140 @@
       mask: url(images/HOTM-Linework-Texture.webp) center 21% / cover no-repeat;
     }
 
+    /* "My Work" top ornament (Adam 2026-10-02): cool white rule, a small diamond
+       30px in from each side, a larger diamond centered. One-shot on reveal: the
+       center diamond twinkles in, the side diamonds travel out from it drawing the
+       rule, and the center glints again when they land. Static when reduced motion.
+       Tune the variables in labs/ornament.html and paste its output here. */
+    .ornament {
+      --orn: #EEF3F5;
+      --orn-inset: 30px;
+      --orn-side: 10px;
+      --orn-center: 20px;
+      --orn-line: 1px;
+      --orn-line-opacity: 1;
+      --orn-twinkle-dur: 0.7s;
+      --orn-twinkle-delay: 0.2s;
+      --orn-twinkle-spin: -90deg;
+      --orn-twinkle-ease: cubic-bezier(0.2, 0.7, 0.3, 1.4);
+      --orn-glint-size: 64px;
+      --orn-glint-dur: 0.9s;
+      --orn-glint-end: orn-glint;
+      --orn-draw-dur: 1.2s;
+      --orn-draw-delay: 0.6s;
+      --orn-draw-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: calc(var(--orn-center) + 2px);
+      pointer-events: none;
+      container-type: inline-size;
+    }
+
+    .orn-line {
+      position: absolute;
+      top: 50%;
+      left: calc(var(--orn-inset) + var(--orn-side) / 2);
+      right: calc(var(--orn-inset) + var(--orn-side) / 2);
+      height: var(--orn-line);
+      transform-origin: center;
+      translate: 0 -50%;
+      background: var(--orn);
+      opacity: var(--orn-line-opacity);
+    }
+
+    .orn-side,
+    .orn-center::before {
+      background: var(--orn);
+      clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+    }
+
+    .orn-side {
+      position: absolute;
+      top: 50%;
+      width: var(--orn-side);
+      height: var(--orn-side);
+      translate: 0 -50%;
+    }
+
+    .orn-left { left: var(--orn-inset); }
+    .orn-right { right: var(--orn-inset); }
+
+    .orn-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: var(--orn-center);
+      height: var(--orn-center);
+      translate: -50% -50%;
+    }
+
+    .orn-center::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
+
+    /* four-point glint */
+    .orn-center::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: var(--orn-glint-size);
+      height: var(--orn-glint-size);
+      translate: -50% -50%;
+      background:
+        linear-gradient(to right, transparent, var(--orn) 50%, transparent) center / 100% 1px no-repeat,
+        linear-gradient(to bottom, transparent, var(--orn) 50%, transparent) center / 1px 100% no-repeat;
+      opacity: 0;
+    }
+
+    .section-heading.in .orn-center::before {
+      animation: orn-twinkle var(--orn-twinkle-dur) var(--orn-twinkle-delay) var(--orn-twinkle-ease) both;
+    }
+    .section-heading.in .orn-center::after {
+      animation:
+        orn-glint var(--orn-glint-dur) var(--orn-twinkle-delay) ease-out backwards,
+        var(--orn-glint-end) var(--orn-glint-dur) calc(var(--orn-draw-delay) + var(--orn-draw-dur) - 0.15s) ease-out none;
+    }
+    .section-heading.in .orn-line {
+      animation: orn-draw var(--orn-draw-dur) var(--orn-draw-delay) var(--orn-draw-ease) both;
+    }
+    .section-heading.in .orn-left {
+      animation: orn-out-left var(--orn-draw-dur) var(--orn-draw-delay) var(--orn-draw-ease) both;
+    }
+    .section-heading.in .orn-right {
+      animation: orn-out-right var(--orn-draw-dur) var(--orn-draw-delay) var(--orn-draw-ease) both;
+    }
+
+    @keyframes orn-twinkle {
+      from { transform: scale(0) rotate(var(--orn-twinkle-spin)); }
+      to   { transform: none; }
+    }
+    @keyframes orn-glint {
+      0%   { opacity: 0; transform: scale(0.2); }
+      35%  { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(1.3) rotate(45deg); }
+    }
+    @keyframes orn-draw {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    /* side diamonds start under the center diamond: travel = half the band minus their resting offset */
+    @keyframes orn-out-left {
+      from { transform: translateX(calc(50cqw - var(--orn-inset) - var(--orn-side) / 2)); opacity: 0; }
+      4%   { opacity: 1; }
+      to   { transform: none; opacity: 1; }
+    }
+    @keyframes orn-out-right {
+      from { transform: translateX(calc(var(--orn-inset) + var(--orn-side) / 2 - 50cqw)); opacity: 0; }
+      4%   { opacity: 1; }
+      to   { transform: none; opacity: 1; }
+    }
+
     .section-heading h2,
     .case-studies-header h2,
     .works-strip-header h2 {
@@ -960,6 +1094,11 @@
         transform: none !important;
         transition: none !important;
       }
+      .ornament *,
+      .ornament *::before,
+      .ornament *::after {
+        animation: none !important;
+      }
     }
   </style>
 </head>
@@ -987,6 +1126,12 @@
 
   <!-- MY WORK -->
   <div class="section-heading">
+    <div class="ornament" aria-hidden="true">
+      <span class="orn-line"></span>
+      <span class="orn-side orn-left"></span>
+      <span class="orn-side orn-right"></span>
+      <span class="orn-center"></span>
+    </div>
     <h2>My Work</h2>
   </div>
 
