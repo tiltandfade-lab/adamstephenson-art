@@ -121,9 +121,9 @@ Rough budget: aim for **≤15 production deploys per month** on the Netlify side
 |---|---|---|
 | Background | `#1A1714` | Warm near-black (swapped from #1C1C1E 2026-06-11 — that hex is Apple systemGray6, an AI tell). Dark because Adam's work is colorful — white washes it out. |
 | Accent | `#94D6CF` | Verdigris, sampled from The Scottie (swapped from burnt orange #D4763B 2026-06-11 — charcoal+orange is the AI duo). Steel blue `#82B3C8` approved as optional secondary. Parchment `#F7EBD1` reserved as ink color for hand-drawn SVG marks. Accent-background buttons use dark text `#1A1714`, never white. Text `#EAE6E0`, dim `#B8B2A9`, border `#2E2A26`. |
-| Display font | Playfair Display (live) | 2026-10-02: Adam kept the live fonts. Big Shoulders Display ("just ugly") and the Young Serif trial are archived, not live. Hand lettering may take over wordmark + key display moments later. |
-| Section heading font | Lemon Milk Medium | Adam 2026-10-02: his brand font. `fonts/LEMONMILK-Medium.otf` via @font-face in index.html and murals.html (served by build.sh). Uppercase, `--h-size` / `--h-track` on the bands. Other weights (Light/Regular/Bold) live in `labs/assets/fonts` for trials; add the file to `fonts/` if a weight ships. Open question: extend to hero name / page titles. |
-| Quote/italic font | Playfair Display italic (live) | Newsreader was part of the archived June pass. |
+| Display font | Lemon Milk (all pages) | Adam 2026-10-02: replaced Playfair Display everywhere. `fonts/LEMONMILK-{Light,Regular,RegularItalic,Medium}.otf`, @font-face at the top of each page's <style>. All caps by design (no lowercase). Weights: 300 hero name / CTA headline, 400 titles, 400 italic pull quotes, 500 section headings. Long single words need phone-safe minimum sizes (≈0.73em per letter incl. tracking). |
+| Section heading font | Lemon Milk Medium | Uppercase, `--h-size` / `--h-track` on the bands. Same @font-face set as the rest of the page. |
+| Quote/italic font | Lemon Milk Regular Italic | Pull quotes and the CTA kicker. Reads as italic capitals; revisit in the copy sweep if long quotes feel heavy. |
 | Nav/labels | Josefin Sans | |
 | Body font | DM Sans | |
 | Artwork treatment | Live: preview tiles dim + hover zoom | The June de-AI rules (full brightness, no hover scale) are archived, not live. Reconsider during the full sweep. |
