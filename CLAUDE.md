@@ -211,7 +211,7 @@ When starting a new session, Claude should:
 **Open:**
 1. ~~Section heading color~~ Done 2026-10-02 (Adam's pick in the lab): off-white Playfair section headings over a full-width band of Hall of the Magician linework, top slice, 13%. Applied to homepage "My Work" / "Case Studies" / "Selected Works" and murals "Case Studies". About page headings are in-column labels, left for the full sweep.
 2. Sparkle canvas on inner pages: keep (verdigris) or remove? Adam's call.
-3. Full-site sweep (copy slop pass, truth pass on claims, About rewrite, Hall of the Magician update with 6 new photos in `/Volumes/Work Drive/UP - The Upton/Final Photos/`). June backlog notes are in the archive branch's CLAUDE.md.
+3. Full-site sweep (copy slop pass, truth pass on claims, About rewrite, Hall of the Magician update: done 2026-10-02 (finals on case page, murals, homepage; top case study)). June backlog notes are in the archive branch's CLAUDE.md.
 
 ## Cloudflare migration plan (agreed shape, 2026-10-02)
 
