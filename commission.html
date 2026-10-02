@@ -63,16 +63,17 @@
       padding: 160px 56px 80px 48px;
       display: flex; flex-direction: column; justify-content: center;
     }
+    /* the colored HOTM design fills the whole header behind the text (Adam 2026-10-02: "see how visible the text is first") */
     .page-header-image {
+      position: absolute; inset: 0; z-index: 0;
       overflow: hidden;
-      border-left: 1px solid var(--border);
-      position: relative; /* the image fills the slot; the text column sets the header height */
     }
+    .page-header-text { position: relative; z-index: 1; }
     .page-header-image img {
       position: absolute; inset: 0;
       width: 100%; height: 100%;
       object-fit: cover;
-      object-position: center;  /* colored HOTM drawing, rotated tall (Adam 2026-10-02) */
+      object-position: center;
       display: block;
       filter: brightness(0.85);
     }
@@ -87,6 +88,71 @@
     /* PROCESS */
     .process { padding: 80px 48px; border-bottom: 1px solid var(--border); }
     .section-label { font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 56px; display: block; }
+    /* "The Process" gets the section band (Adam 2026-10-02): full-width, cancels the section's padding */
+    .process > .section-band { margin: -80px -48px 56px; }
+    .section-band { padding: 64px 48px; display: grid; place-items: center; text-align: center; position: relative; isolation: isolate; overflow: visible; z-index: 10; }
+    /* Static section ornament + linework band, as on home/murals (Adam 2026-10-02). Values mirror .ornament in index.html,
+       where "My Work" animates; keep the two in sync. */
+    .ornament {
+      --orn: #EEF3F5; --orn-inset: 30px; --orn-side: 10px; --orn-center: 20px;
+      --orn-line: 1px; --orn-line-opacity: 1; --orn-y: 0px; --orn-from: 1;
+      position: absolute; left: 0; right: 0; height: calc(var(--orn-center) + 2px);
+      top: calc(var(--orn-from) * var(--orn-y) + (1 - var(--orn-from)) * (100% - var(--orn-y)));
+      translate: 0 -50%; pointer-events: none;
+    }
+    .ornament-echo { --orn-from: 0; }
+    .orn-line {
+      position: absolute; top: 50%; translate: 0 -50%; height: var(--orn-line);
+      left: 0; right: 0; /* rule runs edge to edge; diamonds sit --orn-inset in */
+      background: var(--orn); opacity: var(--orn-line-opacity);
+    }
+    .orn-side, .orn-center { position: absolute; top: 50%; translate: 0 -50%; background: var(--orn); clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+    .orn-side { width: var(--orn-side); height: var(--orn-side); }
+    .orn-left { left: var(--orn-inset); }
+    .orn-right { right: var(--orn-inset); }
+    .orn-center { left: 50%; translate: -50% -50%; width: var(--orn-center); height: var(--orn-center); }
+    /* Hall of the Magician linework band behind section headings (Adam's pick 2026-10-02, see index.html) */
+    .section-band {
+      /* edge fade on the linework (labs/heading-fade.html): how much of the band fades at
+         each side, the alpha left at the very edge, and where the fade hits half strength */
+      --tex-fade-l: 29%;
+      --tex-fade-r: 29%;
+      --tex-fade-t: 22%;
+      --tex-fade-b: 22%;
+      --tex-edge: 0;
+      --tex-curve: 0.45;
+      --tex-x: 0.45vw;
+      --tex-y: 3%;
+    }
+    .section-band::after {
+      content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+      background: var(--text); opacity: 0.17;
+      -webkit-mask-image:
+        url(images/HOTM-Linework-Texture.webp),
+        linear-gradient(to right, rgb(0 0 0 / var(--tex-edge)) 0%, calc(var(--tex-fade-l) * var(--tex-curve)), #000 var(--tex-fade-l), #000 calc(100% - var(--tex-fade-r)), calc(100% - var(--tex-fade-r) * var(--tex-curve)), rgb(0 0 0 / var(--tex-edge)) 100%),
+        linear-gradient(to bottom, rgb(0 0 0 / var(--tex-edge)) 0%, calc(var(--tex-fade-t) * var(--tex-curve)), #000 var(--tex-fade-t), #000 calc(100% - var(--tex-fade-b)), calc(100% - var(--tex-fade-b) * var(--tex-curve)), rgb(0 0 0 / var(--tex-edge)) 100%);
+      mask-image:
+        url(images/HOTM-Linework-Texture.webp),
+        linear-gradient(to right, rgb(0 0 0 / var(--tex-edge)) 0%, calc(var(--tex-fade-l) * var(--tex-curve)), #000 var(--tex-fade-l), #000 calc(100% - var(--tex-fade-r)), calc(100% - var(--tex-fade-r) * var(--tex-curve)), rgb(0 0 0 / var(--tex-edge)) 100%),
+        linear-gradient(to bottom, rgb(0 0 0 / var(--tex-edge)) 0%, calc(var(--tex-fade-t) * var(--tex-curve)), #000 var(--tex-fade-t), #000 calc(100% - var(--tex-fade-b)), calc(100% - var(--tex-fade-b) * var(--tex-curve)), rgb(0 0 0 / var(--tex-edge)) 100%);
+      -webkit-mask-size: cover, 100% 100%, 100% 100%;
+      mask-size: cover, 100% 100%, 100% 100%;
+      -webkit-mask-position: calc(50% + var(--tex-x)) var(--tex-y), 0 0, 0 0;
+      mask-position: calc(50% + var(--tex-x)) var(--tex-y), 0 0, 0 0;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-composite: source-in;
+      mask-composite: intersect;
+    }
+    .section-band h2 {
+      font-family: 'Lemon Milk', 'Josefin Sans', sans-serif;
+      font-size: var(--h-size, clamp(1.5rem, 2.4vw, 2.2rem));
+      font-weight: 500;
+      letter-spacing: var(--h-track, 0.04em);
+      text-transform: uppercase;
+      line-height: 1.1;
+      color: var(--text);
+    }
 
     .process-steps {
       display: grid;
@@ -283,8 +349,9 @@
       nav { padding: 20px 24px; } nav ul { gap: 24px; } nav ul a { font-size: 13px; }
       .page-header { grid-template-columns: 1fr; min-height: unset; }
       .page-header-text { padding: 120px 24px 56px; }
-      .page-header-image { display: none; }
       .process { padding: 64px 24px; }
+      .section-band { padding: 48px 24px; }
+      .process > .section-band { margin: -64px -24px 40px; }
       .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
       .step-img img { height: auto; aspect-ratio: 4 / 3; }
       .step { border-right: none; padding: 0 !important; border-bottom: 1px solid var(--border); padding-bottom: 40px !important; }
@@ -307,6 +374,8 @@
       nav ul { display: none; } nav { padding: 18px 20px; }
       .page-header-text { padding: 100px 20px 48px; }
       .process { padding: 48px 20px; }
+      .section-band { padding: 40px 20px; }
+      .process > .section-band { margin: -48px -20px 32px; }
       .process-steps { grid-template-columns: 1fr; }
       .pricing { padding: 48px 20px; }
       .price-callout-text { padding: 24px 20px; }
@@ -349,13 +418,17 @@
         <p>I work with <strong>developers, festivals, businesses, and communities</strong>. Here's how it works, and what it costs.</p>
       </div>
       <div class="page-header-image">
-        <img src="images/HOTM-Color-Drawing-Vertical.webp" alt="Adam Stephenson's color design for The Hall of the Magician, turned on end: fire and sun at the top, the purple central panel, water at the bottom" width="1080" height="1920">
+        <img src="images/HOTM-Color-Drawing.webp" alt="" width="1920" height="1080">
       </div>
     </header>
 
     <!-- PROCESS -->
     <section class="process" aria-label="Commission process">
-      <span class="section-label">The Process</span>
+      <div class="section-band">
+        <div class="ornament" aria-hidden="true"><span class="orn-line"></span><span class="orn-side orn-left"></span><span class="orn-side orn-right"></span><span class="orn-center"></span></div>
+        <h2>The Process</h2>
+        <div class="ornament ornament-echo" aria-hidden="true"><span class="orn-line"></span><span class="orn-side orn-left"></span><span class="orn-side orn-right"></span></div>
+      </div>
       <div class="process-steps">
 
         <div class="step">
