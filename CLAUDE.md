@@ -126,6 +126,7 @@ Rough budget: aim for **≤15 production deploys per month** on the Netlify side
 | Nav/labels | Josefin Sans | |
 | Body font | DM Sans | |
 | Artwork treatment | Live: preview tiles dim + hover zoom | The June de-AI rules (full brightness, no hover scale) are archived, not live. Reconsider during the full sweep. |
+| Section headings | Off-white Playfair + linework band | Adam's pick 2026-10-02. `clamp(2rem, 3vw, 2.8rem)` Playfair 400 in `--text`, over a `::after` band filled with `--text` at 13% opacity and masked by `images/HOTM-Linework-Texture.webp` (`center 21% / cover`). The texture is the Hall of the Magician linework from `UP - The Upton/Proposals/w1_Grounded In My Light_Adam Stephenson.psd` (Cover group, Layer 1), cropped to the top 2560×960 and saved as alpha-only WebP (228 KB). |
 | Link style | Live: tracked caps + "→" arrows | The June rules (underlined sentence case, no arrows, no eyebrows) are archived, not live. Reconsider during the full sweep. |
 | Image layout | Masonry grid | Required — 6 aspect ratio categories (0.60:1 to 2.36:1). |
 | Motion budget | Zero continuous animation (goal) | Adam's call 2026-06-10: 60fps beats sprinkles. Homepage sparkle is gone; **inner pages still run the sparkle canvas** (recolored verdigris 2026-10-02, because the removal was archived with the June pass). Never add Ken Burns or other infinite animations. Event-triggered transitions are fine. |
@@ -202,7 +203,7 @@ When starting a new session, Claude should:
 **Done this session (local, unpushed):** hero drops the Red Bank slide (still in Selected Works); hero subline = "Public Artist | Muralist | Designer | Atlanta Based" (verbatim); homepage statement section replaced by a "My work" section heading; Scroll cue removed; murals page intro + "Since 2019 / Southeast & beyond" replaced by the subhead "Public commissions | Festivals | Permanent Installations" (verbatim).
 
 **Open:**
-1. Section heading color: Adam is choosing in `labs/section-headings.html` (gitignored, never deploys). Apply the pick to every section heading site-wide.
+1. ~~Section heading color~~ Done 2026-10-02 (Adam's pick in the lab): off-white Playfair section headings over a full-width band of Hall of the Magician linework, top slice, 13%. Applied to homepage "My work" / "Case Studies" / "Selected Works" and murals "Case Studies". About page headings are in-column labels, left for the full sweep.
 2. Sparkle canvas on inner pages: keep (verdigris) or remove? Adam's call.
 3. Full-site sweep (copy slop pass, truth pass on claims, About rewrite, Hall of the Magician update with 6 new photos in `/Volumes/Work Drive/UP - The Upton/Final Photos/`). June backlog notes are in the archive branch's CLAUDE.md.
 

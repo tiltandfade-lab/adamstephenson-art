@@ -19,6 +19,11 @@ Update protocol: when you make a load-bearing change to this repo (anything that
 - Homepage statement section ("You remember the art that impacts you..." + two intro lines) replaced by a plain "My work" section heading above the Murals / Digital & Design / Figurative tiles.
 - Murals page header: intro sentence and "Since 2019 / Southeast & beyond" meta replaced by the subhead "Public commissions | Festivals | Permanent Installations" (verbatim Adam).
 
+- Section headings (Adam's pick from the lab: "Off-white · Playfair · None", linework full band, top slice, 13%): homepage "My work", "Case Studies", "Selected Works" and murals "Case Studies" are now off-white Playfair over a full-width band of Hall of the Magician linework, tinted by CSS mask. Homepage "Selected Works" header extended to a full-width band.
+
+### Added
+- `images/HOTM-Linework-Texture.webp`: Hall of the Magician linework (Upton proposal PSD, Cover group, Layer 1; extracted for the bumper lab), top 2560×960, alpha-only, 228 KB.
+
 ### Removed
 - Red Bank outer-wall photo from the homepage hero rotation (Adam: bad photo of him at that scale). Red Bank stays in Selected Works.
 - Homepage "Scroll" cue.

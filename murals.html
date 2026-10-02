@@ -196,7 +196,14 @@
 
     /* CASE STUDIES */
     .case-studies { border-top: 1px solid var(--border); }
-    .case-studies-header { padding: 64px 48px 48px; }
+    .case-studies-header { padding: 64px 48px 48px; position: relative; isolation: isolate; overflow: hidden; }
+    /* Hall of the Magician linework band behind section headings (Adam's pick 2026-10-02, see index.html) */
+    .case-studies-header::after {
+      content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+      background: var(--text); opacity: 0.13;
+      -webkit-mask: url(images/HOTM-Linework-Texture.webp) center 21% / cover no-repeat;
+      mask: url(images/HOTM-Linework-Texture.webp) center 21% / cover no-repeat;
+    }
     .case-studies-header h2 {
       font-family: 'Playfair Display', Georgia, serif;
       font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 400; color: var(--text);
