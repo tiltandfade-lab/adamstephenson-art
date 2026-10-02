@@ -300,21 +300,6 @@
       content: '·'; position: absolute; left: 0; color: var(--accent);
     }
 
-    /* FIT */
-    .fit { display: grid; grid-template-columns: 380px 1fr; grid-template-rows: auto 1fr; min-height: 560px; border-bottom: 1px solid var(--border); }
-    .fit > .section-band { grid-column: 1 / -1; }
-    .fit-palette { overflow: hidden; border-right: 1px solid var(--border); }
-    .fit-palette img { width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block; }
-    .fit-content { padding: 72px 64px; }
-    .fit-heading {
-      font-family: 'Lemon Milk', 'Josefin Sans', sans-serif;
-      font-size: 1.5rem; font-weight: 400; color: var(--text);
-      margin-bottom: 36px;
-    }
-    .fit-list { list-style: none; display: flex; flex-direction: column; gap: 18px; max-width: 680px; }
-    .fit-list li { font-size: 17px; font-weight: 400; color: var(--text-dim); line-height: 1.6; padding-left: 24px; position: relative; }
-    .fit-list li::before { content: '↗'; position: absolute; left: 0; font-size: 13px; color: var(--accent); top: 2px; }
-    .fit-list li strong { color: var(--text); font-weight: 400; }
 
 
     /* CTA */
@@ -375,9 +360,6 @@
       .vinyl-option { grid-template-columns: 1fr; }
       .vinyl-text { border-right: none; border-bottom: 1px solid var(--border); padding: 28px 24px; }
       .vinyl-price { padding: 24px 24px; }
-      .fit { grid-template-columns: 1fr; min-height: unset; }
-      .fit-palette { display: none; }
-      .fit-content { padding: 56px 24px; }
       .commission-cta { padding: 72px 24px 80px; }
       footer { flex-direction: column; align-items: flex-start; gap: 24px; padding: 40px 24px; }
       footer nav ul { gap: 20px; flex-wrap: wrap; }
@@ -392,7 +374,6 @@
       .pricing { padding: 48px 20px; }
       .price-callout-text { padding: 24px 20px; }
       .price-callout-price { padding: 20px 20px; }
-      .fit-content { padding: 40px 20px; }
       .commission-cta { padding: 56px 20px 64px; }
       footer { padding: 32px 20px; }
     }
@@ -536,25 +517,6 @@
 
     </section>
 
-    <!-- GOOD FIT -->
-    <section class="fit" aria-label="Project fit">
-      <div class="section-band">
-        <div class="ornament" aria-hidden="true"><span class="orn-line"></span><span class="orn-side orn-left"></span><span class="orn-side orn-right"></span><span class="orn-center"></span></div>
-        <h2>Is This a Good Fit?</h2>
-        <div class="ornament ornament-echo" aria-hidden="true"><span class="orn-line"></span><span class="orn-side orn-left"></span><span class="orn-side orn-right"></span></div>
-      </div>
-      <div class="fit-palette">
-        <img src="images/STEPHENSON-Paint-Palette.jpg" alt="Adam Stephenson's paint palette" loading="lazy">
-      </div>
-      <div class="fit-content">
-        <h3 class="fit-heading">We're probably a good fit if:</h3>
-        <ul class="fit-list" role="list">
-          <li><strong>You want something that couldn't come from anyone else.</strong> If you've seen a piece of mine and thought "I want that energy in my space," we're already speaking the same language. That's the best place to start.</li>
-          <li><strong>You have a sense of what the space needs to do.</strong> It doesn't have to be fully formed. A feeling, a community, a story. That's plenty. My job is to take what you bring and make it into something people stop for.</li>
-          <li><strong>You're ready to invest in something that's genuinely yours.</strong> Handcrafted, one-of-one, built to last. I use top-quality materials on every project regardless of scale, because the work represents both of us.</li>
-        </ul>
-      </div>
-    </section>
 
 
     <!-- CTA -->
