@@ -24,6 +24,7 @@ Update protocol: when you make a load-bearing change to this repo (anything that
 - Headings and section labels set in title case site-wide (Adam 2026-10-02: "if Case Studies is init cap then My Work should be too"): My Work, murals subhead "Public Commissions", commission page The Process / Is This a Good Fit? / What Goes into the Price / Also Available: Vinyl Murals, About stats Went Pro / States & Counting / Largest Wall, contact Based In. Sentence-style headlines (commission h1, contact h1, CTAs) left as sentences for the copy sweep.
 
 ### Added
+- `images/HOTM-Process-1-Moodboard.webp`, `-2-Mockup`, `-3-Production`, `-4-Final`: Commission page process images.
 - `images/Song-of-the-Mockingbird-Flight.webp`: the full 6000×1260 Mockingbird sketch (all five birds), alpha levelled, 3200 px wide, 224 KB.
 - `images/Song-of-the-Mockingbird-Sketch.webp`: Mockingbird pencil sketch, source x 3000–4700 of 6000, alpha levelled, alpha-only, 161 KB.
 - `images/HOTM-Linework-Texture.webp`: Hall of the Magician linework (Upton proposal PSD, Cover group, Layer 1; extracted for the bumper lab), top 2560×960, alpha-only, 228 KB.
@@ -31,6 +32,7 @@ Update protocol: when you make a load-bearing change to this repo (anything that
 - Section headings centered horizontally and vertically in their bands (symmetric padding, grid centering); "View all work" stays pinned right of "Selected Works" and drops beneath it on phones.
 
 - Contact page: the 2021 *Song of the Mockingbird* pencil sketch (`LOCK - Lockhart Mural Concepts/Process/sketch.png`, cropped to the perched bird) ghosted behind the form column with the same treatment as the heading linework: off-white at 13%, full height, centered. Pencil alpha levelled (40 to 150) so strokes read as solid light lines.
+- Commission page process steps each get an image from one real project, The Hall of the Magician: Vision = proposal moodboard page (third-party reference images; Adam's call to show it), Concept = mock-up (`Mock Ups/w5-UP-012025 Zoom Out.jpg`), Production = Adam on the scissor lift (existing site photo), On the Wall = new final photo (`Final Photos/outer_full_soft.jpg`, framed to match the mock-up). 720×540 WebP, 59–88 KB. One shared height in the 4-column row so the step numbers line up; 4:3 when the columns stack.
 - About page copy (Adam's edits, verbatim): "What I'm after is a threshold" → "My best work seeks to reveal a threshold"; cut "where elements become legible in relation to each other and the connections between things can actually be felt"; musician line → "The moment a musician and their instrument dissolve into each other and reach into a realm beyond the physical."; cut "That's the kind of experience I want a wall to hold."; "My best work draws from" → "My heart is embedded in work that draws from"; cut the "genuine trust ... reach out" paragraph; pull quote now ends "for them and their communities."; cut "I studied fine art formally and learned the rest on walls."
 - Digital page: "Personal Project" → "Personal Work" so both personal pieces match.
 - Section ornament rule now runs edge to edge (diamonds stay 30px in). On "My Work" the side diamonds still draw it (clip-path tracks them exactly), then it runs on to the edges in 0.35s (`--orn-extend-dur`).
@@ -45,6 +47,7 @@ Update protocol: when you make a load-bearing change to this repo (anything that
 - "My Work" top ornament (final values from Adam via the lab: cool white #EEF3F5, rule on the band's top edge so the diamonds straddle the hero/band seam, twinkle 0.45s soft, glint 84px / 1.1s; band no longer clips and sits at z-index 10, under the nav): rule with a small diamond 30px in from each side and a larger diamond centered. One-shot on reveal: center diamond twinkles in, the side diamonds travel out from it drawing the rule, center glints again when they land. Driven by `--orn-*` variables, including vertical position (`--orn-y` from the top or bottom via `--orn-from`, with a separate phone value); static under reduced motion. Tuned in `labs/ornament.html` (gitignored).
 
 ### Removed
+- Commission page travel section ("I travel for the right project." and its state list) and its styles. Adam: delete it.
 - About page stats row (76 ft Largest Wall / 2019 Went Pro / 10+ States & Counting) and its styles. Adam: "very ai".
 - Red Bank outer-wall photo from the homepage hero rotation (Adam: bad photo of him at that scale). Red Bank stays in Selected Works.
 - Homepage "Scroll" cue.

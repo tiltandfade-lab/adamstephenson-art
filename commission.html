@@ -91,6 +91,12 @@
       border-right: 1px solid var(--border);
     }
     .step:last-child { border-right: none; padding-right: 0; padding-left: 40px; }
+    /* process images: one real project (The Hall of the Magician) followed from moodboard to finished wall. Adam 2026-10-02 */
+    .step-img { margin: 0 0 28px; }
+    /* one shared height in the 4-column row (the middle columns are narrower), 4:3 once they stack */
+    .step-img img { width: 100%; height: min(14vw, 220px); object-fit: cover; display: block; }
+    .step-img figcaption { margin-top: 10px; font-size: 13px; color: var(--text-dim); }
+    .step-img figcaption span { display: block; color: var(--text); }
     .step:nth-child(2), .step:nth-child(3) { padding-left: 40px; }
 
     .step-num {
@@ -221,22 +227,6 @@
     .fit-list li::before { content: '↗'; position: absolute; left: 0; font-size: 13px; color: var(--accent); top: 2px; }
     .fit-list li strong { color: var(--text); font-weight: 400; }
 
-    /* TRAVEL */
-    .travel {
-      padding: 72px 48px;
-      border-bottom: 1px solid var(--border);
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 80px;
-      align-items: center;
-    }
-    .travel h2 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(1.8rem, 3vw, 2.4rem);
-      font-weight: 400; color: var(--text); line-height: 1.15;
-    }
-    .travel p { font-size: 18px; font-weight: 400; line-height: 1.75; color: var(--text-dim); }
-    .travel p strong { color: var(--text); font-weight: 400; }
 
     /* CTA */
     .commission-cta {
@@ -284,6 +274,7 @@
       .page-header-image { display: none; }
       .process { padding: 64px 24px; }
       .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .step-img img { height: auto; aspect-ratio: 4 / 3; }
       .step { border-right: none; padding: 0 !important; border-bottom: 1px solid var(--border); padding-bottom: 40px !important; }
       .step:last-child { border-bottom: none; padding-bottom: 0 !important; }
       .pricing { padding: 64px 24px; }
@@ -296,7 +287,6 @@
       .fit { grid-template-columns: 1fr; min-height: unset; }
       .fit-palette { display: none; }
       .fit-content { padding: 56px 24px; }
-      .travel { padding: 56px 24px; grid-template-columns: 1fr; gap: 24px; }
       .commission-cta { padding: 72px 24px 80px; }
       footer { flex-direction: column; align-items: flex-start; gap: 24px; padding: 40px 24px; }
       footer nav ul { gap: 20px; flex-wrap: wrap; }
@@ -310,7 +300,6 @@
       .price-callout-text { padding: 24px 20px; }
       .price-callout-price { padding: 20px 20px; }
       .fit-content { padding: 40px 20px; }
-      .travel { padding: 48px 20px; }
       .commission-cta { padding: 56px 20px 64px; }
       footer { padding: 32px 20px; }
     }
@@ -358,6 +347,10 @@
       <div class="process-steps">
 
         <div class="step">
+          <figure class="step-img">
+            <img src="images/HOTM-Process-1-Moodboard.webp" alt="Moodboard for The Hall of the Magician: reference images collaged on a proposal page" width="720" height="540" loading="lazy" decoding="async">
+            <figcaption><span>The Hall of the Magician</span> Moodboard</figcaption>
+          </figure>
           <span class="step-num">01</span>
           <h3>Vision</h3>
           <p>We talk about the project: the wall, the space, the feeling you're going for. I put together a moodboard to establish direction and make sure we're thinking in the same language.</p>
@@ -365,6 +358,10 @@
         </div>
 
         <div class="step">
+          <figure class="step-img">
+            <img src="images/HOTM-Process-2-Mockup.webp" alt="Concept mock-up of The Hall of the Magician painted onto a photo of the Upton breezeway" width="720" height="540" loading="lazy" decoding="async">
+            <figcaption><span>The Hall of the Magician</span> Mock-up</figcaption>
+          </figure>
           <span class="step-num">02</span>
           <h3>Concept</h3>
           <p>Once we're aligned, a 50% deposit kicks off the design phase. I deliver initial concepts within 2–3 weeks. Two rounds of revisions are included. We refine until it's right.</p>
@@ -372,6 +369,10 @@
         </div>
 
         <div class="step">
+          <figure class="step-img">
+            <img src="images/HOTM-Process-3-Production.webp" alt="Adam Stephenson on a scissor lift painting the ceiling of The Hall of the Magician" width="720" height="540" loading="lazy" decoding="async">
+            <figcaption><span>The Hall of the Magician</span> Production</figcaption>
+          </figure>
           <span class="step-num">03</span>
           <h3>Production</h3>
           <p>We lock in a production timeline together. I handle materials, surface prep, and execution. I'll keep you in the loop throughout. No surprises.</p>
@@ -379,6 +380,10 @@
         </div>
 
         <div class="step">
+          <figure class="step-img">
+            <img src="images/HOTM-Process-4-Final.webp" alt="The finished Hall of the Magician at The Upton, Atlanta, seen from outside the breezeway" width="720" height="540" loading="lazy" decoding="async">
+            <figcaption><span>The Hall of the Magician</span> Finished</figcaption>
+          </figure>
           <span class="step-num">04</span>
           <h3>On the Wall</h3>
           <p>Final payment is due upon completion. I don't consider a project finished until the work holds up: in person, in photos, and over time.</p>
@@ -448,11 +453,6 @@
       </div>
     </section>
 
-    <!-- TRAVEL -->
-    <section class="travel" aria-label="Travel">
-      <h2>I travel for the right project.</h2>
-      <p>Based in Atlanta, I have work across the Southeast and beyond: Alabama, Tennessee, Georgia, Minnesota, Ohio, South Carolina, Louisiana, and counting. <strong>Travel expenses are factored into the project cost,</strong> not tacked on as a surprise. If the wall is worth it, let's go.</p>
-    </section>
 
     <!-- CTA -->
     <section class="commission-cta" aria-label="Get started">
