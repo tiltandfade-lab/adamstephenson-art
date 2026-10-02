@@ -98,17 +98,21 @@
     }
     .step:last-child { border-right: none; padding-right: 0; padding-left: 40px; }
     /* process images: one real project (The Hall of the Magician) followed from moodboard to finished wall. Adam 2026-10-02 */
-    .step-img { margin: 0 0 28px; }
+    .step-img { margin: 0 0 28px; position: relative; }
     /* one shared height in the 4-column row (the middle columns are narrower), 4:3 once they stack */
     .step-img img { width: 100%; height: min(14vw, 220px); object-fit: cover; display: block; }
     .step-img figcaption { margin-top: 10px; font-size: 13px; color: var(--text-dim); }
     .step-img figcaption span { display: block; color: var(--text); }
     .step:nth-child(2), .step:nth-child(3) { padding-left: 40px; }
 
+    /* step number: a small badge in the photo's top-right corner (Adam 2026-10-02: circle, 60% smaller than the old 3rem) */
     .step-num {
+      position: absolute; top: 12px; right: 12px; z-index: 1;
+      width: 2.6rem; height: 2.6rem; border-radius: 50%;
+      display: grid; place-items: center;
       font-family: 'Lemon Milk', 'Josefin Sans', sans-serif;
-      font-size: 3rem; font-weight: 400; color: var(--border);
-      line-height: 1; display: block; margin-bottom: 24px;
+      font-size: 1.2rem; font-weight: 400; line-height: 1; letter-spacing: 0.02em; color: var(--text);
+      background: rgba(26, 23, 20, 0.8); border: 1px solid rgba(234, 230, 224, 0.35);
     }
     .step h3 {
       font-family: 'Lemon Milk', 'Josefin Sans', sans-serif;
@@ -354,10 +358,10 @@
 
         <div class="step">
           <figure class="step-img">
+            <span class="step-num">01</span>
             <img src="images/HOTM-Process-1-Moodboard.webp" alt="Moodboard for The Hall of the Magician: reference images collaged on a proposal page" width="720" height="540" loading="lazy" decoding="async">
             <figcaption><span>The Hall of the Magician</span> Moodboard</figcaption>
           </figure>
-          <span class="step-num">01</span>
           <h3>Vision</h3>
           <p>We talk about the project: the wall, the space, the feeling you're going for. I put together a moodboard to establish direction and make sure we're thinking in the same language.</p>
           <span class="step-tag">Free, no commitment</span>
@@ -365,10 +369,10 @@
 
         <div class="step">
           <figure class="step-img">
+            <span class="step-num">02</span>
             <img src="images/HOTM-Process-2-Mockup.webp" alt="Concept mock-up of The Hall of the Magician painted onto a photo of the Upton breezeway" width="720" height="540" loading="lazy" decoding="async">
             <figcaption><span>The Hall of the Magician</span> Mock-up</figcaption>
           </figure>
-          <span class="step-num">02</span>
           <h3>Concept</h3>
           <p>Once we're aligned, a 50% deposit kicks off the design phase. I deliver initial concepts within 2–3 weeks. Two rounds of revisions are included. We refine until it's right.</p>
           <span class="step-tag">50% deposit to start</span>
@@ -376,10 +380,10 @@
 
         <div class="step">
           <figure class="step-img">
+            <span class="step-num">03</span>
             <img src="images/HOTM-Process-3-Production.webp" alt="Adam Stephenson on a scissor lift painting the ceiling of The Hall of the Magician" width="720" height="540" loading="lazy" decoding="async">
             <figcaption><span>The Hall of the Magician</span> Production</figcaption>
           </figure>
-          <span class="step-num">03</span>
           <h3>Production</h3>
           <p>We lock in a production timeline together. I handle materials, surface prep, and execution. I'll keep you in the loop throughout. No surprises.</p>
           <span class="step-tag">Scheduled together</span>
@@ -387,10 +391,10 @@
 
         <div class="step">
           <figure class="step-img">
+            <span class="step-num">04</span>
             <img src="images/HOTM-Process-4-Final.webp" alt="The finished Hall of the Magician at The Upton, Atlanta, seen from outside the breezeway" width="720" height="540" loading="lazy" decoding="async">
             <figcaption><span>The Hall of the Magician</span> Finished</figcaption>
           </figure>
-          <span class="step-num">04</span>
           <h3>On the Wall</h3>
           <p>Final payment is due upon completion. I don't consider a project finished until the work holds up: in person, in photos, and over time.</p>
           <span class="step-tag">Pay on completion</span>
