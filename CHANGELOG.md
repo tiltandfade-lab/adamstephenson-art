@@ -24,9 +24,12 @@ Update protocol: when you make a load-bearing change to this repo (anything that
 - Headings and section labels set in title case site-wide (Adam 2026-10-02: "if Case Studies is init cap then My Work should be too"): My Work, murals subhead "Public Commissions", commission page The Process / Is This a Good Fit? / What Goes into the Price / Also Available: Vinyl Murals, About stats Went Pro / States & Counting / Largest Wall, contact Based In. Sentence-style headlines (commission h1, contact h1, CTAs) left as sentences for the copy sweep.
 
 ### Added
+- `images/Song-of-the-Mockingbird-Sketch.webp`: Mockingbird pencil sketch, source x 3000–4700 of 6000, alpha-only, 232 KB.
 - `images/HOTM-Linework-Texture.webp`: Hall of the Magician linework (Upton proposal PSD, Cover group, Layer 1; extracted for the bumper lab), top 2560×960, alpha-only, 228 KB.
 
 - Section headings centered horizontally and vertically in their bands (symmetric padding, grid centering); "View all work" stays pinned right of "Selected Works" and drops beneath it on phones.
+
+- Contact page: the 2021 *Song of the Mockingbird* pencil sketch (`LOCK - Lockhart Mural Concepts/Process/sketch.png`, cropped to the perched bird) ghosted behind the form column, off-white at 14% via CSS mask.
 
 ### Removed
 - Red Bank outer-wall photo from the homepage hero rotation (Adam: bad photo of him at that scale). Red Bank stays in Selected Works.
