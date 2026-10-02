@@ -196,7 +196,27 @@
 
     /* CASE STUDIES */
     .case-studies { border-top: 1px solid var(--border); }
-    .case-studies-header { padding: 64px 48px; display: grid; place-items: center; text-align: center; position: relative; isolation: isolate; overflow: hidden; }
+    .case-studies-header { padding: 64px 48px; display: grid; place-items: center; text-align: center; position: relative; isolation: isolate; overflow: visible; z-index: 10; }
+    /* Static section ornament (Adam 2026-10-02). Values mirror .ornament in index.html,
+       where "My Work" animates; keep the two in sync. */
+    .ornament {
+      --orn: #EEF3F5; --orn-inset: 30px; --orn-side: 10px; --orn-center: 20px;
+      --orn-line: 1px; --orn-line-opacity: 1; --orn-y: 0px; --orn-from: 1;
+      position: absolute; left: 0; right: 0; height: calc(var(--orn-center) + 2px);
+      top: calc(var(--orn-from) * var(--orn-y) + (1 - var(--orn-from)) * (100% - var(--orn-y)));
+      translate: 0 -50%; pointer-events: none;
+    }
+    .ornament-echo { --orn-from: 0; }
+    .orn-line {
+      position: absolute; top: 50%; translate: 0 -50%; height: var(--orn-line);
+      left: calc(var(--orn-inset) + var(--orn-side) / 2); right: calc(var(--orn-inset) + var(--orn-side) / 2);
+      background: var(--orn); opacity: var(--orn-line-opacity);
+    }
+    .orn-side, .orn-center { position: absolute; top: 50%; translate: 0 -50%; background: var(--orn); clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+    .orn-side { width: var(--orn-side); height: var(--orn-side); }
+    .orn-left { left: var(--orn-inset); }
+    .orn-right { right: var(--orn-inset); }
+    .orn-center { left: 50%; translate: -50% -50%; width: var(--orn-center); height: var(--orn-center); }
     /* Hall of the Magician linework band behind section headings (Adam's pick 2026-10-02, see index.html) */
     .case-studies-header::after {
       content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
@@ -301,7 +321,18 @@
 
     <section class="case-studies" aria-label="Case studies">
       <div class="case-studies-header">
+        <div class="ornament" aria-hidden="true">
+          <span class="orn-line"></span>
+          <span class="orn-side orn-left"></span>
+          <span class="orn-side orn-right"></span>
+          <span class="orn-center"></span>
+        </div>
         <h2>Case Studies</h2>
+        <div class="ornament ornament-echo" aria-hidden="true">
+          <span class="orn-line"></span>
+          <span class="orn-side orn-left"></span>
+          <span class="orn-side orn-right"></span>
+        </div>
       </div>
 
       <a class="case-row" href="case-homecoming.html">

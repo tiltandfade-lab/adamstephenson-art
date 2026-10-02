@@ -325,9 +325,12 @@
       overflow: hidden;
     }
 
-    /* "My Work" carries the ornament, which overhangs the band's top edge:
-       no clipping, and stacked above the hero and previews (nav stays on top at 100). */
-    .section-heading {
+    /* Section bands carry the ornament, which overhangs their edges: no clipping,
+       stacked above neighbouring sections (nav stays on top at 100). "My Work" animates;
+       "Case Studies" and "Selected Works" show the static end state (Adam 2026-10-02). */
+    .section-heading,
+    .case-studies-header,
+    .works-strip-header {
       overflow: visible;
       z-index: 10;
     }
@@ -1212,7 +1215,18 @@
   <!-- CASE STUDIES -->
   <section class="case-studies" aria-label="Case studies">
     <div class="case-studies-header">
+      <div class="ornament" aria-hidden="true">
+        <span class="orn-line"></span>
+        <span class="orn-side orn-left"></span>
+        <span class="orn-side orn-right"></span>
+        <span class="orn-center"></span>
+      </div>
       <h2>Case Studies</h2>
+      <div class="ornament ornament-echo" aria-hidden="true">
+        <span class="orn-line"></span>
+        <span class="orn-side orn-left"></span>
+        <span class="orn-side orn-right"></span>
+      </div>
     </div>
 
     <!-- Homecoming: text left | image right -->
@@ -1262,8 +1276,19 @@
   <!-- SELECTED WORKS STRIP -->
   <section class="works-strip" aria-label="Selected works gallery">
     <div class="works-strip-header">
+      <div class="ornament" aria-hidden="true">
+        <span class="orn-line"></span>
+        <span class="orn-side orn-left"></span>
+        <span class="orn-side orn-right"></span>
+        <span class="orn-center"></span>
+      </div>
       <h2>Selected Works</h2>
       <a href="murals.html">View all work →</a>
+      <div class="ornament ornament-echo" aria-hidden="true">
+        <span class="orn-line"></span>
+        <span class="orn-side orn-left"></span>
+        <span class="orn-side orn-right"></span>
+      </div>
     </div>
     <div class="works-grid">
       <figure>
