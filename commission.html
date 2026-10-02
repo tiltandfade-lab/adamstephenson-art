@@ -244,6 +244,15 @@
       display: flex; flex-direction: column; align-items: center;
       text-align: center; gap: 36px;
     }
+    /* Song of the Mockingbird pencil sketch, full flight, behind the contact lead.
+       Same treatment as the contact form and heading linework: off-white at 13%. Adam 2026-10-02. */
+    .commission-cta { position: relative; isolation: isolate; overflow: hidden; }
+    .commission-cta::before {
+      content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+      background: var(--text); opacity: 0.13;
+      -webkit-mask: url(images/Song-of-the-Mockingbird-Flight.webp) center / cover no-repeat;
+      mask: url(images/Song-of-the-Mockingbird-Flight.webp) center / cover no-repeat;
+    }
     .commission-cta h2 {
       font-family: 'Playfair Display', Georgia, serif;
       font-size: clamp(2.2rem, 4vw, 3.4rem);

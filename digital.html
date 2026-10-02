@@ -84,6 +84,15 @@
     .poster-item.wide { grid-column: span 2; }
 
     .cta-strip { position: relative; z-index: 1; padding: 72px 48px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+    /* Song of the Mockingbird pencil sketch, full flight, behind the contact lead.
+       Same treatment as the contact form and heading linework: off-white at 13%. Adam 2026-10-02. */
+    .cta-strip { position: relative; isolation: isolate; overflow: hidden; }
+    .cta-strip::before {
+      content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+      background: var(--text); opacity: 0.13;
+      -webkit-mask: url(images/Song-of-the-Mockingbird-Flight.webp) center / cover no-repeat;
+      mask: url(images/Song-of-the-Mockingbird-Flight.webp) center / cover no-repeat;
+    }
     .cta-strip p { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 400; color: var(--text-dim); max-width: 600px; }
     .cta-strip p strong { color: var(--text); font-weight: 400; }
     .cta-btn { display: inline-block; padding: 14px 36px; flex-shrink: 0; font-family: 'Josefin Sans', sans-serif; font-size: 15px; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; background: var(--accent); border: 1px solid var(--accent); color: #1A1714; transition: background 0.25s, color 0.25s; }
