@@ -32,6 +32,7 @@ Update protocol: when you make a load-bearing change to this repo (anything that
 - Section headings centered horizontally and vertically in their bands (symmetric padding, grid centering); "View all work" stays pinned right of "Selected Works" and drops beneath it on phones.
 
 - Contact page: the 2021 *Song of the Mockingbird* pencil sketch (`LOCK - Lockhart Mural Concepts/Process/sketch.png`, cropped to the perched bird) ghosted behind the form column with the same treatment as the heading linework: off-white at 13%, full height, centered. Pencil alpha levelled (40 to 150) so strokes read as solid light lines.
+- About CV, Collaborations & Assistantships (Adam): added 2026 Nick Benson — *Next Stop*, Atlanta Beltline Art, English Avenue (title confirmed via WABE, Jul 29 2026; Adam confirmed) and 2026 Peter Ferrari — mural, The Paideia School (no official title found online; add when known).
 - About CV: Forward Warrior now 2024–26 "(2024, 2025, 2026)" (Adam). Website CV section only; canon docx and the CV PDF not touched.
 - Commission closing section: deleted "Tell me about your wall. We'll take it from there. No commitment, no pressure, just a conversation." (Adam).
 - Commission vinyl option (Same look, lower floor / $2,000) removed with its styles (Adam). `.vinyl-label` kept: it styles the "Painted Murals" label.
