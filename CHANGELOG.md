@@ -32,6 +32,7 @@ Update protocol: when you make a load-bearing change to this repo (anything that
 - Section headings centered horizontally and vertically in their bands (symmetric padding, grid centering); "View all work" stays pinned right of "Selected Works" and drops beneath it on phones.
 
 - Contact page: the 2021 *Song of the Mockingbird* pencil sketch (`LOCK - Lockhart Mural Concepts/Process/sketch.png`, cropped to the perched bird) ghosted behind the form column with the same treatment as the heading linework: off-white at 13%, full height, centered. Pencil alpha levelled (40 to 150) so strokes read as solid light lines.
+- Commission page copy (Adam): deleted "Final cost is always confirmed before work begins."; vinyl line now "...a practical option when budget is the constraint." (cut ", not vision").
 - Commission page: painted-mural starting price $4,000 → $5,000 (vinyl stays $2,000). Intro trimmed (Adam): "I work with developers, festivals, businesses, and communities. Here's how it works, and what it costs." (cut "to create murals that earn their place").
 - Commission Production step image: the scissor-lift photo replaced with Adam's Hall of the Magician line drawing (the extracted Cover linework), rotated 90° clockwise so it runs tall, center-cropped to 4:3, off-white on warm black (`images/HOTM-Process-3-Drawing.webp`, 43 KB). Caption "Line drawing".
 - Commission process step numbers moved into a circular badge in each photo's top-right corner, 60% smaller (3rem → 1.2rem), off-white on a dark translucent circle.
