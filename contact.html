@@ -241,36 +241,45 @@
       color: var(--text-dim);
     }
 
+    /* real text fields (Adam 2026-10-02): filled box, visible border, clear focus ring.
+       Fill is mostly opaque so the mockingbird sketch behind the form doesn't fight the typing. */
     .form-field input,
     .form-field textarea {
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid var(--border);
+      background: rgba(34, 30, 26, 0.92);
+      border: 1px solid #4A443D;
+      border-radius: 3px;
       color: var(--text);
       font-family: 'Josefin Sans', sans-serif;
       font-size: 16px;
       font-weight: 400;
-      padding: 10px 0;
+      padding: 13px 14px;
       outline: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
       width: 100%;
       -webkit-appearance: none;
     }
 
+    .form-field input:hover,
+    .form-field textarea:hover {
+      border-color: #6A635A;
+    }
+
     .form-field input:focus,
     .form-field textarea:focus {
-      border-bottom-color: var(--accent);
+      border-color: var(--accent);
+      background: #26211D;
+      box-shadow: 0 0 0 3px rgba(148, 214, 207, 0.18);
     }
 
     .form-field input::placeholder,
     .form-field textarea::placeholder {
       color: var(--text-dim);
-      opacity: 0.5;
+      opacity: 0.6;
     }
 
     .form-field textarea {
-      resize: none;
-      min-height: 120px;
+      resize: vertical;
+      min-height: 160px;
       line-height: 1.6;
     }
 
@@ -282,6 +291,7 @@
     }
 
     .submit-btn {
+      white-space: nowrap; /* "Send it" stays on one line on phones */
       display: inline-block;
       padding: 14px 40px;
       font-family: 'Josefin Sans', sans-serif;

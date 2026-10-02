@@ -32,6 +32,7 @@ Update protocol: when you make a load-bearing change to this repo (anything that
 - Section headings centered horizontally and vertically in their bands (symmetric padding, grid centering); "View all work" stays pinned right of "Selected Works" and drops beneath it on phones.
 
 - Contact page: the 2021 *Song of the Mockingbird* pencil sketch (`LOCK - Lockhart Mural Concepts/Process/sketch.png`, cropped to the perched bird) ghosted behind the form column with the same treatment as the heading linework: off-white at 13%, full height, centered. Pencil alpha levelled (40 to 150) so strokes read as solid light lines.
+- Contact form fields now look like text fields: filled dark box (92% opaque so the mockingbird sketch stays behind), 1px border with hover state, 3px radius, 13/14px padding, verdigris focus border + soft ring (replaces underline-only fields with `outline: none`). Message box 160px tall, vertically resizable. "Send it" button no longer wraps on phones.
 - Commission Production step (Adam): deleted "No surprises."
 - Commission page copy (Adam): price factor "Travel and lodging (scoped separately)" → "Travel and lodging"; deleted "Final cost is always confirmed before work begins."; vinyl line now "...a practical option when budget is the constraint." (cut ", not vision").
 - Commission page: painted-mural starting price $4,000 → $5,000 (vinyl stays $2,000). Intro trimmed (Adam): "I work with developers, festivals, businesses, and communities. Here's how it works, and what it costs." (cut "to create murals that earn their place").
