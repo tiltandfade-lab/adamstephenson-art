@@ -117,23 +117,42 @@
       color: var(--accent);
     }
 
-    /* ── PAGE LAYOUT ── */
+    /* ── PAGE LAYOUT: one centered column (Adam 2026-10-02) ── */
     .page-wrap {
       position: relative;
       z-index: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 100vh;
-    }
-
-    /* ── LEFT — intro ── */
-    .contact-intro {
-      padding: 160px 64px 80px 48px;
-      border-right: 1px solid var(--border);
+      isolation: isolate;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      gap: 32px;
+      align-items: center;
+      min-height: 100vh;
+      padding: 160px 24px 96px;
+    }
+
+    /* Song of the Mockingbird pencil sketch (2021 concept, LOCK - Lockhart Mural
+       Concepts/Process/sketch.png), ghosted behind the page. Same treatment as the
+       Hall of the Magician heading linework: full height, centered, 8%. Pencil alpha
+       levelled (40-150) so strokes read as solid light lines. */
+    .page-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: var(--text);
+      opacity: 0.08;
+      -webkit-mask: url(images/Song-of-the-Mockingbird-Sketch.webp) center / auto 100% no-repeat;
+      mask: url(images/Song-of-the-Mockingbird-Sketch.webp) center / auto 100% no-repeat;
+    }
+
+    /* ── heading + details ── */
+    .contact-intro {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 28px;
+      margin-bottom: 56px;
     }
 
 
@@ -148,10 +167,10 @@
 
 
     .contact-details {
-      margin-top: 16px;
       display: flex;
-      flex-direction: column;
-      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px 48px;
     }
 
     .contact-details a {
@@ -175,31 +194,10 @@
       margin-bottom: 2px;
     }
 
-    /* ── RIGHT — form ── */
+    /* ── form ── */
     .contact-form-wrap {
-      padding: 160px 48px 80px 64px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
-    }
-
-    /* Song of the Mockingbird pencil sketch (2021 concept, LOCK - Lockhart Mural
-       Concepts/Process/sketch.png), ghosted behind the form. Adam 2026-10-02:
-       same treatment as the Hall of the Magician heading linework, full height,
-       centered, 8%. Pencil alpha levelled (40-150) so strokes read as solid light lines. */
-    .contact-form-wrap::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      background: var(--text);
-      opacity: 0.08;
-      -webkit-mask: url(images/Song-of-the-Mockingbird-Sketch.webp) center / auto 100% no-repeat;
-      mask: url(images/Song-of-the-Mockingbird-Sketch.webp) center / auto 100% no-repeat;
+      width: 100%;
+      max-width: 680px;
     }
 
     form {
@@ -273,8 +271,10 @@
     .form-submit {
       margin-top: 8px;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 24px;
+      gap: 14px;
+      text-align: center;
     }
 
     .submit-btn {
@@ -309,6 +309,7 @@
     .success-msg {
       display: none;
       padding: 24px 0;
+      text-align: center;
     }
 
     .success-msg h3 {
@@ -374,19 +375,12 @@
       nav ul a { font-size: 13px; }
 
       .page-wrap {
-        grid-template-columns: 1fr;
+        padding: 120px 24px 80px;
       }
 
       .contact-intro {
-        padding: 120px 24px 48px;
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-        justify-content: flex-start;
         gap: 24px;
-      }
-
-      .contact-form-wrap {
-        padding: 48px 24px 80px;
+        margin-bottom: 44px;
       }
 
       footer {
@@ -407,12 +401,8 @@
         grid-template-columns: 1fr;
       }
 
-      .contact-intro {
-        padding: 100px 20px 40px;
-      }
-
-      .contact-form-wrap {
-        padding: 40px 20px 72px;
+      .page-wrap {
+        padding: 100px 20px 72px;
       }
 
       footer { padding: 32px 20px; }
@@ -455,7 +445,7 @@
 
   <div class="page-wrap">
 
-    <!-- LEFT: intro -->
+    <!-- heading + details -->
     <div class="contact-intro">
       <h1>Let's make<br>something<br>beautiful</h1>
       <div class="contact-details">
@@ -470,7 +460,7 @@
       </div>
     </div>
 
-    <!-- RIGHT: form -->
+    <!-- form -->
     <div class="contact-form-wrap">
 
       <form name="contact" method="POST" netlify netlify-honeypot="bot-field" id="contact-form">
