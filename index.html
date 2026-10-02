@@ -361,9 +361,14 @@
       --orn-draw-dur: 1.2s;
       --orn-draw-delay: 0.6s;
       --orn-draw-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+      /* vertical position: the rule's center sits --orn-y from the band's top
+         (--orn-from: 1) or bottom (--orn-from: 0). Phones override --orn-y below. */
+      --orn-y: 11px;
+      --orn-from: 1;
 
       position: absolute;
-      top: 0;
+      top: calc(var(--orn-from) * var(--orn-y) + (1 - var(--orn-from)) * (100% - var(--orn-y)));
+      translate: 0 -50%;
       left: 0;
       right: 0;
       height: calc(var(--orn-center) + 2px);
@@ -1035,6 +1040,9 @@
       .section-heading,
       .case-studies-header {
         padding: 40px 20px;
+      }
+      .ornament {
+        --orn-y: 11px;
       }
 
       /* Case studies */

@@ -30,7 +30,7 @@ Update protocol: when you make a load-bearing change to this repo (anything that
 - Section headings centered horizontally and vertically in their bands (symmetric padding, grid centering); "View all work" stays pinned right of "Selected Works" and drops beneath it on phones.
 
 - Contact page: the 2021 *Song of the Mockingbird* pencil sketch (`LOCK - Lockhart Mural Concepts/Process/sketch.png`, cropped to the perched bird) ghosted behind the form column with the same treatment as the heading linework: off-white at 13%, full height, centered. Pencil alpha levelled (40 to 150) so strokes read as solid light lines.
-- "My Work" top ornament: cool white (#EEF3F5) rule with a small diamond 30px in from each side and a larger diamond centered. One-shot on reveal: center diamond twinkles in, the side diamonds travel out from it drawing the rule, center glints again when they land. Driven by `--orn-*` variables; static under reduced motion. Tuned in `labs/ornament.html` (gitignored).
+- "My Work" top ornament: cool white (#EEF3F5) rule with a small diamond 30px in from each side and a larger diamond centered. One-shot on reveal: center diamond twinkles in, the side diamonds travel out from it drawing the rule, center glints again when they land. Driven by `--orn-*` variables, including vertical position (`--orn-y` from the top or bottom via `--orn-from`, with a separate phone value); static under reduced motion. Tuned in `labs/ornament.html` (gitignored).
 
 ### Removed
 - Red Bank outer-wall photo from the homepage hero rotation (Adam: bad photo of him at that scale). Red Bank stays in Selected Works.
