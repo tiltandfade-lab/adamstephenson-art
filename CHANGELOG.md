@@ -32,6 +32,7 @@ Update protocol: when you make a load-bearing change to this repo (anything that
 - Section headings centered horizontally and vertically in their bands (symmetric padding, grid centering); "View all work" stays pinned right of "Selected Works" and drops beneath it on phones.
 
 - Contact page: the 2021 *Song of the Mockingbird* pencil sketch (`LOCK - Lockhart Mural Concepts/Process/sketch.png`, cropped to the perched bird) ghosted behind the form column with the same treatment as the heading linework: off-white at 13%, full height, centered. Pencil alpha levelled (40 to 150) so strokes read as solid light lines.
+- HOTM heroes use the fully zoomed-out exterior (Adam): case-study hero and homepage slideshow → `HOTM-Final-Exterior.webp` (og/JSON-LD image too); the interior moves into the case gallery, and the homepage Selected Works tile takes the afternoon-sun interior so nothing repeats.
 - Nav background darkened from 30% to 40% black on every page (Adam). The homepage's scrolled state (94% warm black) is unchanged.
 - Digital & Design and Figurative headers simplified like Murals: intro sentence and side stats replaced by a category subhead, "Festival Posters | Printed Murals | Digital Illustration" and "Murals | Portraits | Studio Paintings" (drawn from each page's own intro; Adam to confirm wording).
 - About page: "Practice" heading and "I'm a muralist. I paint really big paintings." removed (Adam); the section now opens on "My best work seeks to reveal a threshold…".
