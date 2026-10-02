@@ -230,16 +230,16 @@
     .case-studies-header {
       /* edge fade on the linework (labs/heading-fade.html): how much of the band fades at
          each side, the alpha left at the very edge, and where the fade hits half strength */
-      --tex-fade-l: 0%;
-      --tex-fade-r: 0%;
-      --tex-fade-t: 0%;
-      --tex-fade-b: 0%;
+      --tex-fade-l: 29%;
+      --tex-fade-r: 29%;
+      --tex-fade-t: 22%;
+      --tex-fade-b: 22%;
       --tex-edge: 0;
-      --tex-curve: 0.5;
+      --tex-curve: 0.45;
     }
     .case-studies-header::after {
       content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-      background: var(--text); opacity: 0.13;
+      background: var(--text); opacity: 0.17;
       -webkit-mask-image:
         url(images/HOTM-Linework-Texture.webp),
         linear-gradient(to right, rgb(0 0 0 / var(--tex-edge)) 0%, calc(var(--tex-fade-l) * var(--tex-curve)), #000 var(--tex-fade-l), #000 calc(100% - var(--tex-fade-r)), calc(100% - var(--tex-fade-r) * var(--tex-curve)), rgb(0 0 0 / var(--tex-edge)) 100%),
