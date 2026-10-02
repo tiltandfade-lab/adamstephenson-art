@@ -98,7 +98,8 @@
     .process { padding: 80px 48px; border-bottom: 1px solid var(--border); }
     .section-label { font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 56px; display: block; }
     /* "The Process" gets the section band (Adam 2026-10-02): full-width, cancels the section's padding */
-    .process > .section-band { margin: -80px -48px 56px; }
+    .process > .section-band,
+    .pricing > .section-band { margin: -80px -48px 56px; }
     .section-band { padding: 64px 48px; display: grid; place-items: center; text-align: center; position: relative; isolation: isolate; overflow: visible; z-index: 10; }
     /* Static section ornament + linework band, as on home/murals (Adam 2026-10-02). Values mirror .ornament in index.html,
        where "My Work" animates; keep the two in sync. */
@@ -198,7 +199,7 @@
     }
     .step p { font-size: 17px; font-weight: 400; line-height: 1.75; color: var(--text-dim); }
     .step .step-tag {
-      display: inline-block; margin-top: 20px;
+      display: block; width: 100%; text-align: center; margin-top: 20px; /* full column width, centered (Adam 2026-10-02) */
       font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
       color: var(--accent); border: 1px solid var(--accent);
       padding: 4px 10px;
@@ -300,7 +301,8 @@
     }
 
     /* FIT */
-    .fit { display: grid; grid-template-columns: 380px 1fr; min-height: 560px; overflow: hidden; border-bottom: 1px solid var(--border); }
+    .fit { display: grid; grid-template-columns: 380px 1fr; grid-template-rows: auto 1fr; min-height: 560px; border-bottom: 1px solid var(--border); }
+    .fit > .section-band { grid-column: 1 / -1; }
     .fit-palette { overflow: hidden; border-right: 1px solid var(--border); }
     .fit-palette img { width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block; }
     .fit-content { padding: 72px 64px; }
@@ -361,7 +363,7 @@
       .page-header-text { padding: 120px 24px 56px; }
       .process { padding: 64px 24px; }
       .section-band { padding: 48px 24px; }
-      .process > .section-band { margin: -64px -24px 40px; }
+      .process > .section-band, .pricing > .section-band { margin: -64px -24px 40px; }
       .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
       .step-img img { height: auto; aspect-ratio: 4 / 3; }
       .step { border-right: none; padding: 0 !important; border-bottom: 1px solid var(--border); padding-bottom: 40px !important; }
@@ -385,7 +387,7 @@
       .page-header-text { padding: 100px 20px 48px; }
       .process { padding: 48px 20px; }
       .section-band { padding: 40px 20px; }
-      .process > .section-band { margin: -48px -20px 32px; }
+      .process > .section-band, .pricing > .section-band { margin: -48px -20px 32px; }
       .process-steps { grid-template-columns: 1fr; }
       .pricing { padding: 48px 20px; }
       .price-callout-text { padding: 24px 20px; }
@@ -490,7 +492,11 @@
 
     <!-- PRICING -->
     <section class="pricing" aria-label="Pricing">
-      <span class="section-label">Pricing</span>
+      <div class="section-band">
+        <div class="ornament" aria-hidden="true"><span class="orn-line"></span><span class="orn-side orn-left"></span><span class="orn-side orn-right"></span><span class="orn-center"></span></div>
+        <h2>Pricing</h2>
+        <div class="ornament ornament-echo" aria-hidden="true"><span class="orn-line"></span><span class="orn-side orn-left"></span><span class="orn-side orn-right"></span></div>
+      </div>
 
       <div class="price-callout">
         <div class="price-callout-text">
@@ -532,11 +538,15 @@
 
     <!-- GOOD FIT -->
     <section class="fit" aria-label="Project fit">
+      <div class="section-band">
+        <div class="ornament" aria-hidden="true"><span class="orn-line"></span><span class="orn-side orn-left"></span><span class="orn-side orn-right"></span><span class="orn-center"></span></div>
+        <h2>Is This a Good Fit?</h2>
+        <div class="ornament ornament-echo" aria-hidden="true"><span class="orn-line"></span><span class="orn-side orn-left"></span><span class="orn-side orn-right"></span></div>
+      </div>
       <div class="fit-palette">
         <img src="images/STEPHENSON-Paint-Palette.jpg" alt="Adam Stephenson's paint palette" loading="lazy">
       </div>
       <div class="fit-content">
-        <span class="section-label">Is This a Good Fit?</span>
         <h3 class="fit-heading">We're probably a good fit if:</h3>
         <ul class="fit-list" role="list">
           <li><strong>You want something that couldn't come from anyone else.</strong> If you've seen a piece of mine and thought "I want that energy in my space," we're already speaking the same language. That's the best place to start.</li>
